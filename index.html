@@ -641,6 +641,7 @@ function showConversation(idx) {
   
   area.innerHTML = html;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  setVoiceUI(); // Sync voice select to saved preference
 }
 
 // ===== Audio =====
@@ -669,6 +670,14 @@ function getAudioByVoice(conv, paraIdx, voiceName) {
 function setVoice(convIdx, voiceName) {
   currentVoice = voiceName;
   localStorage.setItem('italianVoice', voiceName);
+  setVoiceUI();
+}
+
+function setVoiceUI() {
+  // Sync all voice select dropdowns to currentVoice
+  document.querySelectorAll('.voice-select').forEach(sel => {
+    sel.value = currentVoice;
+  });
 }
 
 function togglePlay(convIdx, paraIdx) {
