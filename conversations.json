@@ -21,16 +21,24 @@
     ],
     "vocab": [
       {
-        "word": "lo squillotelephone",
-        "meaning": "ring"
+        "word": "lo squillo",
+        "meaning": "电话铃声"
       },
       {
-        "word": "essere a pezzito be exhausted, tired",
-        "meaning": "out"
+        "word": "essere a pezzi",
+        "meaning": "精疲力竭"
       },
       {
-        "word": "lavorare sodoto work",
-        "meaning": "hard"
+        "word": "lavorare sodo",
+        "meaning": "努力工作"
+      },
+      {
+        "word": "a te tocca",
+        "meaning": "轮到你"
+      },
+      {
+        "word": "indigente",
+        "meaning": "流浪汉"
       }
     ],
     "title_cn": "电话铃声"

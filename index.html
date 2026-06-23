@@ -489,7 +489,18 @@ async function loadConvEnhancements(num) {
       }
     }
   } catch(e) { console.log('Translation not found'); }
-  
+
+  // Load vocab audio data
+  try {
+    let resp = await fetch(`vocab_data/vocab_${num}.json?_=${Date.now()}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.vocab_audios && data.vocab_audios.length > 0) {
+        conv.vocab_audios = data.vocab_audios;
+      }
+    }
+  } catch(e) { /* ignore */ }
+
   // Start refresh loop for instant UI update
   if (currentIdx === num - 1) {
     refreshCurrentConv();
