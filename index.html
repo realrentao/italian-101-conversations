@@ -467,34 +467,51 @@ async function loadConvEnhancements(num) {
   }
 }
 
+// ===== Refresh current conv - apply audio/trans one by one as they become available =====
+let audioRefreshTimer = null;
+
 function refreshCurrentConv() {
+  if (audioRefreshTimer) clearTimeout(audioRefreshTimer);
+  
   const conv = conversations[currentIdx];
+  if (!conv) return;
+  
   let updatedAudio = 0, updatedTrans = 0;
   
-  conv.paragraphs.forEach((para, pIdx) => {
+  // Process each paragraph one by one with small delay - so each becomes playable ASAP
+  async function processNext(pIdx) {
+    if (pIdx >= conv.paragraphs.length) {
+      // Done
+      const el = document.getElementById('enhancedStatus');
+      if (el && (updatedAudio || updatedTrans)) {
+        const parts = [];
+        if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
+        if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
+        el.textContent = '✅ ' + parts.join(' ');
+        setTimeout(() => el.textContent = '', 5000);
+      }
+      return;
+    }
+    
     const audioEl = document.getElementById(`audio-${currentIdx}-${pIdx}`);
     const transEl = document.getElementById(`trans-${currentIdx}-${pIdx}`);
     
+    // Audio: set immediately when available
     if (audioEl && conv.audios && conv.audios[pIdx] && !audioEl.src.includes('base64')) {
       audioEl.src = 'data:audio/mp3;base64,' + conv.audios[pIdx];
       updatedAudio++;
     }
-    if (transEl && conv.translations && conv.translations[pIdx]) {
+    // Translation: set immediately when available
+    if (transEl && conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) {
       transEl.textContent = conv.translations[pIdx];
       updatedTrans++;
     }
-  });
-  
-  const el = document.getElementById('enhancedStatus');
-  if (el) {
-    const parts = [];
-    if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
-    if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
-    if (parts.length) {
-      el.textContent = '✅ ' + parts.join(' ');
-      setTimeout(() => el.textContent = '', 5000);
-    }
+    
+    // Process next with small delay (50ms) - allows user to play earlier audios while later ones load
+    audioRefreshTimer = setTimeout(() => processNext(pIdx + 1), 50);
   }
+  
+  processNext(0);
 }
 
 function showConversation(idx) {
