@@ -452,21 +452,30 @@ document.querySelectorAll('.conv-item').forEach(item => {
   });
 });// ===== Load per-conversation data (audio + translations) on demand =====
 // Load audio + translations from separate files for efficiency
+// Load per-paragraph audio files (each para has its own voice: narrative=Isabella, male=Diego, female=Elsa)
+let loadedParas = {};
+
 async function loadConvEnhancements(num) {
   const conv = conversations.find(c => c.num === num);
   if (!conv) return false;
-  
-  try {
-    // Load audio data
-    let resp = await fetch(`conv_data/conv_${num}.json?_=${Date.now()}`);
-    if (resp.ok) {
-      const data = await resp.json();
-      if (data.audiosDiego) conv.audiosDiego = data.audiosDiego;
-      if (data.audiosIsabella) conv.audiosIsabella = data.audiosIsabella;
-      if (data.audiosElsa) conv.audiosElsa = data.audiosElsa;
-      if (data.audios) conv.audios = data.audios;
-    }
-  } catch(e) { console.log('Audio not found'); }
+
+  // Load each paragraph audio separately
+  for (let pIdx = 0; pIdx < conv.paragraphs.length; pIdx++) {
+    if (loadedParas[num + '_' + pIdx]) continue; // already loaded
+
+    try {
+      let resp = await fetch(`audio_data/conv_${num}_json/${pIdx}.json?_=${Date.now()}`);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.audio && data.audio.length > 200) {
+          // Store audio in a map keyed by paragraph index
+          if (!conv.paragraphAudios) conv.paragraphAudios = {};
+          conv.paragraphAudios[pIdx] = data.audio;
+          loadedParas[num + '_' + pIdx] = true;
+        }
+      }
+    } catch(e) { /* ignore */ }
+  }
   
   try {
     // Load translation data separately
@@ -518,9 +527,9 @@ function refreshCurrentConv() {
     const audioEl = document.getElementById(`audio-${currentIdx}-${pIdx}`);
     const transEl = document.getElementById(`trans-${currentIdx}-${pIdx}`);
     
-    // Audio: set immediately when available
-    if (audioEl && conv.audios && conv.audios[pIdx] && !audioEl.src.includes('base64')) {
-      audioEl.src = 'data:audio/mp3;base64,' + conv.audios[pIdx];
+    // Audio: set immediately when available (per-paragraph audio with embedded voice)
+    if (audioEl && conv.paragraphAudios && conv.paragraphAudios[pIdx] && !audioEl.src.includes('base64')) {
+      audioEl.src = 'data:audio/mp3;base64,' + conv.paragraphAudios[pIdx];
       updatedAudio++;
     }
     // Translation: set immediately when available
@@ -696,33 +705,22 @@ function setVoiceUI() {
 
 function togglePlay(convIdx, paraIdx) {
   stopAll();
-  
+
   const conv = conversations[convIdx];
   if (!conv) return;
   const audio = getAudioEl(convIdx, paraIdx);
-  
-  // Try to use voice-specific audio from conv_data
-  const b64 = getAudioByVoice(conv, paraIdx, currentVoice);
+
+  // Try per-paragraph audio (each para has its own voice baked in: narrative=Isabella, male=Diego, female=Elsa)
+  const b64 = conv.paragraphAudios && conv.paragraphAudios[paraIdx];
   if (b64 && b64.length > 200) {
     audio.src = 'data:audio/mp3;base64,' + b64;
     startPlayback(audio, convIdx, paraIdx);
     return;
   }
-  
-  // Try fallback voices if selected voice not available
-  const voices = ['Isabella', 'Elsa', 'Diego'];
-  for (const v of voices) {
-    const fb = getAudioByVoice(conv, paraIdx, v);
-    if (fb && fb.length > 200) {
-      audio.src = 'data:audio/mp3;base64,' + fb;
-      startPlayback(audio, convIdx, paraIdx);
-      return;
-    }
-  }
-  
-  // Not loaded yet - try to load conv_data file
+
+  // Not loaded yet - trigger loading and play when ready
   loadConvEnhancements(conv.num).then(() => {
-    const b642 = getAudioByVoice(conv, paraIdx, currentVoice);
+    const b642 = conv.paragraphAudios && conv.paragraphAudios[paraIdx];
     if (b642 && b642.length > 200) {
       audio.src = 'data:audio/mp3;base64,' + b642;
       startPlayback(audio, convIdx, paraIdx);
