@@ -107,6 +107,7 @@
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: var(--accent2); }
   .btn-sm { padding: 5px 12px; font-size: .78rem; }
+  .voice-select { padding: 4px 8px; font-size: .75rem; border-radius: var(--radius); background: var(--surface); color: var(--text); border: 1px solid var(--border); margin-left: 8px; }
 
   /* ===== Paragraph Card ===== */
   .paragraph {
@@ -386,6 +387,7 @@ let conversations = [];
 let currentIdx = -1;
 let listenedSet = new Set();
 let currentAudio = null;
+let currentVoice = localStorage.getItem('italianVoice') || 'Isabella';
 let dataPromise = null;  // Preload promise
 
 const LS_KEY = 'italian101_listened3';
@@ -457,6 +459,11 @@ async function loadConvEnhancements(num) {
     // Find and merge into conversations array
     const conv = conversations.find(c => c.num === num);
     if (!conv) return;
+    // Handle three voice audio arrays
+    if (data.audiosDiego) conv.audiosDiego = data.audiosDiego;
+    if (data.audiosIsabella) conv.audiosIsabella = data.audiosIsabella;
+    if (data.audiosElsa) conv.audiosElsa = data.audiosElsa;
+    // Backward compatibility
     if (data.audios) conv.audios = data.audios;
     if (data.translations && data.translations.some(t => t && t.length > 1)) {
       conv.translations = data.translations;
@@ -555,6 +562,11 @@ function showConversation(idx) {
       <div class="conv-actions">
         <button class="btn btn-primary btn-sm" onclick="playAll(${idx})">▶ 播放全部</button>
         <button class="btn btn-sm" onclick="stopAll()">⏹ 停止</button>
+        <select class="voice-select" id="voiceSelect${idx}" onchange="setVoice(${idx}, this.value)">
+          <option value="Isabella" selected>👩 Isabella</option>
+          <option value="Elsa">👩 Elsa</option>
+          <option value="Diego">👨 Diego</option>
+        </select>
         <span style="font-size:.72rem;color:var(--text2)">${conv.paragraphs.length} 段</span>
         <span id="enhancedStatus" style="font-size:.7rem;color:var(--gold);margin-left:8px"></span>
       </div>
@@ -643,6 +655,20 @@ function setupAudioSrc(audio, convIdx, paraIdx) {
   }
 }
 
+// Get audio by voice name (Diego/Isabella/Elsa)
+function getAudioByVoice(conv, paraIdx, voiceName) {
+  const key = 'audios' + voiceName;
+  if (conv[key] && conv[key][paraIdx] && conv[key][paraIdx].length > 200) {
+    return conv[key][paraIdx];
+  }
+  return null;
+}
+
+function setVoice(convIdx, voiceName) {
+  currentVoice = voiceName;
+  localStorage.setItem('italianVoice', voiceName);
+}
+
 function togglePlay(convIdx, paraIdx) {
   stopAll();
   
@@ -650,17 +676,30 @@ function togglePlay(convIdx, paraIdx) {
   if (!conv) return;
   const audio = getAudioEl(convIdx, paraIdx);
   
-  // Try to use base64 audio from conv_data
-  if (conv.audios && conv.audios[paraIdx] && conv.audios[paraIdx].length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + conv.audios[paraIdx];
+  // Try to use voice-specific audio from conv_data
+  const b64 = getAudioByVoice(conv, paraIdx, currentVoice);
+  if (b64 && b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + b64;
     startPlayback(audio, convIdx, paraIdx);
     return;
   }
   
+  // Try fallback voices if selected voice not available
+  const voices = ['Isabella', 'Elsa', 'Diego'];
+  for (const v of voices) {
+    const fb = getAudioByVoice(conv, paraIdx, v);
+    if (fb && fb.length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + fb;
+      startPlayback(audio, convIdx, paraIdx);
+      return;
+    }
+  }
+  
   // Not loaded yet - try to load conv_data file
   loadConvEnhancements(conv.num).then(() => {
-    if (conv.audios && conv.audios[paraIdx] && conv.audios[paraIdx].length > 200) {
-      audio.src = 'data:audio/mp3;base64,' + conv.audios[paraIdx];
+    const b642 = getAudioByVoice(conv, paraIdx, currentVoice);
+    if (b642 && b642.length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + b642;
       startPlayback(audio, convIdx, paraIdx);
     }
   });
@@ -747,7 +786,7 @@ function playAll(convIdx) {
   const conv = conversations[convIdx];
   
   // If no audio data loaded yet, trigger load first
-  if (!conv.audios || conv.audios.length === 0) {
+  if (!conv.audiosIsabella && !conv.audios) {
     loadConvEnhancements(conv.num); // Start loading in background
   }
   
@@ -761,9 +800,17 @@ function playAll(convIdx) {
     }
     
     const audio = getAudioEl(convIdx, pIdx);
-    // Check if data is already loaded in conv.audios[pIdx] - set src directly
-    if (audio && conv.audios && conv.audios[pIdx] && conv.audios[pIdx].length > 100) {
-      audio.src = 'data:audio/mp3;base64,' + conv.audios[pIdx];
+    // Check voice-specific audio first, then fallback
+    let b64 = getAudioByVoice(conv, pIdx, currentVoice);
+    if (!b64 || b64.length < 200) {
+      const voices = ['Isabella', 'Elsa', 'Diego'];
+      for (const v of voices) {
+        b64 = getAudioByVoice(conv, pIdx, v);
+        if (b64 && b64.length > 200) break;
+      }
+    }
+    if (b64 && b64.length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + b64;
     } else {
       setupAudioSrc(audio, convIdx, pIdx);
     }
