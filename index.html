@@ -416,11 +416,12 @@ function renderSidebar() {
       if (conversations.length > 0) {
         showConversation(idx);
         const conv = conversations[idx];
+        // Start loading in background immediately, don't wait
         if (!conv._enhancedLoaded) {
           conv._enhancedLoaded = true;
           loadConvEnhancements(conv.num);
-          refreshCurrentConv();
         }
+        refreshCurrentConv();
       } else {
         document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
         ensureData().then(ok => { if (ok) { showConversation(idx); } });
@@ -501,25 +502,12 @@ function refreshCurrentConv() {
   
   let updatedAudio = 0, updatedTrans = 0;
   
-  // Process each paragraph one by one with small delay - so each becomes playable ASAP
-  async function processNext(pIdx) {
-    if (pIdx >= conv.paragraphs.length) {
-      // Done
-      const el = document.getElementById('enhancedStatus');
-      if (el && (updatedAudio || updatedTrans)) {
-        const parts = [];
-        if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
-        if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
-        el.textContent = '✅ ' + parts.join(' ');
-        setTimeout(() => el.textContent = '', 5000);
-      }
-      return;
-    }
-    
+  // Process all paragraphs at once for instant availability
+  for (let pIdx = 0; pIdx < conv.paragraphs.length; pIdx++) {
     const audioEl = document.getElementById(`audio-${currentIdx}-${pIdx}`);
     const transEl = document.getElementById(`trans-${currentIdx}-${pIdx}`);
     
-    // Audio: set immediately when available (per-paragraph audio with embedded voice)
+    // Audio: set immediately when available
     if (audioEl && conv.paragraphAudios && conv.paragraphAudios[pIdx] && !audioEl.src.includes('base64')) {
       audioEl.src = 'data:audio/mp3;base64,' + conv.paragraphAudios[pIdx];
       updatedAudio++;
@@ -529,12 +517,17 @@ function refreshCurrentConv() {
       transEl.textContent = conv.translations[pIdx];
       updatedTrans++;
     }
-    
-    // Process next with small delay (50ms) - allows user to play earlier audios while later ones load
-    audioRefreshTimer = setTimeout(() => processNext(pIdx + 1), 50);
   }
   
-  processNext(0);
+  // Show status briefly
+  const el = document.getElementById('enhancedStatus');
+  if (el && (updatedAudio || updatedTrans)) {
+    const parts = [];
+    if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
+    if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
+    el.textContent = '✅ ' + parts.join(' ');
+    setTimeout(() => el.textContent = '', 3000);
+  }
 }
 
 function showConversation(idx) {
@@ -567,9 +560,6 @@ function showConversation(idx) {
   }
   
   stopAll();
-  
-  // Start preloading audio in background - load first paragraph first for instant play
-  loadConvEnhancements(conv.num);
   
   let html = '';
   html += `
