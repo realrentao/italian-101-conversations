@@ -464,7 +464,7 @@ async function loadConvEnhancements(num) {
     if (loadedParas[num + '_' + pIdx]) continue; // already loaded
 
     try {
-      let resp = await fetch(`audio_data/conv_${num}_json/${pIdx}.json?_=${Date.now()}`);
+      let resp = await fetch(`audio_conv/conv_${num}/${pIdx}.json?_=${Date.now()}`);
       if (resp.ok) {
         const data = await resp.json();
         if (data.audio && data.audio.length > 200) {

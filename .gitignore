@@ -7,3 +7,5 @@ conv_data/
 !conversations.json
 !index.html
 !README.md
+!audio_conv/
+!translation_data/
