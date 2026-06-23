@@ -471,9 +471,9 @@ async function loadConvEnhancements(num) {
       if (data.translations && data.translations.some(t => t && t.length > 1)) {
         conv.translations = data.translations;
         if (data.title_cn) conv.title_cn = data.title_cn;
-      } else if (conversations[currentIdx] && conversations[currentIdx].translations) {
+      } else if (conv && conv.translations) {
         // Use translations from main conversations.json if available
-        const baseTrans = conversations[currentIdx].translations;
+        const baseTrans = conv.translations;
         if (baseTrans && baseTrans.some(t => t && t.length > 1)) {
           conv.translations = baseTrans;
         }
