@@ -459,19 +459,36 @@ async function loadConvEnhancements(num) {
   const conv = conversations.find(c => c.num === num);
   if (!conv) return false;
 
-  // Load each paragraph audio separately
-  for (let pIdx = 0; pIdx < conv.paragraphs.length; pIdx++) {
-    if (loadedParas[num + '_' + pIdx]) continue; // already loaded
+  // Load FIRST 5 paragraphs in PARALLEL for fast first-play, then rest sequentially
+  const firstWave = conv.paragraphs.slice(0, 5).map((_, pIdx) => {
+    if (loadedParas[num + '_' + pIdx]) return Promise.resolve();
+    return fetch(`audio_conv/conv_${num}/${pIdx}.json?_=${Date.now()}`).then(async resp => {
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.audio && data.audio.length > 200) {
+          if (!conv.paragraphAudios) conv.paragraphAudios = {};
+          conv.paragraphAudios[pIdx] = data.audio;
+          loadedParas[num + '_' + pIdx] = true;
+          // Refresh UI immediately when first audio arrives
+          if (currentIdx === num - 1) refreshCurrentConv();
+        }
+      }
+    }).catch(() => {});
+  });
+  await Promise.all(firstWave);
 
+  // Load remaining paragraphs sequentially
+  for (let pIdx = 5; pIdx < conv.paragraphs.length; pIdx++) {
+    if (loadedParas[num + '_' + pIdx]) continue;
     try {
       let resp = await fetch(`audio_conv/conv_${num}/${pIdx}.json?_=${Date.now()}`);
       if (resp.ok) {
         const data = await resp.json();
         if (data.audio && data.audio.length > 200) {
-          // Store audio in a map keyed by paragraph index
           if (!conv.paragraphAudios) conv.paragraphAudios = {};
           conv.paragraphAudios[pIdx] = data.audio;
           loadedParas[num + '_' + pIdx] = true;
+          if (currentIdx === num - 1) refreshCurrentConv();
         }
       }
     } catch(e) { /* ignore */ }
@@ -808,18 +825,46 @@ function setSpeed(convIdx, paraIdx, speed) {
   }
 }
 
+// Preload first paragraph audio for instant play
+async function preloadFirstPara(conv, convIdx) {
+  const pIdx = 0;
+  // Already have it?
+  let b64 = getAudioByVoice(conv, pIdx, currentVoice);
+  if (b64 && b64.length > 200) return b64;
+  
+  // Check other voices
+  for (const v of ['Isabella', 'Elsa', 'Diego']) {
+    b64 = getAudioByVoice(conv, pIdx, v);
+    if (b64 && b64.length > 200) return b64;
+  }
+  
+  // Force load first paragraph immediately
+  try {
+    const resp = await fetch(`audio_conv/conv_${conv.num}/${pIdx}.json?_=${Date.now()}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.audio && data.audio.length > 200) {
+        if (!conv.paragraphAudios) conv.paragraphAudios = {};
+        conv.paragraphAudios[pIdx] = data.audio;
+        loadedParas[conv.num + '_' + pIdx] = true;
+        if (currentIdx === convIdx) refreshCurrentConv();
+        return data.audio;
+      }
+    }
+  } catch(e) {}
+  return null;
+}
+
 function playAll(convIdx) {
   if (currentAudio) stopAll();
   const conv = conversations[convIdx];
   
-  // If no audio data loaded yet, trigger load first
-  if (!conv.audiosIsabella && !conv.audios) {
-    loadConvEnhancements(conv.num); // Start loading in background
-  }
+  // Start loading in background (already async)
+  loadConvEnhancements(conv.num);
   
   let pIdx = 0;
   
-  function playNext() {
+  async function playNext() {
     if (pIdx >= conv.paragraphs.length) {
       listenedSet.add(conv.num);
       saveProgress(); updateProgress();
@@ -872,7 +917,16 @@ function playAll(convIdx) {
     }).catch(() => { pIdx++; setTimeout(playNext, 200); });
   }
   
-  playNext();
+  // If first paragraph not loaded, wait for it briefly then play
+  const firstB64 = getAudioByVoice(conv, 0, currentVoice) || getAudioByVoice(conv, 0, 'Isabella');
+  if (!firstB64 || firstB64.length < 200) {
+    // Try to get first audio loaded
+    preloadFirstPara(conv, convIdx).then(() => {
+      playNext();
+    }).catch(() => playNext());
+  } else {
+    playNext();
+  }
 }
 
 function speakWord(word, convNum) {
