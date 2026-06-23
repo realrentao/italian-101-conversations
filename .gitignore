@@ -1,0 +1,9 @@
+*.py
+test_ciao.mp3
+audio_cache/
+vocab_audio/
+conv_data/
+*.json
+!conversations.json
+!index.html
+!README.md
