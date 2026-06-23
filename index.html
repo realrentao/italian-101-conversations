@@ -467,10 +467,16 @@ async function loadConvEnhancements(num) {
           if (audio && audio.length > 200) conv.paragraphAudios[i] = audio;
         });
       }
-      // Translations
+      // Translations: prefer conv_data, fallback to conversations.json
       if (data.translations && data.translations.some(t => t && t.length > 1)) {
         conv.translations = data.translations;
         if (data.title_cn) conv.title_cn = data.title_cn;
+      } else if (conversations[currentIdx] && conversations[currentIdx].translations) {
+        // Use translations from main conversations.json if available
+        const baseTrans = conversations[currentIdx].translations;
+        if (baseTrans && baseTrans.some(t => t && t.length > 1)) {
+          conv.translations = baseTrans;
+        }
       }
       // Refresh UI
       if (currentIdx === num - 1) refreshCurrentConv();
