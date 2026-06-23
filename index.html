@@ -745,6 +745,12 @@ function setSpeed(convIdx, paraIdx, speed) {
 function playAll(convIdx) {
   if (currentAudio) stopAll();
   const conv = conversations[convIdx];
+  
+  // If no audio data loaded yet, trigger load first
+  if (!conv.audios || conv.audios.length === 0) {
+    loadConvEnhancements(conv.num); // Start loading in background
+  }
+  
   let pIdx = 0;
   
   function playNext() {
@@ -755,7 +761,12 @@ function playAll(convIdx) {
     }
     
     const audio = getAudioEl(convIdx, pIdx);
-    setupAudioSrc(audio, convIdx, pIdx);
+    // Check if data is already loaded in conv.audios[pIdx] - set src directly
+    if (audio && conv.audios && conv.audios[pIdx] && conv.audios[pIdx].length > 100) {
+      audio.src = 'data:audio/mp3;base64,' + conv.audios[pIdx];
+    } else {
+      setupAudioSrc(audio, convIdx, pIdx);
+    }
     if (!audio || !audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; playNext(); return; }
     
     const speedKey = `speed3-${convIdx}-${pIdx}`;
