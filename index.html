@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>101 Conversations · 意大利语听力练习</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a2e;
+    --surface2: #25253e;
+    --border: #2a2a4a;
+    --text: #e8e8f0;
+    --text2: #9898b8;
+    --accent: #7c5bf0;
+    --accent2: #a78bfa;
+    --green: #34d399;
+    --gold: #fbbf24;
+    --red: #f87171;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --sidebar-w: 280px;
+    --font: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    --font-ita: 'Georgia', 'Times New Roman', serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 18px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ===== Sidebar (same as before) ===== */
+  .sidebar {
+    width: var(--sidebar-w); min-width: var(--sidebar-w);
+    min-height: 100vh; background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; z-index: 10;
+    transition: transform .3s ease;
+  }
+  .sidebar-header { padding: 18px 16px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .sidebar-header h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent2); }
+  .sidebar-header p { font-size: .75rem; color: var(--text2); margin-top: 2px; }
+  .sidebar-search { padding: 10px 12px; flex-shrink: 0; }
+  .sidebar-search input {
+    width: 100%; padding: 8px 12px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface2);
+    color: var(--text); font-size: .85rem; outline: none;
+  }
+  .sidebar-search input:focus { border-color: var(--accent); }
+  .conv-list { 
+    flex: 1; overflow-y: auto; overflow-x: hidden;
+    padding: 4px 8px 20px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  .conv-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background .2s, color .2s;
+    color: var(--text2); font-size: .88rem; user-select: none;
+  }
+  .conv-item:hover { background: var(--surface2); color: var(--text); }
+  .conv-item.active { background: var(--accent); color: #fff; }
+  .conv-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .72rem; font-weight: 600; flex-shrink: 0; color: var(--text2);
+  }
+  .conv-item.active .conv-num { background: rgba(255,255,255,.2); color: #fff; }
+  .conv-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .conv-check { font-size: .65rem; opacity: .5; }
+  .progress-info {
+    text-align: center; color: var(--text2); font-size: .78rem;
+    padding: 16px; border-top: 1px solid var(--border); flex-shrink: 0;
+  }
+
+  /* ===== Main ===== */
+  .main {
+    flex: 1; min-height: 100vh; overflow-y: auto;
+    padding: 24px 32px 40px; max-width: 860px; margin: 0 auto;
+  }
+
+  /* ===== Conv Header ===== */
+  .conv-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .conv-header .num-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff; padding: 4px 14px;
+    border-radius: 20px; font-size: .75rem; font-weight: 600; margin-bottom: 10px;
+  }
+  .conv-header h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; }
+  .conv-actions {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; border-radius: var(--radius-sm); border: none;
+    font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .2s;
+    background: var(--surface2); color: var(--text);
+  }
+  .btn:hover { filter: brightness(1.15); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent2); }
+  .btn-sm { padding: 5px 12px; font-size: .78rem; }
+
+  /* ===== Paragraph Card ===== */
+  .paragraph {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px;
+    transition: border-color .2s;
+  }
+  .paragraph:hover { border-color: var(--accent2); }
+  .paragraph.playing { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+
+  .para-controls {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .speaker-label {
+    font-size: .72rem; font-weight: 600; color: var(--accent2);
+    background: var(--surface2); padding: 2px 10px; border-radius: 4px;
+  }
+  .play-btn {
+    width: 32px; height: 32px; border-radius: 50%; border: none;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .2s; background: var(--accent); color: #fff;
+    font-size: .8rem; flex-shrink: 0;
+  }
+  .play-btn:hover { background: var(--accent2); transform: scale(1.05); }
+  .play-btn.speaking { background: var(--gold); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,.5); } 50% { box-shadow: 0 0 0 8px rgba(251,191,36,0); } }
+
+  .speed-group { display: flex; gap: 3px; }
+  .speed-btn {
+    padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border);
+    background: var(--surface2); color: var(--text2);
+    font-size: .7rem; font-weight: 500; cursor: pointer; transition: all .15s;
+  }
+  .speed-btn:hover { border-color: var(--accent); color: var(--text); }
+  .speed-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .text-toggle {
+    font-size: .72rem; color: var(--text2); cursor: pointer;
+    padding: 2px 8px; border-radius: 4px; transition: background .2s;
+    margin-left: auto; user-select: none;
+  }
+  .text-toggle:hover { background: var(--surface2); }
+
+  .para-text {
+    font-family: var(--font-ita); font-size: 1.02rem; line-height: 1.7;
+    color: var(--text); padding: 6px 0 2px 0; transition: all .3s;
+    clear: both;
+  }
+  .para-text.hidden { display: none; }
+
+  .trans-text {
+    margin-top: 8px; padding: 10px 14px; background: var(--surface2);
+    border-radius: var(--radius-sm); font-size: .92rem; line-height: 1.7;
+    color: var(--green); cursor: pointer; transition: all .3s;
+    max-height: 0; overflow: hidden; opacity: 0; padding: 0 14px;
+  }
+  .trans-text.open { max-height: 500px; padding: 10px 14px; opacity: 1; }
+
+  /* ===== Progress Bar ===== */
+  .audio-progress {
+    width: 60px; height: 4px; background: var(--surface2); border-radius: 2px;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .audio-progress-bar {
+    height: 100%; background: var(--accent2); border-radius: 2px;
+    width: 0%; transition: width .1s;
+  }
+
+  /* ===== Vocab ===== */
+  .vocab-section {
+    margin-top: 24px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .vocab-header {
+    padding: 12px 18px; background: var(--surface2); font-weight: 600; font-size: .88rem;
+    color: var(--accent2); cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  }
+  .vocab-header:hover { filter: brightness(1.08); }
+  .vocab-body { padding: 0 18px; max-height: 0; overflow: hidden; transition: all .3s; }
+  .vocab-body.open { max-height: 2000px; padding: 14px 18px; }
+  .vocab-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; border-bottom: 1px solid var(--border); font-size: .9rem;
+  }
+  .vocab-row:last-child { border: none; }
+  .vocab-word { font-family: var(--font-ita); font-weight: 500; flex: 1; }
+  .vocab-meaning { color: var(--text2); flex: 1; }
+  .vocab-play { cursor: pointer; color: var(--accent2); font-size: .8rem; }
+
+  /* ===== Loading ===== */
+  .loading {
+    display: flex; align-items: center; justify-content: center; height: 60vh;
+    flex-direction: column; gap: 16px; color: var(--text2);
+  }
+  .loading .spinner {
+    width: 40px; height: 40px;
+    border: 3px solid var(--border); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== Nav arrows ===== */
+  .nav-arrows { display: flex; justify-content: space-between; margin-top: 20px; gap: 12px; }
+  .nav-arrows .btn { flex: 1; justify-content: center; max-width: 200px; }
+
+  /* ===== Mobile ===== */
+  .sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 20;
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: transparent; border: none; color: var(--accent2);
+    font-size: 1.4rem; cursor: pointer; align-items: center; justify-content: center;
+    opacity: 1;
+  }
+  .sidebar-toggle.hide { display: none !important; }
+  .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 9; }
+
+  @media (max-width: 768px) {
+    .sidebar { position: fixed; left: 0; top: 0; bottom: 0; transform: translateX(-100%); touch-action: pan-y; }
+    .sidebar.open { transform: translateX(0); }
+    body.sidebar-open { overflow: hidden; }
+    .sidebar-toggle { display: flex; }
+    .mobile-overlay.active { display: block; }
+    html { font-size: 20px; }
+    .main { padding: 20px 16px 100px; }
+    .conv-header h2 { font-size: 1.35rem; }
+  }
+  @media (max-width: 480px) {
+    html { font-size: 18px; }
+    .paragraph { padding: 12px 14px; }
+    .main { padding: 16px 12px 100px; }
+  }
+</style>
+</head>
+<body>
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1>🎧 101 Conversations</h1>
+      <p>意大利语听力 · 中意双语</p>
+    </div>
+    <div class="sidebar-search">
+      <input type="text" id="searchInput" placeholder="搜索对话标题…" autocomplete="off">
+    </div>
+    <div class="conv-list" id="convList">
+      <div class="conv-item" data-idx="0"><div class="conv-num">1</div><div class="conv-title">La chiamata</div></div>
+<div class="conv-item" data-idx="1"><div class="conv-num">2</div><div class="conv-title">L'urgenza</div></div>
+<div class="conv-item" data-idx="2"><div class="conv-num">3</div><div class="conv-title">Qualcosa di inaspettato</div></div>
+<div class="conv-item" data-idx="3"><div class="conv-num">4</div><div class="conv-title">La seconda chiamata</div></div>
+<div class="conv-item" data-idx="4"><div class="conv-num">5</div><div class="conv-title">L'apparizione</div></div>
+<div class="conv-item" data-idx="5"><div class="conv-num">6</div><div class="conv-title">Il pezzo mancante</div></div>
+<div class="conv-item" data-idx="6"><div class="conv-num">7</div><div class="conv-title">Il quadro</div></div>
+<div class="conv-item" data-idx="7"><div class="conv-num">8</div><div class="conv-title">La bomba?</div></div>
+<div class="conv-item" data-idx="8"><div class="conv-num">9</div><div class="conv-title">Il rilevatore di esplosivi</div></div>
+<div class="conv-item" data-idx="9"><div class="conv-num">10</div><div class="conv-title">Fuori pericolo</div></div>
+<div class="conv-item" data-idx="10"><div class="conv-num">11</div><div class="conv-title">Luca, l'assistente</div></div>
+<div class="conv-item" data-idx="11"><div class="conv-num">12</div><div class="conv-title">La cornice</div></div>
+<div class="conv-item" data-idx="12"><div class="conv-num">13</div><div class="conv-title">"Questo quadro non è qui per errore"</div></div>
+<div class="conv-item" data-idx="13"><div class="conv-num">14</div><div class="conv-title">La spiegazione</div></div>
+<div class="conv-item" data-idx="14"><div class="conv-num">15</div><div class="conv-title">La chiamata misteriosa</div></div>
+<div class="conv-item" data-idx="15"><div class="conv-num">16</div><div class="conv-title">Un numero sconosciuto</div></div>
+<div class="conv-item" data-idx="16"><div class="conv-num">17</div><div class="conv-title">Il quadro viene spostato dal museo</div></div>
+<div class="conv-item" data-idx="17"><div class="conv-num">18</div><div class="conv-title">Alla stazione di polizia</div></div>
+<div class="conv-item" data-idx="18"><div class="conv-num">19</div><div class="conv-title">I numeri protetti</div></div>
+<div class="conv-item" data-idx="19"><div class="conv-num">20</div><div class="conv-title">Padre e figlio</div></div>
+<div class="conv-item" data-idx="20"><div class="conv-num">21</div><div class="conv-title">Il magazzino</div></div>
+<div class="conv-item" data-idx="21"><div class="conv-num">22</div><div class="conv-title">Normale</div></div>
+<div class="conv-item" data-idx="22"><div class="conv-num">23</div><div class="conv-title">Pittura fresca</div></div>
+<div class="conv-item" data-idx="23"><div class="conv-num">24</div><div class="conv-title">La chiamata di Adriano</div></div>
+<div class="conv-item" data-idx="24"><div class="conv-num">25</div><div class="conv-title">Quello che sa Adriano</div></div>
+<div class="conv-item" data-idx="25"><div class="conv-num">26</div><div class="conv-title">Cinque scene</div></div>
+<div class="conv-item" data-idx="26"><div class="conv-num">27</div><div class="conv-title">L'analisi del dipinto</div></div>
+<div class="conv-item" data-idx="27"><div class="conv-num">28</div><div class="conv-title">Piazza del Quirinale</div></div>
+<div class="conv-item" data-idx="28"><div class="conv-num">29</div><div class="conv-title">Da dove arrivano i tre uomini col passamontagna?</div></div>
+<div class="conv-item" data-idx="29"><div class="conv-num">30</div><div class="conv-title">Convincere l'ispettore Zamboni</div></div>
+<div class="conv-item" data-idx="30"><div class="conv-num">31</div><div class="conv-title">Piazza del Quirinale</div></div>
+<div class="conv-item" data-idx="31"><div class="conv-num">32</div><div class="conv-title">Il tentativo di rapina</div></div>
+<div class="conv-item" data-idx="32"><div class="conv-num">33</div><div class="conv-title">L'arresto</div></div>
+<div class="conv-item" data-idx="33"><div class="conv-num">34</div><div class="conv-title">Il signor Mancini</div></div>
+<div class="conv-item" data-idx="34"><div class="conv-num">35</div><div class="conv-title">Il ritorno alla stazione</div></div>
+<div class="conv-item" data-idx="35"><div class="conv-num">36</div><div class="conv-title">La stanza degli interrogatori</div></div>
+<div class="conv-item" data-idx="36"><div class="conv-num">37</div><div class="conv-title">L'interrogatorio</div></div>
+<div class="conv-item" data-idx="37"><div class="conv-num">38</div><div class="conv-title">Aiuto</div></div>
+<div class="conv-item" data-idx="38"><div class="conv-num">39</div><div class="conv-title">Zamboni bussa alla porta</div></div>
+<div class="conv-item" data-idx="39"><div class="conv-num">40</div><div class="conv-title">Il quinto crimine</div></div>
+<div class="conv-item" data-idx="40"><div class="conv-num">41</div><div class="conv-title">La strategia</div></div>
+<div class="conv-item" data-idx="41"><div class="conv-num">42</div><div class="conv-title">Stazione Tiburtina</div></div>
+<div class="conv-item" data-idx="42"><div class="conv-num">43</div><div class="conv-title">Il controllo bagagli</div></div>
+<div class="conv-item" data-idx="43"><div class="conv-num">44</div><div class="conv-title">La sostanza misteriosa</div></div>
+<div class="conv-item" data-idx="44"><div class="conv-num">45</div><div class="conv-title">La rapina alla gioielleria</div></div>
+<div class="conv-item" data-idx="45"><div class="conv-num">46</div><div class="conv-title">La vendita di droga</div></div>
+<div class="conv-item" data-idx="46"><div class="conv-num">47</div><div class="conv-title">Il sequestro</div></div>
+<div class="conv-item" data-idx="47"><div class="conv-num">48</div><div class="conv-title">L'urlo</div></div>
+<div class="conv-item" data-idx="48"><div class="conv-num">49</div><div class="conv-title">Il ritorno di Ignazio</div></div>
+<div class="conv-item" data-idx="49"><div class="conv-num">50</div><div class="conv-title">Al commissariato</div></div>
+<div class="conv-item" data-idx="50"><div class="conv-num">51</div><div class="conv-title">La visita inaspettata</div></div>
+<div class="conv-item" data-idx="51"><div class="conv-num">52</div><div class="conv-title">Zamboni capisce</div></div>
+<div class="conv-item" data-idx="52"><div class="conv-num">53</div><div class="conv-title">I foulard rossi</div></div>
+<div class="conv-item" data-idx="53"><div class="conv-num">54</div><div class="conv-title">Il sospetto</div></div>
+<div class="conv-item" data-idx="54"><div class="conv-num">55</div><div class="conv-title">La buona notte</div></div>
+<div class="conv-item" data-idx="55"><div class="conv-num">56</div><div class="conv-title">Nuova chiamata di Adriano</div></div>
+<div class="conv-item" data-idx="56"><div class="conv-num">57</div><div class="conv-title">Conversazione con Adriano</div></div>
+<div class="conv-item" data-idx="57"><div class="conv-num">58</div><div class="conv-title">Le fasi successive</div></div>
+<div class="conv-item" data-idx="58"><div class="conv-num">59</div><div class="conv-title">Sulle orme di Zamboni</div></div>
+<div class="conv-item" data-idx="59"><div class="conv-num">60</div><div class="conv-title">L'edificio in costruzione</div></div>
+<div class="conv-item" data-idx="60"><div class="conv-num">61</div><div class="conv-title">Il salto</div></div>
+<div class="conv-item" data-idx="61"><div class="conv-num">62</div><div class="conv-title">La via di salvataggio</div></div>
+<div class="conv-item" data-idx="62"><div class="conv-num">63</div><div class="conv-title">La fuga riuscita</div></div>
+<div class="conv-item" data-idx="63"><div class="conv-num">64</div><div class="conv-title">Aggiornamento in macchina</div></div>
+<div class="conv-item" data-idx="64"><div class="conv-num">65</div><div class="conv-title">Il segreto nel quadro</div></div>
+<div class="conv-item" data-idx="65"><div class="conv-num">66</div><div class="conv-title">La scheda di memoria</div></div>
+<div class="conv-item" data-idx="66"><div class="conv-num">67</div><div class="conv-title">I file</div></div>
+<div class="conv-item" data-idx="67"><div class="conv-num">68</div><div class="conv-title">Chi sono i sequestratori?</div></div>
+<div class="conv-item" data-idx="68"><div class="conv-num">69</div><div class="conv-title">Zero</div></div>
+<div class="conv-item" data-idx="69"><div class="conv-num">70</div><div class="conv-title">La cassaforte</div></div>
+<div class="conv-item" data-idx="70"><div class="conv-num">71</div><div class="conv-title">La tana di zero</div></div>
+<div class="conv-item" data-idx="71"><div class="conv-num">72</div><div class="conv-title">Il ritrovamento</div></div>
+<div class="conv-item" data-idx="72"><div class="conv-num">73</div><div class="conv-title">Il ritorno a casa</div></div>
+<div class="conv-item" data-idx="73"><div class="conv-num">74</div><div class="conv-title">Dov'è finita la scheda di memoria?</div></div>
+<div class="conv-item" data-idx="74"><div class="conv-num">75</div><div class="conv-title">In ufficio da Zamboni</div></div>
+<div class="conv-item" data-idx="75"><div class="conv-num">76</div><div class="conv-title">Una svolta inaspettata</div></div>
+<div class="conv-item" data-idx="76"><div class="conv-num">77</div><div class="conv-title">Le motivazioni</div></div>
+<div class="conv-item" data-idx="77"><div class="conv-num">78</div><div class="conv-title">L'arma</div></div>
+<div class="conv-item" data-idx="78"><div class="conv-num">79</div><div class="conv-title">La distruzione delle prove</div></div>
+<div class="conv-item" data-idx="79"><div class="conv-num">80</div><div class="conv-title">Il rapimento di Matteo</div></div>
+<div class="conv-item" data-idx="80"><div class="conv-num">81</div><div class="conv-title">Rinchiusa nell'ufficio</div></div>
+<div class="conv-item" data-idx="81"><div class="conv-num">82</div><div class="conv-title">Perilli se ne va</div></div>
+<div class="conv-item" data-idx="82"><div class="conv-num">83</div><div class="conv-title">L'evasione dall'ufficio</div></div>
+<div class="conv-item" data-idx="83"><div class="conv-num">84</div><div class="conv-title">Verso il parco</div></div>
+<div class="conv-item" data-idx="84"><div class="conv-num">85</div><div class="conv-title">Matteo non è più con la babysitter</div></div>
+<div class="conv-item" data-idx="85"><div class="conv-num">86</div><div class="conv-title">La chiamata di Ignazio</div></div>
+<div class="conv-item" data-idx="86"><div class="conv-num">87</div><div class="conv-title">Riabbracciare Matteo</div></div>
+<div class="conv-item" data-idx="87"><div class="conv-num">88</div><div class="conv-title">Ignazio chiarisce tutto</div></div>
+<div class="conv-item" data-idx="88"><div class="conv-num">89</div><div class="conv-title">La rete di corruzione</div></div>
+<div class="conv-item" data-idx="89"><div class="conv-num">90</div><div class="conv-title">La promessa</div></div>
+<div class="conv-item" data-idx="90"><div class="conv-num">91</div><div class="conv-title">All'ufficio centrale della polizia</div></div>
+<div class="conv-item" data-idx="91"><div class="conv-num">92</div><div class="conv-title">Ammanettati come criminali</div></div>
+<div class="conv-item" data-idx="92"><div class="conv-num">93</div><div class="conv-title">Le prove in formato digitale</div></div>
+<div class="conv-item" data-idx="93"><div class="conv-num">94</div><div class="conv-title">Tutti a terra</div></div>
+<div class="conv-item" data-idx="94"><div class="conv-num">95</div><div class="conv-title">L'attacco di Raggio X</div></div>
+<div class="conv-item" data-idx="95"><div class="conv-num">96</div><div class="conv-title">Zamboni viene arrestato</div></div>
+<div class="conv-item" data-idx="96"><div class="conv-num">97</div><div class="conv-title">La chiamata urgente di Nina</div></div>
+<div class="conv-item" data-idx="97"><div class="conv-num">98</div><div class="conv-title">L'offerta</div></div>
+<div class="conv-item" data-idx="98"><div class="conv-num">99</div><div class="conv-title">Al Vittoriano</div></div>
+<div class="conv-item" data-idx="99"><div class="conv-num">100</div><div class="conv-title">La visita di Adriano</div></div>
+<div class="conv-item" data-idx="100"><div class="conv-num">101</div><div class="conv-title">Luca riceve un invito</div></div>
+    </div>
+    <div class="progress-info" id="progressInfo">已读 0 / 101</div>
+  </aside>
+
+  <main class="main" id="main">
+    <div id="contentArea">
+      <div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen">
+        <h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2>
+        <p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p>
+        <p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">⏳ 数据预加载中…</p>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
+            👈 点击左侧任一篇对话开始
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
+            🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
+            📘 点击「译文」查看中文翻译
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+// ===== State =====
+let conversations = [];
+let currentIdx = -1;
+let listenedSet = new Set();
+let currentAudio = null;
+let dataPromise = null;  // Preload promise
+
+const LS_KEY = 'italian101_listened3';
+const LS_CURRENT = 'italian101_current3';
+
+try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
+
+// ===== Preload data in background (no blocking) =====
+async function preloadData() {
+  try {
+    let resp = await fetch('conversations.json');
+    if (!resp.ok) throw new Error('加载失败');
+    conversations = await resp.json();
+    try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
+    updateProgress();
+    document.getElementById('loadHint').textContent = '✅';
+    // Update sidebar items with Chinese titles
+    updateSidebarTitles();
+  } catch(e) {
+    console.log('Preload failed:', e.message);
+  }
+}
+dataPromise = preloadData();  // Fire immediately, no await
+
+// ===== Get data (from preload or wait) =====
+async function ensureData() {
+  if (conversations.length > 0) return true;
+  await dataPromise;
+  return conversations.length > 0;
+}
+
+function showError(msg) {
+  const area = document.getElementById('contentArea');
+  area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️</h3><p>' + msg + '</p></div>';
+}
+
+// ===== Sidebar click =====
+document.querySelectorAll('.conv-item').forEach(item => {
+  item.addEventListener('click', function() {
+    const idx = parseInt(this.dataset.idx);
+    if (isNaN(idx)) return;
+    document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
+    
+    if (conversations.length > 0) {
+      // Show content IMMEDIATELY (Italian text from preloaded data)
+      showConversation(idx);
+      // In background, load audio + translations
+      const conv = conversations[idx];
+      if (!conv._enhancedLoaded) {
+        conv._enhancedLoaded = true;
+        loadConvEnhancements(conv.num).then(() => {
+          refreshCurrentConv();
+        });
+      }
+    } else {
+      // Still loading base data
+      document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
+      ensureData().then(ok => { if (ok) { showConversation(idx); } });
+    }
+    closeSidebar();
+  });
+});// ===== Load per-conversation data (audio + translations) on demand =====
+async function loadConvEnhancements(num) {
+  try {
+    let resp = await fetch(`conv_data/conv_${num}.json?_=${Date.now()}`);
+    if (!resp.ok) throw new Error('not found');
+    const data = await resp.json();
+    // Find and merge into conversations array
+    const conv = conversations.find(c => c.num === num);
+    if (!conv) return;
+    if (data.audios) conv.audios = data.audios;
+    if (data.translations && data.translations.some(t => t && t.length > 1)) {
+      conv.translations = data.translations;
+    }
+    return true;
+  } catch(e) {
+    console.log('Conv data not available:', e.message);
+    return false;
+  }
+}
+
+function refreshCurrentConv() {
+  const conv = conversations[currentIdx];
+  let updatedAudio = 0, updatedTrans = 0;
+  
+  conv.paragraphs.forEach((para, pIdx) => {
+    const audioEl = document.getElementById(`audio-${currentIdx}-${pIdx}`);
+    const transEl = document.getElementById(`trans-${currentIdx}-${pIdx}`);
+    
+    if (audioEl && conv.audios && conv.audios[pIdx] && !audioEl.src.includes('base64')) {
+      audioEl.src = 'data:audio/mp3;base64,' + conv.audios[pIdx];
+      updatedAudio++;
+    }
+    if (transEl && conv.translations && conv.translations[pIdx]) {
+      transEl.textContent = conv.translations[pIdx];
+      updatedTrans++;
+    }
+  });
+  
+  const el = document.getElementById('enhancedStatus');
+  if (el) {
+    const parts = [];
+    if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
+    if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
+    if (parts.length) {
+      el.textContent = '✅ ' + parts.join(' ');
+      setTimeout(() => el.textContent = '', 5000);
+    }
+  }
+}
+
+function showConversation(idx) {
+  if (idx < 0 || idx >= conversations.length) return;
+  currentIdx = idx;
+  localStorage.setItem(LS_CURRENT, idx);
+  const conv = conversations[idx];
+  const area = document.getElementById('contentArea');
+  
+  // Hide nav toggle when content is shown
+  document.getElementById('sidebarToggle').classList.add('hide');
+  
+  // Update active state in sidebar
+  document.querySelectorAll('.conv-item').forEach(item => {
+    item.classList.toggle('active', parseInt(item.dataset.idx) === idx);
+  });
+  
+  // Update checkmark
+  if (listenedSet.has(conv.num)) {
+    const item = document.querySelector(`.conv-item[data-idx="${idx}"] .conv-check`);
+    if (!item) {
+      const target = document.querySelector(`.conv-item[data-idx="${idx}"]`);
+      if (target) {
+        const check = document.createElement('div');
+        check.className = 'conv-check';
+        check.textContent = '✓';
+        target.appendChild(check);
+      }
+    }
+  }
+  
+  stopAll();
+  
+  let html = '';
+  html += `
+    <div class="conv-header">
+      <div class="num-badge" onclick="showDirectory()" style="cursor:pointer">📖 对话 ${conv.num} / ${conversations.length}</div>
+      <h2>${escHtml(conv.title)}</h2>
+      ${conv.title_cn ? `<p style="font-size:.95rem;color:var(--text2);margin-top:2px">${escHtml(conv.title_cn)}</p>` : ''}
+      <div class="conv-actions">
+        <button class="btn btn-primary btn-sm" onclick="playAll(${idx})">▶ 播放全部</button>
+        <button class="btn btn-sm" onclick="stopAll()">⏹ 停止</button>
+        <span style="font-size:.72rem;color:var(--text2)">${conv.paragraphs.length} 段</span>
+        <span id="enhancedStatus" style="font-size:.7rem;color:var(--gold);margin-left:8px"></span>
+      </div>
+      <div id="transStatus" style="font-size:.78rem;color:var(--text2);margin-top:8px;display:${conv.translations ? 'none' : 'block'}">
+        💡 点击「译文」按钮将自动加载中文翻译
+      </div>
+    </div>`;
+  
+  conv.paragraphs.forEach((para, pIdx) => {
+    const colonIdx = para.indexOf(':');
+    // Detect dialogue: colon within first 25 chars, and character before colon is not a space
+    // (narrative text like "l'orologio: sono le 7" has colon mid-sentence)
+    const isDialogue = colonIdx > 0 && colonIdx < 25 && para[colonIdx - 1] !== ' ';
+    const speaker = isDialogue ? para.slice(0, colonIdx) : '';
+    const text = isDialogue ? para.slice(colonIdx + 1).trim() : para;
+    // Use base translations if available; if not yet loaded, show placeholder
+    const trans = (conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) ? conv.translations[pIdx] : '';
+    const hasTrans = trans.length > 0;
+    const audioB64 = (conv.audios && conv.audios[pIdx]) ? conv.audios[pIdx] : '';
+    const audioId = `audio-${idx}-${pIdx}`;
+    const textId = `text-${idx}-${pIdx}`;
+    const transId = `trans-${idx}-${pIdx}`;
+    const speedKey = `speed3-${idx}-${pIdx}`;
+    const savedSpeed = parseFloat(localStorage.getItem(speedKey) || '1');
+    
+    html += `
+    <div class="paragraph" id="para-${idx}-${pIdx}">
+      <div class="para-controls">
+        <button class="play-btn" id="play-${idx}-${pIdx}" onclick="togglePlay(${idx},${pIdx})" title="播放">▶</button>
+        <div class="speed-group">
+          ${[0.6, 1.0, 1.4].map(s =>
+            `<button class="speed-btn${s === savedSpeed ? ' active' : ''}" onclick="setSpeed(${idx},${pIdx},${s})">${s}x</button>`
+          ).join('')}
+        </div>
+        <div class="audio-progress" id="prog-${idx}-${pIdx}"><div class="audio-progress-bar" id="progbar-${idx}-${pIdx}"></div></div>
+        ${speaker ? `<span class="speaker-label">${escHtml(speaker)}</span>` : ''}
+        <span class="text-toggle" onclick="toggleTranslation(${idx},${pIdx})">📘 译文</span>
+        <span class="text-toggle" onclick="toggleText(${idx},${pIdx})">👁 原文</span>
+      </div>
+      <div class="para-text" id="${textId}">${escHtml(text)}</div>
+      <div class="trans-text" id="${transId}">${trans ? escHtml(trans) : ''}</div>
+      <audio id="${audioId}" preload="none" src=""></audio>
+    </div>`;
+  });
+  
+  // Vocab
+  if (conv.vocab && conv.vocab.length > 0) {
+    html += `
+    <div class="vocab-section">
+      <div class="vocab-header" onclick="this.nextElementSibling.classList.toggle('open')">
+        📚 词汇表 · Lessico <span>${conv.vocab.length} 词</span>
+      </div>
+      <div class="vocab-body">
+        ${conv.vocab.map(v => `
+          <div class="vocab-row">
+            <span class="vocab-play" onclick="speakWord('${escHtml(v.word)}',${conv.num})">🔊</span>
+            <span class="vocab-word">${escHtml(v.word)}</span>
+            <span class="vocab-meaning">${escHtml(v.meaning)}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }
+  
+  html += `
+    <div class="nav-arrows">
+      <button class="btn" onclick="goConv(${idx - 1})" ${idx === 0 ? 'disabled style="opacity:.4"' : ''}>← 上一篇</button>
+      <button class="btn" onclick="goConv(${idx + 1})" ${idx === conversations.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一篇 →</button>
+    </div>`;
+  
+  area.innerHTML = html;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== Audio =====
+function getAudioEl(convIdx, paraIdx) {
+  return document.getElementById(`audio-${convIdx}-${paraIdx}`);
+}
+
+function setupAudioSrc(audio, convIdx, paraIdx) {
+  const conv = conversations[convIdx];
+  if (!conv) return;
+  const b64 = conv.audios && conv.audios[paraIdx];
+  if (b64 && b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + b64;
+  }
+}
+
+function togglePlay(convIdx, paraIdx) {
+  stopAll();
+  
+  const conv = conversations[convIdx];
+  if (!conv) return;
+  const audio = getAudioEl(convIdx, paraIdx);
+  
+  // Try to use base64 audio from conv_data
+  if (conv.audios && conv.audios[paraIdx] && conv.audios[paraIdx].length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + conv.audios[paraIdx];
+    startPlayback(audio, convIdx, paraIdx);
+    return;
+  }
+  
+  // Not loaded yet - try to load conv_data file
+  loadConvEnhancements(conv.num).then(() => {
+    if (conv.audios && conv.audios[paraIdx] && conv.audios[paraIdx].length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + conv.audios[paraIdx];
+      startPlayback(audio, convIdx, paraIdx);
+    }
+  });
+}
+
+function startPlayback(audio, convIdx, paraIdx) {
+  setupAudioSrc(audio, convIdx, paraIdx);
+  if (!audio.src || audio.src === '' || audio.src === window.location.href) {
+    // No edge-tts audio available - use Web Speech API as fallback
+    fallbackPlay(convIdx, paraIdx);
+    return;
+  }
+  
+  const speedKey = `speed3-${convIdx}-${paraIdx}`;
+  audio.playbackRate = parseFloat(localStorage.getItem(speedKey) || '1');
+  
+  const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
+  const paraEl = document.getElementById(`para-${convIdx}-${paraIdx}`);
+  
+  currentAudio = { convIdx, paraIdx, audio };
+  
+  audio.onended = () => {
+    playBtn.textContent = '▶';
+    playBtn.classList.remove('speaking');
+    paraEl.classList.remove('playing');
+    document.getElementById(`progbar-${convIdx}-${paraIdx}`).style.width = '0%';
+    listenedSet.add(conversations[convIdx].num);
+    saveProgress(); updateProgress();
+    currentAudio = null;
+  };
+  
+  audio.ontimeupdate = () => {
+    if (audio.duration) {
+      const pct = (audio.currentTime / audio.duration) * 100;
+      document.getElementById(`progbar-${convIdx}-${paraIdx}`).style.width = pct + '%';
+    }
+  };
+  
+  audio.play().then(() => {
+    playBtn.textContent = '⏸';
+    playBtn.classList.add('speaking');
+    paraEl.classList.add('playing');
+  }).catch(e => {
+    console.log('Play error:', e);
+    playBtn.textContent = '▶';
+  });
+}
+
+function stopAll() {
+  if (currentAudio) {
+    try { currentAudio.audio.pause(); currentAudio.audio.currentTime = 0; } catch(e) {}
+    const { convIdx, paraIdx } = currentAudio;
+    const btn = document.getElementById(`play-${convIdx}-${paraIdx}`);
+    if (btn) { btn.textContent = '▶'; btn.classList.remove('speaking'); }
+    const el = document.getElementById(`para-${convIdx}-${paraIdx}`);
+    if (el) el.classList.remove('playing');
+    document.getElementById(`progbar-${convIdx}-${paraIdx}`).style.width = '0%';
+    currentAudio = null;
+  }
+  // Also stop any HTML audio elements
+  document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+  document.querySelectorAll('.play-btn.speaking').forEach(b => { b.textContent = '▶'; b.classList.remove('speaking'); });
+  document.querySelectorAll('.paragraph.playing').forEach(p => p.classList.remove('playing'));
+  document.querySelectorAll('.audio-progress-bar').forEach(b => b.style.width = '0%');
+}
+
+function setSpeed(convIdx, paraIdx, speed) {
+  const key = `speed3-${convIdx}-${paraIdx}`;
+  localStorage.setItem(key, speed.toString());
+  const el = document.getElementById(`para-${convIdx}-${paraIdx}`);
+  if (el) {
+    el.querySelectorAll('.speed-btn').forEach(b => {
+      b.classList.toggle('active', parseFloat(b.textContent) === speed);
+    });
+  }
+  // Apply to currently playing audio
+  if (currentAudio && currentAudio.convIdx === convIdx && currentAudio.paraIdx === paraIdx) {
+    currentAudio.audio.playbackRate = speed;
+  }
+}
+
+function playAll(convIdx) {
+  if (currentAudio) stopAll();
+  const conv = conversations[convIdx];
+  let pIdx = 0;
+  
+  function playNext() {
+    if (pIdx >= conv.paragraphs.length) {
+      listenedSet.add(conv.num);
+      saveProgress(); updateProgress();
+      return;
+    }
+    
+    const audio = getAudioEl(convIdx, pIdx);
+    setupAudioSrc(audio, convIdx, pIdx);
+    if (!audio || !audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; playNext(); return; }
+    
+    const speedKey = `speed3-${convIdx}-${pIdx}`;
+    audio.playbackRate = parseFloat(localStorage.getItem(speedKey) || '1');
+    
+    const playBtn = document.getElementById(`play-${convIdx}-${pIdx}`);
+    const paraEl = document.getElementById(`para-${convIdx}-${pIdx}`);
+    
+    currentAudio = { convIdx, paraIdx: pIdx, audio };
+    
+    audio.onended = () => {
+      if (playBtn) { playBtn.textContent = '▶'; playBtn.classList.remove('speaking'); }
+      if (paraEl) paraEl.classList.remove('playing');
+      document.getElementById(`progbar-${convIdx}-${pIdx}`).style.width = '0%';
+      pIdx++;
+      setTimeout(playNext, 500);
+    };
+    
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        document.getElementById(`progbar-${convIdx}-${pIdx}`).style.width = 
+          (audio.currentTime / audio.duration * 100) + '%';
+      }
+    };
+    
+    audio.play().then(() => {
+      if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
+      if (paraEl) paraEl.classList.add('playing');
+    }).catch(() => { pIdx++; setTimeout(playNext, 200); });
+  }
+  
+  playNext();
+}
+
+function speakWord(word, convNum) {
+  stopAll();
+  const audio = new Audio();
+  // Try to load vocab audio from conv_data
+  const conv = conversations.find(c => c.num === convNum);
+  if (conv && conv.vocab_audios) {
+    const idx = conv.vocab.findIndex(v => v.word === word);
+    if (idx >= 0 && conv.vocab_audios[idx] && conv.vocab_audios[idx].length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + conv.vocab_audios[idx];
+      audio.play().catch(() => {});
+    }
+  }
+}
+
+// ===== UI Toggles =====
+function toggleText(convIdx, paraIdx) {
+  const el = document.getElementById(`text-${convIdx}-${paraIdx}`);
+  if (el) el.classList.toggle('hidden');
+}
+
+function toggleTranslation(convIdx, paraIdx) {
+  const conv = conversations[convIdx];
+  const el = document.getElementById(`trans-${convIdx}-${paraIdx}`);
+  if (!el) return;
+  
+  // If already open, close it
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    return;
+  }
+  
+  // If we have translation text, just open
+  if (conv.translations && conv.translations[paraIdx]) {
+    el.textContent = conv.translations[paraIdx];
+    el.classList.add('open');
+    return;
+  }
+  
+  // No translation yet - try to load conv data
+  el.textContent = '⏳ 加载译文…';
+  el.style.padding = '10px 14px';
+  el.style.maxHeight = '500px';
+  el.style.opacity = '1';
+  
+  loadConvEnhancements(conv.num).then(loaded => {
+    if (loaded && conv.translations && conv.translations[paraIdx] && conv.translations[paraIdx].length > 1) {
+      el.textContent = conv.translations[paraIdx];
+      el.classList.add('open');
+    } else {
+      el.textContent = '📝 译文尚未生成';
+      setTimeout(() => {
+        el.style.maxHeight = '0';
+        el.style.opacity = '0';
+        el.style.padding = '0 14px';
+      }, 3000);
+    }
+  });
+}
+
+function goConv(idx) {
+  if (idx < 0 || idx >= conversations.length) return;
+  stopAll();
+  showConversation(idx);
+}
+
+function showDirectory() {
+  stopAll();
+  currentIdx = -1;
+  document.querySelectorAll('.conv-item').forEach(el => el.classList.remove('active'));
+  // Show the nav toggle again
+  document.getElementById('sidebarToggle').classList.remove('hide');
+  // Re-show the welcome/directory screen (same as sidebar open content)
+  document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开始</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻译</div></div></div>';
+  // Also open the sidebar on mobile
+  const sidebar = document.getElementById('sidebar');
+  if (window.innerWidth <= 768) {
+    sidebar.classList.add('open');
+    document.getElementById('mobileOverlay').classList.add('active');
+    document.body.classList.add('sidebar-open');
+  }
+}
+
+// ===== Sidebar =====
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('active');
+  document.body.classList.remove('sidebar-open');
+}
+
+// ===== Helpers =====
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function updateProgress() {
+  document.getElementById('progressInfo').textContent = `已读 ${listenedSet.size} / ${conversations.length}`;
+}
+
+function updateSidebarTitles() {
+  conversations.forEach(c => {
+    const el = document.querySelector(`.conv-item[data-idx="${c.num - 1}"] .conv-title`);
+    if (el && c.title_cn) {
+      el.textContent = c.title_cn;
+    }
+  });
+}
+
+function saveProgress() {
+  localStorage.setItem(LS_KEY, JSON.stringify([...listenedSet]));
+}
+
+// ===== Keyboard =====
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') goConv(currentIdx - 1);
+  if (e.key === 'ArrowRight') goConv(currentIdx + 1);
+  if (e.key === ' ' && e.target === document.body) { e.preventDefault(); stopAll(); }
+});
+
+// ===== Init =====
+// Nothing to pre-load - sidebar click handler triggers data loading
+
+// ===== Event Listeners =====
+document.getElementById('sidebarToggle').addEventListener('click', () => {
+  const sidebar = document.getElementById('sidebar');
+  const opening = !sidebar.classList.contains('open');
+  sidebar.classList.toggle('open');
+  document.getElementById('mobileOverlay').classList.toggle('active');
+  if (opening) {
+    document.body.classList.add('sidebar-open');
+    document.getElementById('sidebarToggle').classList.add('hide');
+    // When sidebar opens on mobile, clear the content area
+    document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p><p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">✅</p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开始</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻译</div></div></div>';
+  } else {
+    document.body.classList.remove('sidebar-open');
+    // Show nav toggle again when sidebar closes (unless content is showing)
+    if (currentIdx === -1) {
+      document.getElementById('sidebarToggle').classList.remove('hide');
+    }
+  }
+});
+document.getElementById('mobileOverlay').addEventListener('click', closeSidebar);
+</script>
+</body>
+</html>
