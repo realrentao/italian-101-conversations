@@ -436,9 +436,10 @@ document.querySelectorAll('.conv-item').forEach(item => {
       const conv = conversations[idx];
       if (!conv._enhancedLoaded) {
         conv._enhancedLoaded = true;
-        loadConvEnhancements(conv.num).then(() => {
-          refreshCurrentConv();
-        });
+        // Start loading in background, refresh as data arrives (parallel)
+        loadConvEnhancements(conv.num);
+        // Start refresh loop immediately to catch any data already loaded
+        refreshCurrentConv();
       }
     } else {
       // Still loading base data
@@ -829,11 +830,12 @@ function toggleTranslation(convIdx, paraIdx) {
   
   // No translation yet - try to load conv data
   el.textContent = '⏳ 加载译文…';
+  el.classList.add('open');
   el.style.padding = '10px 14px';
-  el.style.maxHeight = '500px';
-  el.style.opacity = '1';
   
   loadConvEnhancements(conv.num).then(loaded => {
+    // Refresh to populate all translations
+    refreshCurrentConv();
     if (loaded && conv.translations && conv.translations[paraIdx] && conv.translations[paraIdx].length > 1) {
       el.textContent = conv.translations[paraIdx];
       el.classList.add('open');
