@@ -255,18 +255,7 @@
       <input type="text" id="searchInput" placeholder="搜索对话标题…" autocomplete="off">
     </div>
     <div class="conv-list" id="convList">
-      <div class="conv-item" data-idx="0"><div class="conv-num">1</div><div class="conv-title">La chiamata</div></div>
-<div class="conv-item" data-idx="1"><div class="conv-num">2</div><div class="conv-title">L'urgenza</div></div>
-<div class="conv-item" data-idx="2"><div class="conv-num">3</div><div class="conv-title">Qualcosa di inaspettato</div></div>
-<div class="conv-item" data-idx="3"><div class="conv-num">4</div><div class="conv-title">La seconda chiamata</div></div>
-<div class="conv-item" data-idx="4"><div class="conv-num">5</div><div class="conv-title">L'apparizione</div></div>
-<div class="conv-item" data-idx="5"><div class="conv-num">6</div><div class="conv-title">Il pezzo mancante</div></div>
-<div class="conv-item" data-idx="6"><div class="conv-num">7</div><div class="conv-title">Il quadro</div></div>
-<div class="conv-item" data-idx="7"><div class="conv-num">8</div><div class="conv-title">La bomba?</div></div>
-<div class="conv-item" data-idx="8"><div class="conv-num">9</div><div class="conv-title">Il rilevatore di esplosivi</div></div>
-<div class="conv-item" data-idx="9"><div class="conv-num">10</div><div class="conv-title">Fuori pericolo</div></div>
-<div class="conv-item" data-idx="10"><div class="conv-num">11</div><div class="conv-title">Luca, l'assistente</div></div>
-<div class="conv-item" data-idx="11"><div class="conv-num">12</div><div class="conv-title">La cornice</div></div>
+      <div style="padding:20px;text-align:center;color:var(--text2)">⏳ 加载中...</div>
 <div class="conv-item" data-idx="12"><div class="conv-num">13</div><div class="conv-title">"Questo quadro non è qui per errore"</div></div>
 <div class="conv-item" data-idx="13"><div class="conv-num">14</div><div class="conv-title">La spiegazione</div></div>
 <div class="conv-item" data-idx="14"><div class="conv-num">15</div><div class="conv-title">La chiamata misteriosa</div></div>
@@ -402,13 +391,43 @@ async function preloadData() {
     if (!resp.ok) throw new Error('加载失败');
     conversations = await resp.json();
     try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
+    // Render sidebar immediately with Italian + Chinese titles (no waiting)
+    renderSidebar();
     updateProgress();
     document.getElementById('loadHint').textContent = '✅';
-    // Update sidebar items with Chinese titles
-    updateSidebarTitles();
   } catch(e) {
     console.log('Preload failed:', e.message);
   }
+}
+
+function renderSidebar() {
+  const list = document.getElementById('convList');
+  if (!list || conversations.length === 0) return;
+  list.innerHTML = conversations.map((c, i) => {
+    const cn = c.title_cn || '';
+    return '<div class="conv-item" data-idx="' + i + '"><div class="conv-num">' + c.num + '</div><div class="conv-title">' + c.title + (cn ? ' <span style="color:#9898b8;font-size:.85em">' + cn + '</span>' : '') + '</div></div>';
+  }).join('');
+  // Re-attach click handlers
+  list.querySelectorAll('.conv-item').forEach(item => {
+    item.addEventListener('click', function() {
+      const idx = parseInt(this.dataset.idx);
+      if (isNaN(idx)) return;
+      document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
+      if (conversations.length > 0) {
+        showConversation(idx);
+        const conv = conversations[idx];
+        if (!conv._enhancedLoaded) {
+          conv._enhancedLoaded = true;
+          loadConvEnhancements(conv.num);
+          refreshCurrentConv();
+        }
+      } else {
+        document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
+        ensureData().then(ok => { if (ok) { showConversation(idx); } });
+      }
+      closeSidebar();
+    });
+  });
 }
 dataPromise = preloadData();  // Fire immediately, no await
 
@@ -424,92 +443,42 @@ function showError(msg) {
   area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️</h3><p>' + msg + '</p></div>';
 }
 
-// ===== Sidebar click =====
-document.querySelectorAll('.conv-item').forEach(item => {
-  item.addEventListener('click', function() {
-    const idx = parseInt(this.dataset.idx);
-    if (isNaN(idx)) return;
-    document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
-    
-    if (conversations.length > 0) {
-      // Show content IMMEDIATELY (Italian text from preloaded data)
-      showConversation(idx);
-      // In background, load audio + translations
-      const conv = conversations[idx];
-      if (!conv._enhancedLoaded) {
-        conv._enhancedLoaded = true;
-        // Start loading in background, refresh as data arrives (parallel)
-        loadConvEnhancements(conv.num);
-        // Start refresh loop immediately to catch any data already loaded
-        refreshCurrentConv();
-      }
-    } else {
-      // Still loading base data
-      document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
-      ensureData().then(ok => { if (ok) { showConversation(idx); } });
-    }
-    closeSidebar();
-  });
-});// ===== Load per-conversation data (audio + translations) on demand =====
+// Sidebar click handlers are now attached in renderSidebar() after data loads// ===== Load per-conversation data (audio + translations) on demand =====
 // Load audio + translations from separate files for efficiency
-// Load per-paragraph audio files (each para has its own voice: narrative=Isabella, male=Diego, female=Elsa)
-let loadedParas = {};
+// Load per-conversation data (audio + translations) in ONE request
+let loadedConvData = {};
 
 async function loadConvEnhancements(num) {
   const conv = conversations.find(c => c.num === num);
-  if (!conv) return false;
+  if (!conv || loadedConvData[num]) return false;
+  loadedConvData[num] = true;
 
-  // Load FIRST 5 paragraphs in PARALLEL for fast first-play, then rest sequentially
-  const firstWave = conv.paragraphs.slice(0, 5).map((_, pIdx) => {
-    if (loadedParas[num + '_' + pIdx]) return Promise.resolve();
-    return fetch(`audio_conv/conv_${num}/${pIdx}.json?_=${Date.now()}`).then(async resp => {
-      if (resp.ok) {
-        const data = await resp.json();
-        if (data.audio && data.audio.length > 200) {
-          if (!conv.paragraphAudios) conv.paragraphAudios = {};
-          conv.paragraphAudios[pIdx] = data.audio;
-          loadedParas[num + '_' + pIdx] = true;
-          // Refresh UI immediately when first audio arrives
-          if (currentIdx === num - 1) refreshCurrentConv();
-        }
-      }
-    }).catch(() => {});
-  });
-  await Promise.all(firstWave);
-
-  // Load remaining paragraphs sequentially
-  for (let pIdx = 5; pIdx < conv.paragraphs.length; pIdx++) {
-    if (loadedParas[num + '_' + pIdx]) continue;
-    try {
-      let resp = await fetch(`audio_conv/conv_${num}/${pIdx}.json?_=${Date.now()}`);
-      if (resp.ok) {
-        const data = await resp.json();
-        if (data.audio && data.audio.length > 200) {
-          if (!conv.paragraphAudios) conv.paragraphAudios = {};
-          conv.paragraphAudios[pIdx] = data.audio;
-          loadedParas[num + '_' + pIdx] = true;
-          if (currentIdx === num - 1) refreshCurrentConv();
-        }
-      }
-    } catch(e) { /* ignore */ }
-  }
-  
   try {
-    // Load translation data separately
-    let resp = await fetch(`translation_data/tr_${num}.json?_=${Date.now()}`);
+    // Load ALL data for this conversation in ONE request (includes audio + translations)
+    let resp = await fetch(`conv_data/conv_${num}.json`);
     if (resp.ok) {
       const data = await resp.json();
+      // Get audio based on selected voice
+      const audioKey = 'audios' + currentVoice;
+      if (data[audioKey] && data[audioKey].length > 0) {
+        if (!conv.paragraphAudios) conv.paragraphAudios = {};
+        data[audioKey].forEach((audio, i) => {
+          if (audio && audio.length > 200) conv.paragraphAudios[i] = audio;
+        });
+      }
+      // Translations
       if (data.translations && data.translations.some(t => t && t.length > 1)) {
         conv.translations = data.translations;
-        // Update title_cn if available
         if (data.title_cn) conv.title_cn = data.title_cn;
       }
+      // Refresh UI
+      if (currentIdx === num - 1) refreshCurrentConv();
     }
-  } catch(e) { console.log('Translation not found'); }
+  } catch(e) { console.log('Conv data not found:', num); }
 
-  // Load vocab audio data
+  // Load vocab audio separately if needed
   try {
-    let resp = await fetch(`vocab_data/vocab_${num}.json?_=${Date.now()}`);
+    let resp = await fetch(`vocab_data/vocab_${num}.json`);
     if (resp.ok) {
       const data = await resp.json();
       if (data.vocab_audios && data.vocab_audios.length > 0) {
@@ -518,11 +487,6 @@ async function loadConvEnhancements(num) {
     }
   } catch(e) { /* ignore */ }
 
-  // Start refresh loop for instant UI update
-  if (currentIdx === num - 1) {
-    refreshCurrentConv();
-  }
-  
   return true;
 }
 
@@ -632,7 +596,7 @@ function showConversation(idx) {
     // Use base translations if available; if not yet loaded, show placeholder
     const trans = (conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) ? conv.translations[pIdx] : '';
     const hasTrans = trans.length > 0;
-    const audioB64 = (conv.audios && conv.audios[pIdx]) ? conv.audios[pIdx] : '';
+    const audioB64 = (conv.paragraphAudios && conv.paragraphAudios[pIdx]) ? conv.paragraphAudios[pIdx] : '';
     const audioId = `audio-${idx}-${pIdx}`;
     const textId = `text-${idx}-${pIdx}`;
     const transId = `trans-${idx}-${pIdx}`;
@@ -840,15 +804,15 @@ async function preloadFirstPara(conv, convIdx) {
   
   // Force load first paragraph immediately
   try {
-    const resp = await fetch(`audio_conv/conv_${conv.num}/${pIdx}.json?_=${Date.now()}`);
+    const resp = await fetch(`conv_data/conv_${conv.num}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      if (data.audio && data.audio.length > 200) {
+      const audioKey = 'audios' + currentVoice;
+      if (data[audioKey] && data[audioKey][pIdx] && data[audioKey][pIdx].length > 200) {
         if (!conv.paragraphAudios) conv.paragraphAudios = {};
-        conv.paragraphAudios[pIdx] = data.audio;
-        loadedParas[conv.num + '_' + pIdx] = true;
+        conv.paragraphAudios[pIdx] = data[audioKey][pIdx];
         if (currentIdx === convIdx) refreshCurrentConv();
-        return data.audio;
+        return data[audioKey][pIdx];
       }
     }
   } catch(e) {}
