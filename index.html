@@ -588,13 +588,6 @@ function showConversation(idx) {
       <div class="conv-actions">
         <button class="btn btn-primary btn-sm" onclick="playAll(${idx})">▶ 播放全部</button>
         <button class="btn btn-sm" onclick="stopAll()">⏹ 停止</button>
-        <select class="voice-select" id="voiceSelect${idx}" onchange="setVoice(${idx}, this.value)">
-          <option value="Isabella" selected>👩 Isabella</option>
-          <option value="Elsa">👩 Elsa</option>
-          <option value="Diego">👨 Diego</option>
-        </select>
-        <span style="font-size:.72rem;color:var(--text2)">${conv.paragraphs.length} 段</span>
-        <span id="enhancedStatus" style="font-size:.7rem;color:var(--gold);margin-left:8px"></span>
       </div>
       <div id="transStatus" style="font-size:.78rem;color:var(--text2);margin-top:8px;display:${conv.translations ? 'none' : 'block'}">
         💡 点击「译文」按钮将自动加载中文翻译
