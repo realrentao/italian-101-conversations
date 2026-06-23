@@ -451,28 +451,42 @@ document.querySelectorAll('.conv-item').forEach(item => {
     closeSidebar();
   });
 });// ===== Load per-conversation data (audio + translations) on demand =====
+// Load audio + translations from separate files for efficiency
 async function loadConvEnhancements(num) {
+  const conv = conversations.find(c => c.num === num);
+  if (!conv) return false;
+  
   try {
+    // Load audio data
     let resp = await fetch(`conv_data/conv_${num}.json?_=${Date.now()}`);
-    if (!resp.ok) throw new Error('not found');
-    const data = await resp.json();
-    // Find and merge into conversations array
-    const conv = conversations.find(c => c.num === num);
-    if (!conv) return;
-    // Handle three voice audio arrays
-    if (data.audiosDiego) conv.audiosDiego = data.audiosDiego;
-    if (data.audiosIsabella) conv.audiosIsabella = data.audiosIsabella;
-    if (data.audiosElsa) conv.audiosElsa = data.audiosElsa;
-    // Backward compatibility
-    if (data.audios) conv.audios = data.audios;
-    if (data.translations && data.translations.some(t => t && t.length > 1)) {
-      conv.translations = data.translations;
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.audiosDiego) conv.audiosDiego = data.audiosDiego;
+      if (data.audiosIsabella) conv.audiosIsabella = data.audiosIsabella;
+      if (data.audiosElsa) conv.audiosElsa = data.audiosElsa;
+      if (data.audios) conv.audios = data.audios;
     }
-    return true;
-  } catch(e) {
-    console.log('Conv data not available:', e.message);
-    return false;
+  } catch(e) { console.log('Audio not found'); }
+  
+  try {
+    // Load translation data separately
+    let resp = await fetch(`translation_data/tr_${num}.json?_=${Date.now()}`);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.translations && data.translations.some(t => t && t.length > 1)) {
+        conv.translations = data.translations;
+        // Update title_cn if available
+        if (data.title_cn) conv.title_cn = data.title_cn;
+      }
+    }
+  } catch(e) { console.log('Translation not found'); }
+  
+  // Start refresh loop for instant UI update
+  if (currentIdx === num - 1) {
+    refreshCurrentConv();
   }
+  
+  return true;
 }
 
 // ===== Refresh current conv - apply audio/trans one by one as they become available =====
