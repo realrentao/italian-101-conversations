@@ -420,13 +420,8 @@ function renderSidebar() {
       document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
       if (conversations.length > 0) {
         showConversation(idx);
-        const conv = conversations[idx];
-        // Start loading in background immediately, don't wait
-        if (!conv._enhancedLoaded) {
-          conv._enhancedLoaded = true;
-          loadConvEnhancements(conv.num);
-        }
-        refreshCurrentConv();
+        // 译文自动从 conversations.json 加载(无需等待)
+        refreshTranslations();
       } else {
         document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
         ensureData().then(ok => { if (ok) { showConversation(idx); } });
@@ -449,94 +444,34 @@ function showError(msg) {
   area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️</h3><p>' + msg + '</p></div>';
 }
 
-// Sidebar click handlers are now attached in renderSidebar() after data loads// ===== Load per-conversation data (audio + translations) on demand =====
-// Load audio + translations from separate files for efficiency
-// Load per-conversation data (audio + translations) in ONE request
-let loadedConvData = {};
+// ===== Per-paragraph audio loading (独立base64 json) =====
+let loadedParaAudio = {};  // cache: key="num-idx" → {b64, voice, speaker}
 
-async function loadConvEnhancements(num) {
-  const conv = conversations.find(c => c.num === num);
-  if (!conv || loadedConvData[num]) return false;
-
+async function loadParaAudio(num, pIdx) {
+  const key = `${num}-${pIdx}`;
+  if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    // Load ALL data for this conversation in ONE request (includes audio + translations)
-    let resp = await fetch(`conv_data/conv_${num}.json`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      // Get audio: prefer user-selected voice, fallback to generic audios
-      const voiceKey = 'audios' + currentVoice;
-      const audioArr = data[voiceKey] || data.audiosIsabella || data.audiosElsa || data.audiosDiego || data.audios;
-      // Handle object format {0:"...",1:"..."} - convert to array-like access
-      if (audioArr && typeof audioArr === 'object') {
-        conv.paragraphAudios = audioArr;
-      }
-      // Translations: prefer conv_data, fallback to conversations.json
-      if (data.translations && data.translations.some(t => t && t.length > 1)) {
-        conv.translations = data.translations;
-        if (data.title_cn) conv.title_cn = data.title_cn;
-      } else if (conv && conv.translations) {
-        // Use translations from main conversations.json if available
-        const baseTrans = conv.translations;
-        if (baseTrans && baseTrans.some(t => t && t.length > 1)) {
-          conv.translations = baseTrans;
-        }
-      }
-      // Refresh UI
-      if (currentIdx === num - 1) refreshCurrentConv();
+      loadedParaAudio[key] = data;
+      return data;
     }
-  } catch(e) { console.log('Conv data not found:', num); }
-
-  // Load vocab audio separately if needed
-  try {
-    let resp = await fetch(`vocab_data/vocab_${num}.json`);
-    if (resp.ok) {
-      const data = await resp.json();
-      if (data.vocab_audios && data.vocab_audios.length > 0) {
-        conv.vocab_audios = data.vocab_audios;
-      }
-    }
-  } catch(e) { /* ignore */ }
-
-  loadedConvData[num] = true;
-  return true;
+  } catch(e) { /* file not found */ }
+  return null;
 }
 
-// ===== Refresh current conv - apply audio/trans one by one as they become available =====
-let audioRefreshTimer = null;
-
-function refreshCurrentConv() {
-  if (audioRefreshTimer) clearTimeout(audioRefreshTimer);
-  
+// ===== 译文加载（仍从 conversations.json） =====
+function refreshTranslations() {
   const conv = conversations[currentIdx];
-  if (!conv) return;
-  
-  let updatedAudio = 0, updatedTrans = 0;
-  
-  // Process all paragraphs at once for instant availability
+  if (!conv || !conv.translations) return;
   for (let pIdx = 0; pIdx < conv.paragraphs.length; pIdx++) {
-    const audioEl = document.getElementById(`audio-${currentIdx}-${pIdx}`);
     const transEl = document.getElementById(`trans-${currentIdx}-${pIdx}`);
-    
-    // Audio: set immediately when available
-    if (audioEl && conv.paragraphAudios && conv.paragraphAudios[pIdx] && !audioEl.src.includes('base64')) {
-      audioEl.src = 'data:audio/mp3;base64,' + conv.paragraphAudios[pIdx];
-      updatedAudio++;
+    if (transEl && conv.translations[pIdx] && conv.translations[pIdx].length > 1) {
+      if (!transEl.textContent || transEl.textContent.length < 5) {
+        transEl.textContent = conv.translations[pIdx];
+      }
     }
-    // Translation: set immediately when available
-    if (transEl && conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) {
-      transEl.textContent = conv.translations[pIdx];
-      updatedTrans++;
-    }
-  }
-  
-  // Show status briefly
-  const el = document.getElementById('enhancedStatus');
-  if (el && (updatedAudio || updatedTrans)) {
-    const parts = [];
-    if (updatedAudio) parts.push(`音频 ${updatedAudio}段`);
-    if (updatedTrans) parts.push(`译文 ${updatedTrans}段`);
-    el.textContent = '✅ ' + parts.join(' ');
-    setTimeout(() => el.textContent = '', 3000);
   }
 }
 
@@ -596,7 +531,6 @@ function showConversation(idx) {
     // Use base translations if available; if not yet loaded, show placeholder
     const trans = (conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) ? conv.translations[pIdx] : '';
     const hasTrans = trans.length > 0;
-    const audioB64 = (conv.paragraphAudios && conv.paragraphAudios[pIdx]) ? conv.paragraphAudios[pIdx] : '';
     const audioId = `audio-${idx}-${pIdx}`;
     const textId = `text-${idx}-${pIdx}`;
     const transId = `trans-${idx}-${pIdx}`;
@@ -658,33 +592,39 @@ function getAudioEl(convIdx, paraIdx) {
   return document.getElementById(`audio-${convIdx}-${paraIdx}`);
 }
 
-function setupAudioSrc(audio, convIdx, paraIdx) {
+// 加载并播放单个段落的音频（按需加载独立json）
+async function loadAndPlay(convIdx, paraIdx) {
   const conv = conversations[convIdx];
   if (!conv) return;
-  // Check paragraphAudios first, then generic audios
-  const b64 = conv.paragraphAudios
-    ? (conv.paragraphAudios[paraIdx] || conv.paragraphAudios[String(paraIdx)])
-    : (conv.audios && conv.audios[paraIdx]);
-  if (b64 && b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + b64;
+  const audio = getAudioEl(convIdx, paraIdx);
+  if (!audio) return;
+
+  // 检查缓存
+  const key = `${conv.num}-${paraIdx}`;
+  const cached = loadedParaAudio[key];
+  if (cached && cached.b64 && cached.b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + cached.b64;
+    startPlayback(audio, convIdx, paraIdx);
+    return;
+  }
+
+  // 加载独立json
+  const data = await loadParaAudio(conv.num, paraIdx);
+  if (data && data.b64 && data.b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + data.b64;
+    startPlayback(audio, convIdx, paraIdx);
   }
 }
 
-// Get audio by voice name (Diego/Isabella/Elsa)
-function getAudioByVoice(conv, paraIdx, voiceName) {
-  // First check paragraphAudios (loaded from conv_data)
-  if (conv.paragraphAudios) {
-    const b64 = conv.paragraphAudios[paraIdx] || conv.paragraphAudios[String(paraIdx)];
-    if (b64 && b64.length > 200) return b64;
-  }
-  // Fallback: check conv.audiosIsabella etc.
-  const key = 'audios' + voiceName;
-  const audioArr = conv[key];
-  const b64 = audioArr ? (audioArr[paraIdx] || audioArr[String(paraIdx)]) : null;
-  if (b64 && b64.length > 200) {
-    return b64;
-  }
-  return null;
+function togglePlay(convIdx, paraIdx) {
+  stopAll();
+  loadAndPlay(convIdx, paraIdx);
+}
+
+// 预加载首个段落（用于"播放全部"）
+async function preloadFirstPara(conv, convIdx) {
+  const data = await loadParaAudio(conv.num, 0);
+  return data && data.b64 && data.b64.length > 200 ? data.b64 : null;
 }
 
 function setVoice(convIdx, voiceName) {
@@ -694,39 +634,12 @@ function setVoice(convIdx, voiceName) {
 }
 
 function setVoiceUI() {
-  // Sync all voice select dropdowns to currentVoice
   document.querySelectorAll('.voice-select').forEach(sel => {
     sel.value = currentVoice;
   });
 }
 
-function togglePlay(convIdx, paraIdx) {
-  stopAll();
-
-  const conv = conversations[convIdx];
-  if (!conv) return;
-  const audio = getAudioEl(convIdx, paraIdx);
-
-  // Try per-paragraph audio (each para has its own voice baked in: narrative=Isabella, male=Diego, female=Elsa)
-  const b64 = conv.paragraphAudios && conv.paragraphAudios[paraIdx];
-  if (b64 && b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + b64;
-    startPlayback(audio, convIdx, paraIdx);
-    return;
-  }
-
-  // Not loaded yet - trigger loading and play when ready
-  loadConvEnhancements(conv.num).then(() => {
-    const b642 = conv.paragraphAudios && conv.paragraphAudios[paraIdx];
-    if (b642 && b642.length > 200) {
-      audio.src = 'data:audio/mp3;base64,' + b642;
-      startPlayback(audio, convIdx, paraIdx);
-    }
-  });
-}
-
 function startPlayback(audio, convIdx, paraIdx) {
-  setupAudioSrc(audio, convIdx, paraIdx);
   if (!audio.src || audio.src === '' || audio.src === window.location.href) {
     // No edge-tts audio available - use Web Speech API as fallback
     fallbackPlay(convIdx, paraIdx);
@@ -801,46 +714,9 @@ function setSpeed(convIdx, paraIdx, speed) {
   }
 }
 
-// Preload first paragraph audio for instant play
-async function preloadFirstPara(conv, convIdx) {
-  const pIdx = 0;
-  // Already have it?
-  let b64 = getAudioByVoice(conv, pIdx, currentVoice);
-  if (b64 && b64.length > 200) return b64;
-  
-  // Check other voices
-  for (const v of ['Isabella', 'Elsa', 'Diego']) {
-    b64 = getAudioByVoice(conv, pIdx, v);
-    if (b64 && b64.length > 200) return b64;
-  }
-  
-  // Force load first paragraph immediately
-  try {
-    const resp = await fetch(`conv_data/conv_${conv.num}.json`);
-    if (resp.ok) {
-      const data = await resp.json();
-      // Prefer user-selected voice, fallback to generic audios
-      const voiceKey = 'audios' + currentVoice;
-      const audioArr = data[voiceKey] || data.audios;
-      // Handle object format: {0: "...", 1: "..."} - convert to array access
-      const audioB64 = audioArr ? (audioArr[pIdx] || audioArr[String(pIdx)]) : null;
-      if (audioB64 && audioB64.length > 200) {
-        if (!conv.paragraphAudios) conv.paragraphAudios = {};
-        conv.paragraphAudios[pIdx] = audioB64;
-        if (currentIdx === convIdx) refreshCurrentConv();
-        return data[audioKey][pIdx];
-      }
-    }
-  } catch(e) {}
-  return null;
-}
-
 function playAll(convIdx) {
   if (currentAudio) stopAll();
   const conv = conversations[convIdx];
-  
-  // Start loading in background (already async)
-  loadConvEnhancements(conv.num);
   
   let pIdx = 0;
   
@@ -852,21 +728,23 @@ function playAll(convIdx) {
     }
     
     const audio = getAudioEl(convIdx, pIdx);
-    // Check voice-specific audio first, then fallback
-    let b64 = getAudioByVoice(conv, pIdx, currentVoice);
-    if (!b64 || b64.length < 200) {
-      const voices = ['Isabella', 'Elsa', 'Diego'];
-      for (const v of voices) {
-        b64 = getAudioByVoice(conv, pIdx, v);
-        if (b64 && b64.length > 200) break;
-      }
+    // 按需加载段落音频
+    const key = `${conv.num}-${pIdx}`;
+    const cached = loadedParaAudio[key];
+    let b64 = cached && cached.b64 && cached.b64.length > 200 ? cached.b64 : null;
+    
+    if (!b64) {
+      const data = await loadParaAudio(conv.num, pIdx);
+      b64 = data && data.b64 && data.b64.length > 200 ? data.b64 : null;
     }
-    if (b64 && b64.length > 200) {
+    
+    if (b64) {
       audio.src = 'data:audio/mp3;base64,' + b64;
     } else {
-      setupAudioSrc(audio, convIdx, pIdx);
+      // Fallback to TTS
+      if (!audio || !audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; setTimeout(playNext, 200); return; }
     }
-    if (!audio || !audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; playNext(); return; }
+    if (!audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; setTimeout(playNext, 200); return; }
     
     const speedKey = `speed3-${convIdx}-${pIdx}`;
     audio.playbackRate = parseFloat(localStorage.getItem(speedKey) || '1');
@@ -897,30 +775,17 @@ function playAll(convIdx) {
     }).catch(() => { pIdx++; setTimeout(playNext, 200); });
   }
   
-  // If first paragraph not loaded, wait for it briefly then play
-  const firstB64 = getAudioByVoice(conv, 0, currentVoice) || getAudioByVoice(conv, 0, 'Isabella');
-  if (!firstB64 || firstB64.length < 200) {
-    // Try to get first audio loaded
-    preloadFirstPara(conv, convIdx).then(() => {
-      playNext();
-    }).catch(() => playNext());
-  } else {
-    playNext();
-  }
+  // 预加载首个段落
+  playNext();
 }
 
 function speakWord(word, convNum) {
   stopAll();
-  const audio = new Audio();
-  // Try to load vocab audio from conv_data
-  const conv = conversations.find(c => c.num === convNum);
-  if (conv && conv.vocab_audios) {
-    const idx = conv.vocab.findIndex(v => v.word === word);
-    if (idx >= 0 && conv.vocab_audios[idx] && conv.vocab_audios[idx].length > 200) {
-      audio.src = 'data:audio/mp3;base64,' + conv.vocab_audios[idx];
-      audio.play().catch(() => {});
-    }
-  }
+  // Use Web Speech API for vocab pronunciation
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'it-IT';
+  utterance.rate = 0.7;
+  speechSynthesis.speak(utterance);
 }
 
 // ===== UI Toggles =====
@@ -941,32 +806,21 @@ function toggleTranslation(convIdx, paraIdx) {
   }
   
   // If we have translation text, just open
-  if (conv.translations && conv.translations[paraIdx]) {
+  if (conv.translations && conv.translations[paraIdx] && conv.translations[paraIdx].length > 1) {
     el.textContent = conv.translations[paraIdx];
     el.classList.add('open');
     return;
   }
   
-  // No translation yet - try to load conv data
-  el.textContent = '⏳ 加载译文…';
+  // No translation yet
+  el.textContent = '📝 译文尚未生成';
   el.classList.add('open');
   el.style.padding = '10px 14px';
-  
-  loadConvEnhancements(conv.num).then(loaded => {
-    // Refresh to populate all translations
-    refreshCurrentConv();
-    if (loaded && conv.translations && conv.translations[paraIdx] && conv.translations[paraIdx].length > 1) {
-      el.textContent = conv.translations[paraIdx];
-      el.classList.add('open');
-    } else {
-      el.textContent = '📝 译文尚未生成';
-      setTimeout(() => {
-        el.style.maxHeight = '0';
-        el.style.opacity = '0';
-        el.style.padding = '0 14px';
-      }, 3000);
-    }
-  });
+  setTimeout(() => {
+    el.style.maxHeight = '0';
+    el.style.opacity = '0';
+    el.style.padding = '0 14px';
+  }, 3000);
 }
 
 function goConv(idx) {
