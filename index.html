@@ -883,8 +883,6 @@ function showDirectory() {
   stopAll();
   currentIdx = -1;
   document.querySelectorAll('.conv-item').forEach(el => el.classList.remove('active'));
-  // Show the nav toggle again
-  document.getElementById('sidebarToggle').classList.remove('hide');
   // Re-show the welcome/directory screen (same as sidebar open content)
   document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开始</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻译</div></div></div>';
   // Also open the sidebar on mobile
@@ -893,6 +891,11 @@ function showDirectory() {
     sidebar.classList.add('open');
     document.getElementById('mobileOverlay').classList.add('active');
     document.body.classList.add('sidebar-open');
+    // 侧栏打开时隐藏导航按钮
+    document.getElementById('sidebarToggle').classList.add('hide');
+  } else {
+    // 桌面版显示导航按钮
+    document.getElementById('sidebarToggle').classList.remove('hide');
   }
 }
 
