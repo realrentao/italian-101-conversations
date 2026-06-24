@@ -459,13 +459,10 @@ async function loadConvEnhancements(num) {
     let resp = await fetch(`conv_data/conv_${num}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      // Get audio based on selected voice
+      // Get audio based on selected voice (use array for consistent access)
       const audioKey = 'audios' + currentVoice;
       if (data[audioKey] && data[audioKey].length > 0) {
-        if (!conv.paragraphAudios) conv.paragraphAudios = {};
-        data[audioKey].forEach((audio, i) => {
-          if (audio && audio.length > 200) conv.paragraphAudios[i] = audio;
-        });
+        conv.paragraphAudios = data[audioKey];
       }
       // Translations: prefer conv_data, fallback to conversations.json
       if (data.translations && data.translations.some(t => t && t.length > 1)) {
