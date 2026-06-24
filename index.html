@@ -566,9 +566,9 @@ function showConversation(idx) {
         📚 词汇表 · Lessico <span>${conv.vocab.length} 词</span>
       </div>
       <div class="vocab-body">
-        ${conv.vocab.map(v => `
+        ${conv.vocab.map((v, vi) => `
           <div class="vocab-row">
-            <span class="vocab-play" onclick="speakWord('${escHtml(v.word)}',${conv.num})">🔊</span>
+            <span class="vocab-play" onclick="speakWord(${conv.num},${vi})">🔊</span>
             <span class="vocab-word">${escHtml(v.word)}</span>
             <span class="vocab-meaning">${escHtml(v.meaning)}</span>
           </div>
@@ -809,17 +809,15 @@ function playAll(convIdx) {
   playNext();
 }
 
-function speakWord(word, convNum) {
+function speakWord(convNum, vocabIdx) {
   stopAll();
-  // Find word index in conversation's vocab list
   const conv = conversations.find(c => c.num === convNum);
-  if (!conv || !conv.vocab) return;
-  const idx = conv.vocab.findIndex(v => v.word === word);
-  if (idx < 0) return;
+  if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
+  const word = conv.vocab[vocabIdx].word;
   
   // Try to load edge-tts audio
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${idx}.json?v=2`)
+  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=2`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
