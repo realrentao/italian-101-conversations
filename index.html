@@ -462,8 +462,9 @@ async function loadConvEnhancements(num) {
     let resp = await fetch(`conv_data/conv_${num}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      // Get audio: check audiosDiego (male), then audiosIsabella (female), then audios
-      const audioArr = data.audiosDiego || data.audiosIsabella || data.audios || data['audios' + currentVoice];
+      // Get audio: prefer user-selected voice, fallback to generic audios
+      const voiceKey = 'audios' + currentVoice;
+      const audioArr = data[voiceKey] || data.audiosIsabella || data.audiosElsa || data.audiosDiego || data.audios;
       // Handle object format {0:"...",1:"..."} - convert to array-like access
       if (audioArr && typeof audioArr === 'object') {
         conv.paragraphAudios = audioArr;
@@ -659,7 +660,10 @@ function getAudioEl(convIdx, paraIdx) {
 function setupAudioSrc(audio, convIdx, paraIdx) {
   const conv = conversations[convIdx];
   if (!conv) return;
-  const b64 = conv.audios && conv.audios[paraIdx];
+  // Check paragraphAudios first, then generic audios
+  const b64 = conv.paragraphAudios
+    ? (conv.paragraphAudios[paraIdx] || conv.paragraphAudios[String(paraIdx)])
+    : (conv.audios && conv.audios[paraIdx]);
   if (b64 && b64.length > 200) {
     audio.src = 'data:audio/mp3;base64,' + b64;
   }
@@ -814,8 +818,9 @@ async function preloadFirstPara(conv, convIdx) {
     const resp = await fetch(`conv_data/conv_${conv.num}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      const audioKey = 'audios' + currentVoice;
-      const audioArr = data[audioKey];
+      // Prefer user-selected voice, fallback to generic audios
+      const voiceKey = 'audios' + currentVoice;
+      const audioArr = data[voiceKey] || data.audios;
       // Handle object format: {0: "...", 1: "..."} - convert to array access
       const audioB64 = audioArr ? (audioArr[pIdx] || audioArr[String(pIdx)]) : null;
       if (audioB64 && audioB64.length > 200) {
