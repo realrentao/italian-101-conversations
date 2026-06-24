@@ -542,12 +542,12 @@ function showConversation(idx) {
     <div class="paragraph" id="para-${idx}-${pIdx}">
       <div class="para-controls">
         <button class="play-btn" id="play-${idx}-${pIdx}" onclick="togglePlay(${idx},${pIdx})" title="播放">▶</button>
-        ${speaker ? `<span class="speaker-name">${escHtml(speaker)}</span>` : ''}
         <div class="speed-group">
           ${[0.6, 1.0, 1.4].map(s =>
             `<button class="speed-btn${s === savedSpeed ? ' active' : ''}" onclick="setSpeed(${idx},${pIdx},${s})">${s}x</button>`
           ).join('')}
         </div>
+        ${speaker ? `<span class="speaker-name">${escHtml(speaker)}</span>` : ''}
         <div class="audio-progress" id="prog-${idx}-${pIdx}"><div class="audio-progress-bar" id="progbar-${idx}-${pIdx}"></div></div>
         <span class="text-toggle" onclick="toggleTranslation(${idx},${pIdx})">📘 译文</span>
         <span class="text-toggle" onclick="toggleText(${idx},${pIdx})">👁 原文</span>
@@ -618,6 +618,20 @@ async function loadAndPlay(convIdx, paraIdx) {
 }
 
 function togglePlay(convIdx, paraIdx) {
+  // 如果正在播放同一段落 → 暂停
+  if (currentAudio && currentAudio.convIdx === convIdx && currentAudio.paraIdx === paraIdx) {
+    const audio = currentAudio.audio;
+    audio.pause();
+    const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
+    if (playBtn) {
+      playBtn.textContent = '▶';
+      playBtn.classList.remove('speaking');
+    }
+    document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.remove('playing');
+    currentAudio = null;
+    return;
+  }
+  // 否则停止当前播放，开始播放新段落
   stopAll();
   loadAndPlay(convIdx, paraIdx);
 }
