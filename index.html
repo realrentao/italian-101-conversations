@@ -137,6 +137,7 @@
   }
   .play-btn:hover { background: var(--accent2); transform: scale(1.05); }
   .play-btn.speaking { background: var(--gold); animation: pulse 1s infinite; }
+  .speaker-name { font-size: .7rem; font-weight: 600; color: var(--accent2); background: var(--surface2); padding: 2px 8px; border-radius: 4px; margin-left: 4px; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,.5); } 50% { box-shadow: 0 0 0 8px rgba(251,191,36,0); } }
 
   .speed-group { display: flex; gap: 3px; }
@@ -604,6 +605,7 @@ function showConversation(idx) {
     <div class="paragraph" id="para-${idx}-${pIdx}">
       <div class="para-controls">
         <button class="play-btn" id="play-${idx}-${pIdx}" onclick="togglePlay(${idx},${pIdx})" title="播放">▶</button>
+        ${speaker ? `<span class="speaker-name">${escHtml(speaker)}</span>` : ''}
         <div class="speed-group">
           ${[0.6, 1.0, 1.4].map(s =>
             `<button class="speed-btn${s === savedSpeed ? ' active' : ''}" onclick="setSpeed(${idx},${pIdx},${s})">${s}x</button>`
