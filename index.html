@@ -452,7 +452,7 @@ async function loadParaAudio(num, pIdx) {
   const key = `${num}-${pIdx}`;
   if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=2`);
     if (resp.ok) {
       const data = await resp.json();
       loadedParaAudio[key] = data;
@@ -819,7 +819,7 @@ function speakWord(word, convNum) {
   
   // Try to load edge-tts audio
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${idx}.json`)
+  fetch(`vocab_para/vocab_${convNum}_${idx}.json?v=2`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
