@@ -9,4 +9,5 @@ conv_data/
 !README.md
 !audio_conv/
 !audio_para/*.json
+!vocab_para/*.json
 !translation_data/

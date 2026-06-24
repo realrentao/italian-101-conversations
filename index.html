@@ -781,11 +781,31 @@ function playAll(convIdx) {
 
 function speakWord(word, convNum) {
   stopAll();
-  // Use Web Speech API for vocab pronunciation
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = 'it-IT';
-  utterance.rate = 0.7;
-  speechSynthesis.speak(utterance);
+  // Find word index in conversation's vocab list
+  const conv = conversations.find(c => c.num === convNum);
+  if (!conv || !conv.vocab) return;
+  const idx = conv.vocab.findIndex(v => v.word === word);
+  if (idx < 0) return;
+  
+  // Try to load edge-tts audio
+  const audio = new Audio();
+  fetch(`vocab_para/vocab_${convNum}_${idx}.json`)
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.b64 && data.b64.length > 200) {
+        audio.src = 'data:audio/mp3;base64,' + data.b64;
+        audio.play().catch(() => fallbackSpeak(word));
+      } else {
+        fallbackSpeak(word);
+      }
+    })
+    .catch(() => fallbackSpeak(word));
+}
+
+function fallbackSpeak(word) {
+  const u = new SpeechSynthesisUtterance(word);
+  u.lang = 'it-IT'; u.rate = 0.7;
+  speechSynthesis.speak(u);
 }
 
 // ===== UI Toggles =====
