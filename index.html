@@ -462,9 +462,8 @@ async function loadConvEnhancements(num) {
     let resp = await fetch(`conv_data/conv_${num}.json`);
     if (resp.ok) {
       const data = await resp.json();
-      // Get audio based on selected voice (use array for consistent access)
-      const audioKey = 'audios' + currentVoice;
-      const audioArr = data[audioKey];
+      // Get audio: data uses 'audios' key directly
+      const audioArr = data.audios || data['audios' + currentVoice];
       // Handle object format {0:"...",1:"..."} - convert to array-like access
       if (audioArr && typeof audioArr === 'object') {
         conv.paragraphAudios = audioArr;
