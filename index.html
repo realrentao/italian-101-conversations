@@ -38,10 +38,12 @@
   /* ===== Sidebar (same as before) ===== */
   .sidebar {
     width: var(--sidebar-w); min-width: var(--sidebar-w);
-    min-height: 100vh; background: var(--surface);
+    height: 100vh; position: sticky; top: 0;
+    background: var(--surface);
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column; z-index: 10;
     transition: transform .3s ease;
+    overscroll-behavior: contain;
   }
   .sidebar-header { padding: 18px 16px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
   .sidebar-header h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent2); }
@@ -58,6 +60,7 @@
     padding: 4px 8px 20px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+    max-height: calc(100vh - 140px);
   }
   .conv-item {
     display: flex; align-items: center; gap: 10px;
