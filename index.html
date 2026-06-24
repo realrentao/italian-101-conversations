@@ -600,6 +600,12 @@ async function loadAndPlay(convIdx, paraIdx) {
   const audio = getAudioEl(convIdx, paraIdx);
   if (!audio) return;
 
+  // 如果audio已有base64 src（暂停后恢复），直接播放
+  if (audio.src && audio.src.includes('base64') && audio.src.length > 300) {
+    startPlayback(audio, convIdx, paraIdx);
+    return;
+  }
+
   // 检查缓存
   const key = `${conv.num}-${paraIdx}`;
   const cached = loadedParaAudio[key];
@@ -618,17 +624,26 @@ async function loadAndPlay(convIdx, paraIdx) {
 }
 
 function togglePlay(convIdx, paraIdx) {
-  // 如果正在播放同一段落 → 暂停
+  // 同一段落 → 切换播放/暂停
   if (currentAudio && currentAudio.convIdx === convIdx && currentAudio.paraIdx === paraIdx) {
     const audio = currentAudio.audio;
-    audio.pause();
-    const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
-    if (playBtn) {
-      playBtn.textContent = '▶';
-      playBtn.classList.remove('speaking');
+    if (!audio.paused) {
+      // 正在播放 → 暂停
+      audio.pause();
+      const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
+      if (playBtn) {
+        playBtn.textContent = '▶';
+        playBtn.classList.remove('speaking');
+      }
+      document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.remove('playing');
+    } else {
+      // 已暂停 → 恢复
+      const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
+      audio.play().then(() => {
+        if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
+        document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.add('playing');
+      }).catch(() => {});
     }
-    document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.remove('playing');
-    currentAudio = null;
     return;
   }
   // 否则停止当前播放，开始播放新段落
