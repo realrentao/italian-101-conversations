@@ -464,8 +464,10 @@ async function loadConvEnhancements(num) {
       const data = await resp.json();
       // Get audio based on selected voice (use array for consistent access)
       const audioKey = 'audios' + currentVoice;
-      if (data[audioKey] && data[audioKey].length > 0) {
-        conv.paragraphAudios = data[audioKey];
+      const audioArr = data[audioKey];
+      // Handle object format {0:"...",1:"..."} - convert to array-like access
+      if (audioArr && typeof audioArr === 'object') {
+        conv.paragraphAudios = audioArr;
       }
       // Translations: prefer conv_data, fallback to conversations.json
       if (data.translations && data.translations.some(t => t && t.length > 1)) {
@@ -665,8 +667,11 @@ function setupAudioSrc(audio, convIdx, paraIdx) {
 // Get audio by voice name (Diego/Isabella/Elsa)
 function getAudioByVoice(conv, paraIdx, voiceName) {
   const key = 'audios' + voiceName;
-  if (conv[key] && conv[key][paraIdx] && conv[key][paraIdx].length > 200) {
-    return conv[key][paraIdx];
+  const audioArr = conv[key];
+  // Handle object format {0:"...",1:"..."} - access via both number and string keys
+  const b64 = audioArr ? (audioArr[paraIdx] || audioArr[String(paraIdx)]) : null;
+  if (b64 && b64.length > 200) {
+    return b64;
   }
   return null;
 }
@@ -804,9 +809,12 @@ async function preloadFirstPara(conv, convIdx) {
     if (resp.ok) {
       const data = await resp.json();
       const audioKey = 'audios' + currentVoice;
-      if (data[audioKey] && data[audioKey][pIdx] && data[audioKey][pIdx].length > 200) {
+      const audioArr = data[audioKey];
+      // Handle object format: {0: "...", 1: "..."} - convert to array access
+      const audioB64 = audioArr ? (audioArr[pIdx] || audioArr[String(pIdx)]) : null;
+      if (audioB64 && audioB64.length > 200) {
         if (!conv.paragraphAudios) conv.paragraphAudios = {};
-        conv.paragraphAudios[pIdx] = data[audioKey][pIdx];
+        conv.paragraphAudios[pIdx] = audioB64;
         if (currentIdx === convIdx) refreshCurrentConv();
         return data[audioKey][pIdx];
       }
