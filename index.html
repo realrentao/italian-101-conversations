@@ -665,9 +665,14 @@ function setupAudioSrc(audio, convIdx, paraIdx) {
 
 // Get audio by voice name (Diego/Isabella/Elsa)
 function getAudioByVoice(conv, paraIdx, voiceName) {
+  // First check paragraphAudios (loaded from conv_data)
+  if (conv.paragraphAudios) {
+    const b64 = conv.paragraphAudios[paraIdx] || conv.paragraphAudios[String(paraIdx)];
+    if (b64 && b64.length > 200) return b64;
+  }
+  // Fallback: check conv.audiosIsabella etc.
   const key = 'audios' + voiceName;
   const audioArr = conv[key];
-  // Handle object format {0:"...",1:"..."} - access via both number and string keys
   const b64 = audioArr ? (audioArr[paraIdx] || audioArr[String(paraIdx)]) : null;
   if (b64 && b64.length > 200) {
     return b64;
