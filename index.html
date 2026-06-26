@@ -813,27 +813,17 @@ function speakWord(convNum, vocabIdx) {
   stopAll();
   const conv = conversations.find(c => c.num === convNum);
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
-  const word = conv.vocab[vocabIdx].word;
   
-  // Try to load edge-tts audio
   const audio = new Audio();
   fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=2`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
         audio.src = 'data:audio/mp3;base64,' + data.b64;
-        audio.play().catch(() => fallbackSpeak(word));
-      } else {
-        fallbackSpeak(word);
+        audio.play().catch(() => {});
       }
     })
-    .catch(() => fallbackSpeak(word));
-}
-
-function fallbackSpeak(word) {
-  const u = new SpeechSynthesisUtterance(word);
-  u.lang = 'it-IT'; u.rate = 0.7;
-  speechSynthesis.speak(u);
+    .catch(() => {});
 }
 
 // ===== UI Toggles =====
