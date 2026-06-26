@@ -452,7 +452,7 @@ async function loadParaAudio(num, pIdx) {
   const key = `${num}-${pIdx}`;
   if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=2`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=3`);
     if (resp.ok) {
       const data = await resp.json();
       loadedParaAudio[key] = data;
@@ -671,8 +671,7 @@ function setVoiceUI() {
 
 function startPlayback(audio, convIdx, paraIdx) {
   if (!audio.src || audio.src === '' || audio.src === window.location.href) {
-    // No edge-tts audio available - use Web Speech API as fallback
-    fallbackPlay(convIdx, paraIdx);
+    // No edge-tts audio available - skip silently
     return;
   }
   
@@ -815,7 +814,7 @@ function speakWord(convNum, vocabIdx) {
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
   
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=2`)
+  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=3`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
