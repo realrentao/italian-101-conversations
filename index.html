@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>101 Conversations · 意大利语听力练习</title>
-<link rel="preload" href="conversations.json" as="fetch" crossorigin="anonymous">
 <style>
   :root {
     --bg: #0f0f1a;
@@ -69,7 +68,6 @@
     padding: 10px 12px; border-radius: var(--radius-sm);
     cursor: pointer; transition: background .2s, color .2s;
     color: var(--text2); font-size: .88rem; user-select: none;
-    content-visibility: auto; contain-intrinsic-size: 42px;
   }
   .conv-item:hover { background: var(--surface2); color: var(--text); }
   .conv-item.active { background: var(--accent); color: #fff; }
@@ -372,15 +370,18 @@ function renderSidebar(filterText) {
 
 // Search with debounce
 let searchDebounce;
-document.addEventListener('DOMContentLoaded', () => {
+try {
   const inp = document.getElementById('searchInput');
-  if (!inp) return;
-  inp.addEventListener('input', function() {
-    clearTimeout(searchDebounce);
-    searchDebounce = setTimeout(() => renderSidebar(this.value), 150);
-  });
-});
-dataPromise = preloadData();  // Fire immediately, no await
+  if (inp) {
+    inp.addEventListener('input', function() {
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(() => renderSidebar(this.value), 150);
+    });
+  }
+} catch(e) { /* search unavailable */ }
+
+// ===== Boot =====
+dataPromise = preloadData();
 
 // ===== Get data (from preload or wait) =====
 async function ensureData() {
