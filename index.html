@@ -302,6 +302,8 @@ const LS_KEY = 'italian101_listened3';
 const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
+const CACHE_VER_KEY = 'italian101_cache_ver';
+const CACHE_VERSION = 2; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -311,7 +313,8 @@ async function preloadData() {
   // Try sessionStorage cache first
   const cached = sessionStorage.getItem(CACHE_KEY);
   const cachedTs = parseInt(sessionStorage.getItem(CACHE_TS_KEY) || '0');
-  if (cached && Date.now() - cachedTs < CACHE_MAX_AGE) {
+  const cachedVer = parseInt(sessionStorage.getItem(CACHE_VER_KEY) || '0');
+  if (cached && cachedVer === CACHE_VERSION && Date.now() - cachedTs < CACHE_MAX_AGE) {
     try {
       conversations = JSON.parse(cached);
       renderSidebar();
@@ -324,7 +327,7 @@ async function preloadData() {
     let resp = await fetch('conversations.json' + '?_=' + Date.now());
     if (!resp.ok) throw new Error('加载失败');
     conversations = await resp.json();
-    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(conversations)); sessionStorage.setItem(CACHE_TS_KEY, Date.now()); } catch(e) {}
+    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(conversations)); sessionStorage.setItem(CACHE_TS_KEY, Date.now()); sessionStorage.setItem(CACHE_VER_KEY, CACHE_VERSION); } catch(e) {}
     try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
     renderSidebar();
     updateProgress();
