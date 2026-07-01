@@ -402,7 +402,7 @@ async function loadParaAudio(num, pIdx) {
   const key = `${num}-${pIdx}`;
   if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=4`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=5`);
     if (resp.ok) {
       const data = await resp.json();
       loadedParaAudio[key] = data;
