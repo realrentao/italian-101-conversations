@@ -1080,24 +1080,24 @@
     ],
     "vocab": [
       {
-        "word": "il",
-        "meaning": "berrettobaseb all style cap"
+        "word": "il berretto",
+        "meaning": "帽子 / cap, beret"
       },
       {
-        "word": "la visierapeak,",
-        "meaning": "visor"
+        "word": "la visiera",
+        "meaning": "帽檐 / visor, peak"
       },
       {
-        "word": "la",
-        "meaning": "montaturaframe"
+        "word": "la montatura",
+        "meaning": "镜框 / frame (of glasses)"
       },
       {
-        "word": "la felp",
-        "meaning": "asweatshirt"
+        "word": "la felpa",
+        "meaning": "卫衣、运动衫 / sweatshirt"
       },
       {
-        "word": "la staturaheight (",
-        "meaning": "of a person)"
+        "word": "la statura",
+        "meaning": "身高 / height (of a person)"
       }
     ],
     "title_cn": "正常",
