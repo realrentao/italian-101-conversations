@@ -1182,31 +1182,48 @@
     ],
     "vocab": [
       {
-        "word": "appoggia",
-        "meaning": "to (contro)leaning (against)"
+        "word": "appoggiato (contro)",
+        "meaning": "靠着，倚着 / leaning (against)"
       },
       {
-        "word": "d’un",
-        "meaning": "trattosuddenly"
+        "word": "d’un tratto",
+        "meaning": "突然 / suddenly"
       },
       {
         "word": "fidarsi di",
-        "meaning": "to trust someone"
+        "meaning": "信任，信赖 / to trust someone"
       },
       {
         "word": "lottare",
-        "meaning": "to fight"
+        "meaning": "斗争，奋斗 / to fight"
       },
       {
-        "word": "la falsificazionefasification,",
-        "meaning": "forgery"
+        "word": "la falsificazione",
+        "meaning": "伪造，赝品 / falsification, forgery"
       },
       {
-        "word": "lo smascheramentounmasking,",
-        "meaning": "exposure"
+        "word": "lo smascheramento",
+        "meaning": "揭穿，揭露 / unmasking, exposure"
       }
     ],
-    "title_cn": "阿德里亚诺的来电"
+    "title_cn": "阿德里亚诺的来电",
+    "translations": [
+      "桑托罗侦探回到了自己的办公室。她坐在椅子上，望着靠墙放着的那幅画。突然，电话响了。",
+      "阿戈斯蒂娜：“喂？”",
+      "阿德里亚诺：“早上好，桑托罗侦探。我叫阿德里亚诺。”",
+      "阿戈斯蒂娜：“我们认识吗？”",
+      "阿德里亚诺：“不，我们不认识，但我希望我们很快能见面。我们有共同的朋友。”",
+      "阿戈斯蒂娜：“谁？”",
+      "阿德里亚诺：“妮娜和爱丽丝。”",
+      "阿戈斯蒂娜：“哦。她们从来没跟我提起过你……”",
+      "阿德里亚诺：“我们不用敬语了，直接说你吧。”",
+      "阿戈斯蒂娜：“好。”",
+      "阿德里亚诺：“实话告诉你吧，阿戈斯蒂娜，我和妮娜、爱丽丝都隶属于一个秘密组织。我们知道可以信任你，所以才告诉你这些。”",
+      "阿戈斯蒂娜：“是什么样的秘密组织？”",
+      "阿德里亚诺：“我们是一个由调查员、历史学家和考古学家组成的全球网络，致力于保护艺术界，打击走私、盗窃、伪造行为……当然，你揭穿皮诺·奎尔恰的所作所为给我们留下了深刻的印象。”",
+      "阿戈斯蒂娜：“谢谢……我能问一下你为什么给我打电话吗？”",
+      "阿德里亚诺：“我打电话来，是为了你此刻面前的那幅画。”"
+    ]
   },
   {
     "num": 25,
