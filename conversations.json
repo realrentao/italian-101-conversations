@@ -1129,19 +1129,35 @@
     ],
     "vocab": [
       {
-        "word": "tiposomething",
-        "meaning": "like"
+        "word": "tipo",
+        "meaning": "类型，种类 / type, kind"
       },
       {
-        "word": "un gioco da ragazzia piece",
-        "meaning": "of cake"
+        "word": "un gioco da ragazzi",
+        "meaning": "小菜一碟，轻而易举 / a piece of cake, child's play"
       },
       {
-        "word": "la pitturapaint (color) –",
-        "meaning": "but also: painting (artistic technique/medium)"
+        "word": "beh",
+        "meaning": "嗯，好吧（语气词） / well"
+      },
+      {
+        "word": "la pittura",
+        "meaning": "颜料；绘画 / paint; painting"
       }
     ],
-    "title_cn": "新刷的油漆"
+    "title_cn": "新刷的油漆",
+    "translations": [
+      "卡卡切先生将仓库的钥匙交给了阿戈斯蒂娜和伊尼亚齐奥，这幅画在被运往博物馆之前就是存放在这里的。这个小房间是一个立方体，大概三米见方，空空荡荡，只有一扇金属门。",
+      "伊尼亚齐奥：“好了，现在我们只需要找到所有年龄在二十到三十五岁之间、名叫彼得罗·马蒂内利、住在罗马、长相普通的男人就行了——简直小菜一碟！”",
+      "阿戈斯蒂娜：“我几乎可以肯定，彼得罗·马蒂内利并不是把画带进仓库的那个人的真名。”",
+      "伊尼亚齐奥：“我在开玩笑呢，桑托罗。很明显这是个假名。话说回来，就算这是真名，对我们也毫无帮助……",
+      "嗯，看来这个仓库是空的。”",
+      "阿戈斯蒂娜：“不是空的，你看！”",
+      "伊尼亚齐奥：“那是什么？血吗？”",
+      "阿戈斯蒂娜：“不，是红色颜料，和那幅画上的颜料一样。你知道这意味着什么吗？”",
+      "伊尼亚齐奥：“意味着我分不清血和颜料？”",
+      "阿戈斯蒂娜：“不，意味着那幅画被带到这里的时候，颜料还是湿的……”"
+    ]
   },
   {
     "num": 24,
