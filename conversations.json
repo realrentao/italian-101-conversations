@@ -1034,16 +1034,20 @@
     ],
     "vocab": [
       {
-        "word": "depositostorage,",
-        "meaning": "depository"
+        "word": "deposito",
+        "meaning": "仓库、存放处、寄存处 / storage, depository"
       },
       {
-        "word": "in",
-        "meaning": "anticipoin advance"
+        "word": "accennare",
+        "meaning": "提及、暗示 / to mention, to hint"
       },
       {
-        "word": "l’",
-        "meaning": "aspettoappearance look"
+        "word": "in anticipo",
+        "meaning": "提前 / in advance"
+      },
+      {
+        "word": "l'aspetto",
+        "meaning": "外观、外表 / appearance, look"
       }
     ],
     "title_cn": "仓库",
