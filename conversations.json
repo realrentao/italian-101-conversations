@@ -1242,19 +1242,30 @@
     ],
     "vocab": [
       {
-        "word": "essere al correnteto be aware",
-        "meaning": "of to know"
+        "word": "la questione",
+        "meaning": "问题，议题 / question, issue, matter"
       },
       {
-        "word": "la questionematter,",
-        "meaning": "issue"
+        "word": "essere al corrente",
+        "meaning": "了解，知晓 / to be aware of, to be informed"
       },
       {
-        "word": "di punto in biancosuddenly",
-        "meaning": "from out of nowhere"
+        "word": "spuntare di punto in bianco",
+        "meaning": "突然出现，凭空冒出来 / to appear out of nowhere"
       }
     ],
-    "title_cn": "阿德里亚诺知道的"
+    "title_cn": "阿德里亚诺知道的",
+    "translations": [
+      "侦探桑托罗正在与阿德里亚诺通电话，阿德里亚诺是尼娜和爱丽丝的一位神秘朋友，自称属于某个秘密社团。",
+      "阿戈斯蒂娜：“你怎么知道那幅画的？”",
+      "阿德里亚诺：“尼娜把一切都告诉我了。别担心，我联系你是为了向你提供帮助。”",
+      "阿戈斯蒂娜：“是你，还是你那个秘密社团，对这幅画有什么了解？”",
+      "阿德里亚诺：“不，一无所知，而这正是我所担心的。通常情况下，凡是涉及艺术界的任何神秘事件，我们都会在它们出现在任何警探的办公桌上之前就掌握消息。但这一次，那幅画似乎是凭空冒出来的。尼娜给我发了一张照片，我们没能辨认出那位艺术家。画技非常精湛，但并非任何知名人士。”",
+      "阿戈斯蒂娜：“别生气，阿德里亚诺，可你跟我说的这些对我毫无帮助……”",
+      "阿德里亚诺：“哈哈！那是自然。不过，我们终究还是查出了一些线索。”",
+      "阿戈斯蒂娜：“你们查到了什么？”",
+      "阿德里亚诺：“画中的人物和地点……都是真实存在的。而且我认为，画这幅画的人，是想向我们传递某种信息。”"
+    ]
   },
   {
     "num": 26,
