@@ -1286,15 +1286,44 @@
     ],
     "vocab": [
       {
-        "word": "sinceramentefrankly,",
-        "meaning": "honestly"
+        "word": "pattugliamento",
+        "meaning": "巡逻 / patrolling"
+      },
+      {
+        "word": "sinceramente",
+        "meaning": "说实话，真诚地 / honestly, sincerely"
+      },
+      {
+        "word": "mettere a frutto",
+        "meaning": "利用，派上用场 / to put to use, to make the most of"
+      },
+      {
+        "word": "un sacco di",
+        "meaning": "好多，大量 / a lot of"
+      },
+      {
+        "word": "l'arma",
+        "meaning": "武器 / weapon"
       },
       {
         "word": "sbagliarsi",
-        "meaning": "to be wrong"
+        "meaning": "弄错，看错 / to be mistaken"
       }
     ],
-    "title_cn": "五个场景"
+    "title_cn": "五个场景",
+    "translations": [
+      "在与阿德里亚诺通完电话后，桑托罗探员把伊尼亚齐奥叫进了办公室。趁他还没到，她仔细端详着画中那上百个细节和人物组成的混乱景象。",
+      "伊尼亚齐奥：“出什么事了？有新情况吗？”",
+      "阿戈斯蒂娜：“伊尼亚齐奥，你在罗马街头巡逻了多少年？”",
+      "伊尼亚齐奥：“差不多五年吧……不过说实话，我还是更喜欢待在办公室。”",
+      "阿戈斯蒂娜：“很好，去给自己倒杯咖啡，顺便唤醒一下记忆，因为现在正是让你那五年的街头经验派上用场的时候。”",
+      "伊尼亚齐奥：“你指的是什么？”",
+      "阿戈斯蒂娜：“看到这幅画了吗？看到那五个不同场景，分别位于五个不同的地方了吗？”",
+      "伊尼亚齐奥：“当然看到了，而且每个场景里都有好多人。”",
+      "阿戈斯蒂娜：“但如果你仔细观察细节，就能看出正在发生什么。你看这儿，看到这个人手里拿着什么了吗？”",
+      "伊尼亚齐奥：“是武器吗？”",
+      "阿戈斯蒂娜：“没错！伊尼亚齐奥，希望是我看错了，但我认为这幅画正在向我们展示五起不同的犯罪……发生在罗马的五个不同区域。”"
+    ]
   },
   {
     "num": 27,
