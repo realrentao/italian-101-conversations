@@ -249,7 +249,7 @@
 </style>
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebarToggle">�?/button>
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <aside class="sidebar" id="sidebar">
@@ -258,10 +258,10 @@
       <p>意大利语听力 · 中意双语</p>
     </div>
     <div class="sidebar-search">
-      <input type="text" id="searchInput" placeholder="搜索对话标题�? autocomplete="off">
+      <input type="text" id="searchInput" placeholder="搜索对话标题…" autocomplete="off">
     </div>
     <div class="conv-list" id="convList">
-      <div style="padding:20px;text-align:center;color:var(--text2)">�?加载�?..</div>
+      <div style="padding:20px;text-align:center;color:var(--text2)">⏳ 加载中...</div>
 </div>
     <div class="progress-info" id="progressInfo">已读 0 / 101</div>
   </aside>
@@ -270,16 +270,18 @@
     <div id="contentArea">
       <div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen">
         <h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2>
-        <p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语�?/span></p>
-        <p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">�?数据预加载中�?/p>
+        <p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p>
+        <p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">⏳ 数据预加载中…</p>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto">
           <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
-            👈 点击左侧任一篇对话开�?          </div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
-            🔊 点击 �?播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语�?/span>
+            👈 点击左侧任一篇对话开始
           </div>
           <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
-            📘 点击「译文」查看中文翻�?          </div>
+            🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">
+            📘 点击「译文」查看中文翻译
+          </div>
         </div>
       </div>
     </div>
@@ -299,7 +301,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 28; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 15; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -315,7 +317,7 @@ async function preloadData() {
       conversations = JSON.parse(cached);
       renderSidebar();
       updateProgress();
-      document.getElementById('loadHint').textContent = '�?;
+      document.getElementById('loadHint').textContent = '✅';
       return;
     } catch(e) { /* cache stale, fall through to fetch */ }
   }
@@ -327,7 +329,7 @@ async function preloadData() {
     try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
     renderSidebar();
     updateProgress();
-    document.getElementById('loadHint').textContent = '�?;
+    document.getElementById('loadHint').textContent = '✅';
   } catch(e) {
     console.log('Preload failed:', e.message);
   }
@@ -355,7 +357,7 @@ function renderSidebar(filterText) {
         showConversation(idx);
         refreshTranslations();
       } else {
-        document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">�?/div><p>正在加载对话数据�?/p></div>';
+        document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
         ensureData().then(ok => { if (ok) { showConversation(idx); } });
       }
       closeSidebar();
@@ -394,13 +396,13 @@ function showError(msg) {
 }
 
 // ===== Per-paragraph audio loading (独立base64 json) =====
-let loadedParaAudio = {};  // cache: key="num-idx" �?{b64, voice, speaker}
+let loadedParaAudio = {};  // cache: key="num-idx" → {b64, voice, speaker}
 
 async function loadParaAudio(num, pIdx) {
   const key = `${num}-${pIdx}`;
   if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=5`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=4`);
     if (resp.ok) {
       const data = await resp.json();
       loadedParaAudio[key] = data;
@@ -410,7 +412,7 @@ async function loadParaAudio(num, pIdx) {
   return null;
 }
 
-// ===== 译文加载（仍�?conversations.json�?=====
+// ===== 译文加载（仍从 conversations.json） =====
 function refreshTranslations() {
   const conv = conversations[currentIdx];
   if (!conv || !conv.translations) return;
@@ -447,7 +449,7 @@ function showConversation(idx) {
       if (target) {
         const check = document.createElement('div');
         check.className = 'conv-check';
-        check.textContent = '�?;
+        check.textContent = '✓';
         target.appendChild(check);
       }
     }
@@ -462,8 +464,8 @@ function showConversation(idx) {
       <h2>${escHtml(conv.title)}</h2>
       ${conv.title_cn ? `<p style="font-size:.95rem;color:var(--text2);margin-top:2px">${escHtml(conv.title_cn)}</p>` : ''}
       <div class="conv-actions">
-        <button class="btn btn-primary btn-sm" onclick="playAll(${idx})">�?播放全部</button>
-        <button class="btn btn-sm" onclick="stopAll()">�?停止</button>
+        <button class="btn btn-primary btn-sm" onclick="playAll(${idx})">▶ 播放全部</button>
+        <button class="btn btn-sm" onclick="stopAll()">⏹ 停止</button>
       </div>
       <div id="transStatus" style="font-size:.78rem;color:var(--text2);margin-top:8px;display:${conv.translations ? 'none' : 'block'}">
         💡 点击「译文」按钮将自动加载中文翻译
@@ -489,7 +491,7 @@ function showConversation(idx) {
     html += `
     <div class="paragraph" id="para-${idx}-${pIdx}">
       <div class="para-controls">
-        <button class="play-btn" id="play-${idx}-${pIdx}" onclick="togglePlay(${idx},${pIdx})" title="播放">�?/button>
+        <button class="play-btn" id="play-${idx}-${pIdx}" onclick="togglePlay(${idx},${pIdx})" title="播放">▶</button>
         <div class="speed-group">
           ${[0.6, 1.0, 1.4].map(s =>
             `<button class="speed-btn${s === savedSpeed ? ' active' : ''}" onclick="setSpeed(${idx},${pIdx},${s})">${s}x</button>`
@@ -511,7 +513,7 @@ function showConversation(idx) {
     html += `
     <div class="vocab-section">
       <div class="vocab-header" onclick="this.nextElementSibling.classList.toggle('open')">
-        📚 词汇�?· Lessico <span>${conv.vocab.length} �?/span>
+        📚 词汇表 · Lessico <span>${conv.vocab.length} 词</span>
       </div>
       <div class="vocab-body">
         ${conv.vocab.map((v, vi) => `
@@ -527,8 +529,8 @@ function showConversation(idx) {
   
   html += `
     <div class="nav-arrows">
-      <button class="btn" onclick="goConv(${idx - 1})" ${idx === 0 ? 'disabled style="opacity:.4"' : ''}>�?上一�?/button>
-      <button class="btn" onclick="goConv(${idx + 1})" ${idx === conversations.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一�?�?/button>
+      <button class="btn" onclick="goConv(${idx - 1})" ${idx === 0 ? 'disabled style="opacity:.4"' : ''}>← 上一篇</button>
+      <button class="btn" onclick="goConv(${idx + 1})" ${idx === conversations.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一篇 →</button>
     </div>`;
   
   area.innerHTML = html;
@@ -541,7 +543,8 @@ function getAudioEl(convIdx, paraIdx) {
   return document.getElementById(`audio-${convIdx}-${paraIdx}`);
 }
 
-// 加载并播放单个段落的音频（按需加载独立json�?async function loadAndPlay(convIdx, paraIdx) {
+// 加载并播放单个段落的音频（按需加载独立json）
+async function loadAndPlay(convIdx, paraIdx) {
   const conv = conversations[convIdx];
   if (!conv) return;
   const audio = getAudioEl(convIdx, paraIdx);
@@ -553,7 +556,8 @@ function getAudioEl(convIdx, paraIdx) {
     return;
   }
 
-  // 检查缓�?  const key = `${conv.num}-${paraIdx}`;
+  // 检查缓存
+  const key = `${conv.num}-${paraIdx}`;
   const cached = loadedParaAudio[key];
   if (cached && cached.b64 && cached.b64.length > 200) {
     audio.src = 'data:audio/mp3;base64,' + cached.b64;
@@ -570,23 +574,23 @@ function getAudioEl(convIdx, paraIdx) {
 }
 
 function togglePlay(convIdx, paraIdx) {
-  // 同一段落 �?切换播放/暂停
+  // 同一段落 → 切换播放/暂停
   if (currentAudio && currentAudio.convIdx === convIdx && currentAudio.paraIdx === paraIdx) {
     const audio = currentAudio.audio;
     if (!audio.paused) {
-      // 正在播放 �?暂停
+      // 正在播放 → 暂停
       audio.pause();
       const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
       if (playBtn) {
-        playBtn.textContent = '�?;
+        playBtn.textContent = '▶';
         playBtn.classList.remove('speaking');
       }
       document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.remove('playing');
     } else {
-      // 已暂�?�?恢复
+      // 已暂停 → 恢复
       const playBtn = document.getElementById(`play-${convIdx}-${paraIdx}`);
       audio.play().then(() => {
-        if (playBtn) { playBtn.textContent = '�?; playBtn.classList.add('speaking'); }
+        if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
         document.getElementById(`para-${convIdx}-${paraIdx}`)?.classList.add('playing');
       }).catch(() => {});
     }
@@ -597,7 +601,8 @@ function togglePlay(convIdx, paraIdx) {
   loadAndPlay(convIdx, paraIdx);
 }
 
-// 预加载首个段落（用于"播放全部"�?async function preloadFirstPara(conv, convIdx) {
+// 预加载首个段落（用于"播放全部"）
+async function preloadFirstPara(conv, convIdx) {
   const data = await loadParaAudio(conv.num, 0);
   return data && data.b64 && data.b64.length > 200 ? data.b64 : null;
 }
@@ -629,7 +634,7 @@ function startPlayback(audio, convIdx, paraIdx) {
   currentAudio = { convIdx, paraIdx, audio };
   
   audio.onended = () => {
-    playBtn.textContent = '�?;
+    playBtn.textContent = '▶';
     playBtn.classList.remove('speaking');
     paraEl.classList.remove('playing');
     document.getElementById(`progbar-${convIdx}-${paraIdx}`).style.width = '0%';
@@ -646,12 +651,12 @@ function startPlayback(audio, convIdx, paraIdx) {
   };
   
   audio.play().then(() => {
-    playBtn.textContent = '�?;
+    playBtn.textContent = '⏸';
     playBtn.classList.add('speaking');
     paraEl.classList.add('playing');
   }).catch(e => {
     console.log('Play error:', e);
-    playBtn.textContent = '�?;
+    playBtn.textContent = '▶';
   });
 }
 
@@ -660,7 +665,7 @@ function stopAll() {
     try { currentAudio.audio.pause(); currentAudio.audio.currentTime = 0; } catch(e) {}
     const { convIdx, paraIdx } = currentAudio;
     const btn = document.getElementById(`play-${convIdx}-${paraIdx}`);
-    if (btn) { btn.textContent = '�?; btn.classList.remove('speaking'); }
+    if (btn) { btn.textContent = '▶'; btn.classList.remove('speaking'); }
     const el = document.getElementById(`para-${convIdx}-${paraIdx}`);
     if (el) el.classList.remove('playing');
     document.getElementById(`progbar-${convIdx}-${paraIdx}`).style.width = '0%';
@@ -668,7 +673,7 @@ function stopAll() {
   }
   // Also stop any HTML audio elements
   document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
-  document.querySelectorAll('.play-btn.speaking').forEach(b => { b.textContent = '�?; b.classList.remove('speaking'); });
+  document.querySelectorAll('.play-btn.speaking').forEach(b => { b.textContent = '▶'; b.classList.remove('speaking'); });
   document.querySelectorAll('.paragraph.playing').forEach(p => p.classList.remove('playing'));
   document.querySelectorAll('.audio-progress-bar').forEach(b => b.style.width = '0%');
 }
@@ -729,7 +734,7 @@ function playAll(convIdx) {
     currentAudio = { convIdx, paraIdx: pIdx, audio };
     
     audio.onended = () => {
-      if (playBtn) { playBtn.textContent = '�?; playBtn.classList.remove('speaking'); }
+      if (playBtn) { playBtn.textContent = '▶'; playBtn.classList.remove('speaking'); }
       if (paraEl) paraEl.classList.remove('playing');
       document.getElementById(`progbar-${convIdx}-${pIdx}`).style.width = '0%';
       pIdx++;
@@ -744,12 +749,13 @@ function playAll(convIdx) {
     };
     
     audio.play().then(() => {
-      if (playBtn) { playBtn.textContent = '�?; playBtn.classList.add('speaking'); }
+      if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
       if (paraEl) paraEl.classList.add('playing');
     }).catch(() => { pIdx++; setTimeout(playNext, 200); });
   }
   
-  // 预加载首个段�?  playNext();
+  // 预加载首个段落
+  playNext();
 }
 
 function speakWord(convNum, vocabIdx) {
@@ -758,7 +764,7 @@ function speakWord(convNum, vocabIdx) {
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
   
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=9`)
+  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=6`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
@@ -815,16 +821,18 @@ function showDirectory() {
   currentIdx = -1;
   document.querySelectorAll('.conv-item').forEach(el => el.classList.remove('active'));
   // Re-show the welcome/directory screen (same as sidebar open content)
-  document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语�?/span></p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开�?/div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 �?播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语�?/span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻�?/div></div></div>';
+  document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开始</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻译</div></div></div>';
   // Also open the sidebar on mobile
   const sidebar = document.getElementById('sidebar');
   if (window.innerWidth <= 768) {
     sidebar.classList.add('open');
     document.getElementById('mobileOverlay').classList.add('active');
     document.body.classList.add('sidebar-open');
-    // 侧栏打开时隐藏导航按�?    document.getElementById('sidebarToggle').classList.add('hide');
+    // 侧栏打开时隐藏导航按钮
+    document.getElementById('sidebarToggle').classList.add('hide');
   } else {
-    // 桌面版显示导航按�?    document.getElementById('sidebarToggle').classList.remove('hide');
+    // 桌面版显示导航按钮
+    document.getElementById('sidebarToggle').classList.remove('hide');
   }
 }
 
@@ -880,7 +888,7 @@ document.getElementById('sidebarToggle').addEventListener('click', () => {
     document.body.classList.add('sidebar-open');
     document.getElementById('sidebarToggle').classList.add('hide');
     // When sidebar opens on mobile, clear the content area
-    document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语�?/span></p><p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">�?/p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开�?/div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 �?播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语�?/span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻�?/div></div></div>';
+    document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)" id="startScreen"><h2 style="color:var(--text);margin-bottom:16px;font-size:1.5rem">🎧 101 Conversations</h2><p style="font-size:1rem;line-height:1.8">意大利语中级听力练习<br><span style="color:var(--accent2)">中意双语 · edge-tts原声 · 三段语速</span></p><p style="margin-top:12px;font-size:.78rem;color:var(--text2)" id="loadHint">✅</p><div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;max-width:300px;margin-left:auto;margin-right:auto"><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">👈 点击左侧任一篇对话开始</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">🔊 点击 ▶ 播放意大利语原声<br><span style="font-size:.75rem;opacity:.6">0.6x / 1x / 1.4x 三档语速</span></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;text-align:left;font-size:.85rem;color:var(--text2)">📘 点击「译文」查看中文翻译</div></div></div>';
   } else {
     document.body.classList.remove('sidebar-open');
     // Show nav toggle again when sidebar closes (unless content is showing)
