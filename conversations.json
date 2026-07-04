@@ -1381,23 +1381,33 @@
     ],
     "vocab": [
       {
-        "word": "effettivamenteactually,",
-        "meaning": "indeed"
+        "word": "effettivamente",
+        "meaning": "确实，实际上 / actually, indeed"
       },
       {
-        "word": "cercare un ago in un pagliaiolooking",
-        "meaning": "for a needle in a haystack"
+        "word": "cercare un ago in un pagliaio",
+        "meaning": "大海捞针 / to look for a needle in a haystack"
       },
       {
-        "word": "segn",
-        "meaning": "are to mark (time)"
+        "word": "segnare",
+        "meaning": "标明，显示（时间）/ to mark, to indicate"
       },
       {
         "word": "non ci resta che…",
-        "meaning": "all we can do is…"
+        "meaning": "只剩……/ all we can do is…"
       }
     ],
-    "title_cn": "奎里纳莱广场"
+    "title_cn": "奎里纳莱广场",
+    "translations": [
+      "伊尼亚齐奥刚刚确认了画中某个场景所描绘的地点——罗马的奎里纳莱广场。现在，他和桑托罗警探正试图查明那里是否真的发生过一起犯罪案件。",
+      "阿戈斯蒂娜：干得漂亮！你能看出画里有什么可疑的人吗？",
+      "伊尼亚齐奥：这简直是大海捞针！不过……广场上游客一多，就是这个样子。让我看看，这个人看起来没什么可疑的，但他口袋里有一份报纸，我好像能看到上面的日期……9月12日！",
+      "阿戈斯蒂娜：那是我生日！",
+      "伊尼亚齐奥：就是今天！时间应该能从钟楼上看出来，把放大镜递给我！",
+      "阿戈斯蒂娜：你看到什么了吗？",
+      "伊尼亚齐奥：看到了，虽然很小，但看得很清楚：时钟显示下午两点半。",
+      "阿戈斯蒂娜：好，那接下来就只剩查明是什么罪案了。"
+    ]
   },
   {
     "num": 29,
