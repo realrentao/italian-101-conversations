@@ -1433,27 +1433,37 @@
     ],
     "vocab": [
       {
-        "word": "avvenireto happen",
-        "meaning": "to take place"
+        "word": "avvenire",
+        "meaning": "发生，降临 / to happen, to take place"
       },
       {
-        "word": "il",
-        "meaning": "passamontagnabalaclava, ski mask"
+        "word": "il passamontagna",
+        "meaning": "面罩，滑雪面罩 / balaclava, ski mask"
       },
       {
-        "word": "il localeplace, space (",
-        "meaning": "often a bar or a pub)"
+        "word": "il locale",
+        "meaning": "场所，店铺（常指酒吧/餐馆）/ place, premises"
       },
       {
         "word": "non ti pare?",
-        "meaning": "don’t you think?"
+        "meaning": "你不觉得吗？/ don't you think?"
       },
       {
         "word": "rapinare",
-        "meaning": "to rob"
+        "meaning": "抢劫 / to rob"
       }
     ],
-    "title_cn": "三个蒙面人从哪里来？"
+    "title_cn": "三个蒙面人从哪里来？",
+    "translations": [
+      "阿戈斯蒂娜和伊尼亚齐奥已经确认了神秘画作中第一幕场景的地点、日期和时间。这幅画突然出现在维托里亚诺纪念堂，他们相信有人正试图通过这幅画警告他们——一场犯罪即将在这座城市发生。",
+      "伊尼亚齐奥：几乎所有人物都穿着夏装，你不觉得吗？",
+      "阿戈斯蒂娜：是的，看起来确实如此。你为什么这么说？",
+      "伊尼亚齐奥：嗯，我没看到任何武器，不过这三个人戴着面罩。看起来挺可疑的，你不觉得吗？",
+      "阿戈斯蒂娜：非常可疑！",
+      "伊尼亚齐奥：他们好像要进这家店。这是什么地方？",
+      "阿戈斯蒂娜：橱窗里摆的好像是书，对吧？不过，他们为什么要抢劫一家书店呢？",
+      "伊尼亚齐奥：那不是书店！我认识那个地方……"
+    ]
   },
   {
     "num": 30,
