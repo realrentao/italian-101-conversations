@@ -1487,35 +1487,51 @@
     ],
     "vocab": [
       {
-        "word": "la rapinaarmed",
-        "meaning": "robbery"
+        "word": "la rapina",
+        "meaning": "抢劫 / robbery"
       },
       {
-        "word": "il bers",
-        "meaning": "agliotarget"
+        "word": "il bersaglio",
+        "meaning": "目标 / target"
       },
       {
-        "word": "la filateliastamp",
-        "meaning": "collecting philately"
+        "word": "la filatelia",
+        "meaning": "集邮 / stamp collecting, philately"
       },
       {
-        "word": "il sigil",
-        "meaning": "loseal"
+        "word": "il sigillo",
+        "meaning": "印章，封蜡 / seal"
       },
       {
-        "word": "il",
-        "meaning": "francobollostamp"
+        "word": "il francobollo",
+        "meaning": "邮票 / stamp"
       },
       {
-        "word": "la pattugliapatrol,",
-        "meaning": "squad"
+        "word": "la pattuglia",
+        "meaning": "巡逻队，巡逻警力 / patrol, squad"
       },
       {
-        "word": "attendibilereliable,",
-        "meaning": "trustworthy"
+        "word": "attendibile",
+        "meaning": "可靠的 / reliable, trustworthy"
       }
     ],
-    "title_cn": "说服探长赞博尼"
+    "title_cn": "说服探长赞博尼",
+    "translations": [
+      "桑托罗警探和伊尼亚齐奥去找赞博尼警督，向他汇报他们的发现。他们在他办公室里找到了他，他正吃着午饭。",
+      "阿戈斯蒂娜：警督！我们有紧急情况。",
+      "赞博尼：出什么事了？",
+      "阿戈斯蒂娜：我们认为今天下午两点半，奎里纳莱广场会发生一起抢劫案。",
+      "赞博尼：抢劫？在哪儿？",
+      "伊尼亚齐奥：我们怀疑目标是曼奇尼父子公司，那是城里最有名的集邮店。",
+      "赞博尼：集邮店？",
+      "伊尼亚齐奥：就是邮票、钱币、古币这些。",
+      "赞博尼：你们是怎么知道的？有线人？",
+      "伊尼亚齐奥：不，是那幅画……",
+      "阿戈斯蒂娜：当然有！我们有一个匿名线人。",
+      "阿戈斯蒂娜：我们不知道！目前还不知道。他是打电话来的……拜托了，警督，我们必须派出一组巡逻警力，只剩不到一个小时了！",
+      "赞博尼：匿名线人……听起来不太可靠吧……",
+      "阿戈斯蒂娜：拜托您了，长官……今天是我生日！"
+    ]
   },
   {
     "num": 31,
