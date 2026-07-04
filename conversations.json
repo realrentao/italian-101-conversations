@@ -1339,11 +1339,31 @@
     ],
     "vocab": [
       {
-        "word": "la lente d’",
-        "meaning": "ingrandimentomagnifying glass"
+        "word": "la lente d'ingrandimento",
+        "meaning": "放大镜 / magnifying glass"
+      },
+      {
+        "word": "riconoscere",
+        "meaning": "认出，识别 / to recognize"
+      },
+      {
+        "word": "la fontana dei Dioscuri",
+        "meaning": "狄奥斯库里喷泉 / Fountain of the Dioscuri"
+      },
+      {
+        "word": "la piazza del Quirinale",
+        "meaning": "奎里纳莱广场 / Piazza del Quirinale"
       }
     ],
-    "title_cn": "画作分析"
+    "title_cn": "画作分析",
+    "translations": [
+      "在她的办公室里，阿戈斯蒂娜正和伊尼亚齐奥一起仔细分析那幅画。他们用放大镜凑近画面，试图看清每一个细节。",
+      "伊尼亚齐奥：我们到底在找什么？",
+      "阿戈斯蒂娜：得找出能指明地点、日期和时间的线索。如果我没猜错，这幅画描绘的是发生在罗马五个不同地点的犯罪现场。",
+      "伊尼亚齐奥：好吧，行……这儿，这儿有一样东西我认得出来！这座雕塑我无论在哪里都能认出来——那个裸体人物和马的形象。造型太有辨识度了，这是狄奥斯库里喷泉。它只可能在一个地方……",
+      "阿戈斯蒂娜：什么地方？",
+      "伊尼亚齐奥：这就是奎里纳莱广场，要是我说错了，我就不是人！"
+    ]
   },
   {
     "num": 28,
