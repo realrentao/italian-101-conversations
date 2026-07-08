@@ -1586,7 +1586,7 @@
     "title": "Il tentativo di rapina",
     "file": "Text/index_split_043.html",
     "paragraphs": [
-      "Agostina e Ignazio si confondono tra la folla della piazza, rimanendo però nelle vicinanze dell’ingresso del negozio di antichit{, francobolli e numismatica, Mancini e Figli. Si fingono dei turisti, fanno foto e ammirano le facciate architettoniche che danno sulla piazza. Quando è quasi ora, Ignazio si avvicina alla detective Santoro e, mentre finge di farsi un selfie, le sussurra qualcosa all’orecchio.",
+      "Agostina e Ignazio si confondono tra la folla della piazza, rimanendo però nelle vicinanze dell’ingresso del negozio di antichità, francobolli e numismatica, Mancini e Figli. Si fingono dei turisti, fanno foto e ammirano le facciate architettoniche che danno sulla piazza. Quando è quasi ora, Ignazio si avvicina alla detective Santoro e, mentre finge di farsi un selfie, le sussurra qualcosa all’orecchio.",
       "Ignazio:Credo di vederli. Vedi quei tre uomini? Sono molto coperti e mi sembra di vedere un passamontagna nella tasca di uno di loro.",
       "Agostina:Ti riferisci a quel tipo che ha un braccialetto rosso?",
       "Ignazio:Esatto. Stanno guardando la vetrina di Mancini e Figli. Avvisa il capitano Ramelli.",
@@ -1599,23 +1599,43 @@
     ],
     "vocab": [
       {
-        "word": "la foll",
-        "meaning": "acrowd"
+        "word": "confondersi",
+        "meaning": "混入；混杂（于人群）"
       },
       {
-        "word": "la numismaticaco",
-        "meaning": "in collecting, numismatics"
+        "word": "la folla",
+        "meaning": "人群"
       },
       {
-        "word": "sussurr",
-        "meaning": "are to whisper, murmur"
+        "word": "la numismatica",
+        "meaning": "钱币学；钱币收藏"
       },
       {
-        "word": "la",
-        "meaning": "tascapocket"
+        "word": "fingersi",
+        "meaning": "假装；装作（某人）"
+      },
+      {
+        "word": "sussurrare",
+        "meaning": "低声说；耳语"
+      },
+      {
+        "word": "la tasca",
+        "meaning": "口袋"
       }
     ],
-    "title_cn": "抢劫企图"
+    "title_cn": "抢劫企图",
+    "translations": [
+      "阿戈斯蒂娜和伊尼亚齐奥混进了广场上的人群，但始终没远离那家名为“曼奇尼父子”的古董、邮票与钱币店门口。两人装成游客，拍拍照，煞有介事地欣赏着正对广场的那些建筑立面。临近动手时刻，伊尼亚齐奥凑到桑特罗警探身边，假装在自拍，凑近她耳边低声说了句什么。",
+      "伊尼亚齐奥：我好像看到他们了。你看那三个男的？裹得严严实实，我瞅见其中一人兜里好像露着头套。",
+      "阿戈斯蒂娜：你说的是那个戴红手环的？",
+      "伊尼亚齐奥：对，就是他。他们正盯着曼奇尼父子的橱窗呢。通知拉梅利队长。",
+      "阿戈斯蒂娜（对讲机）：队长，听得到吗？",
+      "拉梅利队长（对讲机）：",
+      "听得到。",
+      "阿戈斯蒂娜（对讲机）：目标应该已经锁定，准备伺机行动。",
+      "伊尼亚齐奥：看！他们把头套戴上了，要进去了！",
+      "阿戈斯蒂娜：举起手来！"
+    ]
   },
   {
     "num": 33,
