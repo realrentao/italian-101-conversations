@@ -1538,7 +1538,7 @@
     "title": "Piazza del Quirinale",
     "file": "Text/index_split_042.html",
     "paragraphs": [
-      "Grazie all’insistenza della detective Santoro, l’ispettore Zamboni d{ l’autorizzazione di andare alla Piazza del Quirinale con una pattuglia di rinforzo. Agostina si dirige laggiù insieme ad Ignazio il più in fretta possibile. Nella piazza, i quattro poliziotti della pattuglia la stanno aspettando.",
+      "Grazie all’insistenza della detective Santoro, l’ispettore Zamboni dà l’autorizzazione di andare alla Piazza del Quirinale con una pattuglia di rinforzo. Agostina si dirige laggiù insieme ad Ignazio il più in fretta possibile. Nella piazza, i quattro poliziotti della pattuglia la stanno aspettando.",
       "Ignazio:Quanta gente c’è oggi in piazza! Guarda, quello è il negozio Mancini e Figli. È un bel negozio storico, non trovi?",
       "Agostina:Sì, si vede che hanno oggetti di valore. Vedi la squadra di rinforzo da qualche parte?",
       "Ignazio:Sì, credo che siano quelli lì.",
@@ -1551,23 +1551,35 @@
     ],
     "vocab": [
       {
-        "word": "il rinforzobacking,",
-        "meaning": "support"
+        "word": "il rinforzo",
+        "meaning": "增援（小队）；支援"
       },
       {
-        "word": "in frettaquickly,",
-        "meaning": "rapidly"
+        "word": "in fretta",
+        "meaning": "快速地；匆忙地"
       },
       {
-        "word": "il pianothe",
-        "meaning": "plan"
+        "word": "il piano",
+        "meaning": "计划；行动方案"
       },
       {
-        "word": "sorvegliareto guard,",
-        "meaning": "to monitor"
+        "word": "sorvegliare",
+        "meaning": "监视；盯守；看守"
       }
     ],
-    "title_cn": "奎里纳莱广场"
+    "title_cn": "奎里纳莱广场",
+    "translations": [
+      "多亏了桑特罗警探一再坚持，赞博尼督察这才批准他们前往奎里纳莱广场，并带上一支增援小队。阿戈斯蒂娜和伊尼亚齐奥以最快的速度赶了过去。广场上，增援小队的四名警员早已在那儿等候。",
+      "伊尼亚齐奥：今天广场上人可真多！你看，那就是曼奇尼父子百货店。一家颇有年头的老字号，挺气派的，你说是不是？",
+      "阿戈斯蒂娜：是啊，明眼人一看就知道店里摆的都是值钱东西。增援小队在哪儿，你看到了吗？",
+      "伊尼亚齐奥：看到了，应该就是那几位。",
+      "拉梅利上尉：您是桑特罗警探吧？我是拉梅利警官，这是我的人。局里通知我们说，你们推测这广场上可能会发生一起抢劫案。",
+      "阿戈斯蒂娜：没错，警官。更准确地说，应该是今天两点半，在曼奇尼父子店里。",
+      "拉梅利上尉：明白。那咱们的行动方案是？",
+      "阿戈斯蒂娜：你们穿着制服，我建议先留在附近待命，等我发信号再行动，但千万别暴露行踪。我和加利纳里警探负责盯住店铺入口。",
+      "拉梅利上尉：收到！大家都听清楚了吧？",
+      "众警员：清楚了，队长！"
+    ]
   },
   {
     "num": 32,
