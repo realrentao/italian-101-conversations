@@ -301,10 +301,20 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 41; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 42; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
+
+// ===== 全局错误兜底：避免页面白屏/卡在"加载中"却无任何提示 =====
+function showFatal(msg) {
+  const hint = document.getElementById('loadHint');
+  if (hint) hint.textContent = '⚠️ ' + msg;
+  const area = document.getElementById('contentArea');
+  if (area) area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️ 加载失败</h3><p>无法加载对话数据，请按 <b>Ctrl+F5</b>（或 Cmd+Shift+R）强制刷新页面。</p></div>';
+}
+window.addEventListener('error', (ev) => { showFatal('页面运行出错，请强制刷新'); });
+window.addEventListener('unhandledrejection', () => { showFatal('数据加载失败，请强制刷新'); });
 
 // ===== Preload data (sessionStorage cache to avoid refetch) =====
 async function preloadData() {
@@ -332,6 +342,7 @@ async function preloadData() {
     document.getElementById('loadHint').textContent = '✅';
   } catch(e) {
     console.log('Preload failed:', e.message);
+    showFatal('数据加载失败，请强制刷新');
   }
 }
 
