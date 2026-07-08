@@ -301,20 +301,36 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 42; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 43; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
 
-// ===== 全局错误兜底：避免页面白屏/卡在"加载中"却无任何提示 =====
-function showFatal(msg) {
-  const hint = document.getElementById('loadHint');
-  if (hint) hint.textContent = '⚠️ ' + msg;
+// ===== 错误处理：运行时错误只记录，绝不直接覆盖主页 =====
+window.addEventListener('error', (ev) => {
+  console.error('[runtime error]', ev.message, (ev.filename || '') + ':' + ev.lineno);
+});
+window.addEventListener('unhandledrejection', (ev) => {
+  console.error('[unhandled rejection]', ev && ev.reason);
+});
+
+// 仅当「对话数据本身」加载失败时才提示，且提供「重试」按钮（非破坏性）
+function showDataError(msg) {
   const area = document.getElementById('contentArea');
-  if (area) area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️ 加载失败</h3><p>无法加载对话数据，请按 <b>Ctrl+F5</b>（或 Cmd+Shift+R）强制刷新页面。</p></div>';
+  if (area) {
+    area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)">' +
+      '<div style="font-size:2.4rem;margin-bottom:12px">⚠️</div>' +
+      '<p style="font-size:1rem;margin-bottom:8px;color:var(--text)">数据加载失败</p>' +
+      '<p style="font-size:.85rem;opacity:.7;margin-bottom:18px">' + (msg || '请检查网络后重试') + '</p>' +
+      '<button class="btn btn-primary" onclick="retryLoad()">🔄 重试</button>' +
+      '<p style="font-size:.78rem;opacity:.5;margin-top:14px">仍失败可按 Ctrl+F5（或 Cmd+Shift+R）强制刷新</p>' +
+      '</div>';
+  }
+  const hint = document.getElementById('loadHint');
+  if (hint) hint.textContent = '⚠️ 加载失败';
+  const listEl = document.getElementById('convList');
+  if (listEl) listEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text2);font-size:.85rem">⚠️ 数据未加载<br><button class="btn btn-sm btn-primary" style="margin-top:10px" onclick="retryLoad()">🔄 重试</button></div>';
 }
-window.addEventListener('error', (ev) => { showFatal('页面运行出错，请强制刷新'); });
-window.addEventListener('unhandledrejection', () => { showFatal('数据加载失败，请强制刷新'); });
 
 // ===== Preload data (sessionStorage cache to avoid refetch) =====
 async function preloadData() {
@@ -324,26 +340,60 @@ async function preloadData() {
   const cachedVer = parseInt(sessionStorage.getItem(CACHE_VER_KEY) || '0');
   if (cached && cachedVer === CACHE_VERSION && Date.now() - cachedTs < CACHE_MAX_AGE) {
     try {
-      conversations = JSON.parse(cached);
-      renderSidebar();
-      updateProgress();
-      document.getElementById('loadHint').textContent = '✅';
-      return;
+      const parsed = JSON.parse(cached);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        conversations = parsed;
+        renderSidebar();
+        updateProgress();
+        document.getElementById('loadHint').textContent = '✅';
+        return;
+      }
     } catch(e) { /* cache stale, fall through to fetch */ }
   }
-  try {
-    let resp = await fetch('conversations.json' + '?_=' + Date.now());
-    if (!resp.ok) throw new Error('加载失败');
-    conversations = await resp.json();
-    try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(conversations)); sessionStorage.setItem(CACHE_TS_KEY, Date.now()); sessionStorage.setItem(CACHE_VER_KEY, CACHE_VERSION); } catch(e) {}
-    try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
-    renderSidebar();
-    updateProgress();
-    document.getElementById('loadHint').textContent = '✅';
-  } catch(e) {
-    console.log('Preload failed:', e.message);
-    showFatal('数据加载失败，请强制刷新');
+  await fetchConversations();
+}
+
+// 多候选 URL + 自动重试，避免一次性网络抖动直接判死
+async function fetchConversations() {
+  const candidates = [
+    'conversations.json?_=' + Date.now(),
+    'conversations.json',
+    './conversations.json'
+  ];
+  let lastErr = null;
+  for (const url of candidates) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        console.log('[load] fetching', url, 'attempt', attempt + 1);
+        const resp = await fetch(url, { cache: 'no-store' });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('数据为空');
+        conversations = data;
+        try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(conversations)); sessionStorage.setItem(CACHE_TS_KEY, Date.now()); sessionStorage.setItem(CACHE_VER_KEY, CACHE_VERSION); } catch(e) {}
+        try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
+        renderSidebar();
+        updateProgress();
+        document.getElementById('loadHint').textContent = '✅';
+        console.log('[load] OK, items=', conversations.length);
+        return;
+      } catch(e) {
+        lastErr = e;
+        console.warn('[load] failed:', url, e.message);
+        await new Promise(r => setTimeout(r, 400 * (attempt + 1)));
+      }
+    }
   }
+  showDataError(lastErr ? lastErr.message : '未知错误');
+}
+
+// 用户手动重试
+function retryLoad() {
+  const area = document.getElementById('contentArea');
+  if (area) area.innerHTML = '<div style="text-align:center;padding:80px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在重新加载对话数据…</p></div>';
+  const hint = document.getElementById('loadHint');
+  if (hint) hint.textContent = '⏳ 重新加载中…';
+  fetchConversations();
 }
 
 function renderSidebar(filterText) {
