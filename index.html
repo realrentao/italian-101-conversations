@@ -139,7 +139,7 @@
   }
   .play-btn:hover { background: var(--accent2); transform: scale(1.05); }
   .play-btn.speaking { background: var(--gold); animation: pulse 1s infinite; }
-  .speaker-name { font-size: .7rem; font-weight: 600; color: var(--accent2); background: var(--surface2); padding: 2px 8px; border-radius: 4px; margin-left: 4px; }
+  .speaker-name { font-size: .7rem; font-weight: 600; color: var(--accent2); background: var(--surface2); padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,.5); } 50% { box-shadow: 0 0 0 8px rgba(251,191,36,0); } }
 
   .speed-group { display: flex; gap: 3px; }
@@ -301,7 +301,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 39; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 40; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -511,8 +511,8 @@ function showConversation(idx) {
             `<button class="speed-btn${s === savedSpeed ? ' active' : ''}" onclick="setSpeed(${idx},${pIdx},${s})">${s}x</button>`
           ).join('')}
         </div>
-        ${speaker ? `<span class="speaker-name">${escHtml(speaker)}</span>` : ''}
         <div class="audio-progress" id="prog-${idx}-${pIdx}"><div class="audio-progress-bar" id="progbar-${idx}-${pIdx}"></div></div>
+        ${speaker ? `<span class="speaker-name">${escHtml(speaker)}</span>` : ''}
         <span class="text-toggle" onclick="toggleTranslation(${idx},${pIdx})">📘 译文</span>
         <span class="text-toggle" onclick="toggleText(${idx},${pIdx})">👁 原文</span>
       </div>
