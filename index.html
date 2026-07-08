@@ -301,7 +301,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 37; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 38; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -473,12 +473,26 @@ function showConversation(idx) {
     </div>`;
   
   conv.paragraphs.forEach((para, pIdx) => {
-    const colonIdx = para.indexOf(':');
-    // Detect dialogue: colon within first 25 chars, and character before colon is not a space
-    // (narrative text like "l'orologio: sono le 7" has colon mid-sentence)
-    const isDialogue = colonIdx > 0 && colonIdx < 25 && para[colonIdx - 1] !== ' ';
-    const speaker = isDialogue ? para.slice(0, colonIdx) : '';
-    const text = isDialogue ? para.slice(colonIdx + 1).trim() : para;
+    // Detect dialogue: a speaker label before the first colon.
+    // Special case: walkie-talkie lines "Name [con il walkie-talkie]:text" have a long
+    // speaker label that pushes the colon past the normal <25 char threshold, so the
+    // speaker would otherwise be shown inline in the text. Extract it as a chip.
+    const wkMarker = '[con il walkie-talkie]:';
+    const wkPos = para.indexOf(wkMarker);
+    let isDialogue = false, speaker = '', text = para;
+    if (wkPos !== -1) {
+      const colonPos = wkPos + wkMarker.length - 1; // position of the ':'
+      isDialogue = true;
+      speaker = para.slice(0, colonPos);
+      text = para.slice(colonPos + 1).trim();
+    } else {
+      const colonIdx = para.indexOf(':');
+      // colon within first 25 chars, char before colon is not a space
+      // (narrative like "l'orologio: sono le 7" has colon mid-sentence)
+      isDialogue = colonIdx > 0 && colonIdx < 25 && para[colonIdx - 1] !== ' ';
+      speaker = isDialogue ? para.slice(0, colonIdx) : '';
+      text = isDialogue ? para.slice(colonIdx + 1).trim() : para;
+    }
     // Use base translations if available; if not yet loaded, show placeholder
     const trans = (conv.translations && conv.translations[pIdx] && conv.translations[pIdx].length > 1) ? conv.translations[pIdx] : '';
     const hasTrans = trans.length > 0;
