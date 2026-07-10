@@ -1648,31 +1648,42 @@
    "Agostina:Stavate solo facendo una passeggiata per la piazza con passamontagna e tre armi semiautomatiche, vero?",
    "Ladro 2:Non parliamo senza un avvocato.",
    "Agostina:Nessun problema. Capitano Ramelli, li porti alla stazione di polizia.",
-   "Capitano RamelliSubito, detective."
+   "Capitano Ramelli: Subito, detective."
   ],
   "vocab": [
    {
-    "word": "impugnareto",
-    "meaning": "to hold to grasp"
+    "word": "impugnare",
+    "meaning": "to grasp; to hold (a weapon)"
    },
    {
-    "word": "zittoshut",
-    "meaning": "up!"
+    "word": "zitto",
+    "meaning": "shut up! / be quiet!"
    },
    {
-    "word": "chiudi il beccoshut",
-    "meaning": "your mouth"
+    "word": "chiudi il becco",
+    "meaning": "shut your mouth"
    },
    {
     "word": "tradire",
     "meaning": "to betray"
    },
    {
-    "word": "chiudi quell",
-    "meaning": "a boccacciashut your cakehole"
+    "word": "chiudi quella boccaccia",
+    "meaning": "shut your cakehole"
    }
   ],
-  "title_cn": "逮捕"
+  "title_cn": "逮捕",
+  "translations": [
+   "当三名劫匪戴上头套、掏出武器，企图抢劫那家邮票与古钱币店时，桑托罗探员果断拔枪将他们截住。增援小组的其他警员随即赶到，将三名罪犯按倒在地并予以制服。",
+   "这……？你们不应该在这儿！",
+   "闭嘴！给我闭嘴！",
+   "你没看出来吗？我们被人出卖了！他们本不该出现在这里的。",
+   "闭上你那张臭嘴！",
+   "你们只不过是戴着头套、手持三把半自动武器，在广场上悠闲散步罢了，对吧？",
+   "没有律师在场，我们什么都不会说。",
+   "没问题。拉梅利队长，把他们带回警局。",
+   "遵命，探员。"
+  ]
  },
  {
   "num": 34,
