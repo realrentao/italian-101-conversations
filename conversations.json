@@ -1552,19 +1552,19 @@
   "vocab": [
    {
     "word": "il rinforzo",
-    "meaning": "增援（小队）；支援"
+    "meaning": "增援（小队）；支援 / reinforcements (backup squad); support"
    },
    {
     "word": "in fretta",
-    "meaning": "快速地；匆忙地"
+    "meaning": "匆忙地；快速地 / in a hurry; quickly"
    },
    {
     "word": "il piano",
-    "meaning": "计划；行动方案"
+    "meaning": "计划；行动方案 / plan; course of action"
    },
    {
     "word": "sorvegliare",
-    "meaning": "监视；盯守；看守"
+    "meaning": "监视；盯守 / to surveil; to keep watch over"
    }
   ],
   "title_cn": "奎里纳莱广场",
@@ -1599,27 +1599,27 @@
   "vocab": [
    {
     "word": "confondersi",
-    "meaning": "混入；混杂（于人群）"
+    "meaning": "混入；混杂（于人群） / to blend in; to mingle (into a crowd)"
    },
    {
     "word": "la folla",
-    "meaning": "人群"
+    "meaning": "人群 / crowd"
    },
    {
     "word": "la numismatica",
-    "meaning": "钱币学；钱币收藏"
+    "meaning": "钱币学；钱币收藏 / numismatics; coin collecting"
    },
    {
     "word": "fingersi",
-    "meaning": "假装；装作（某人）"
+    "meaning": "假装；装作（某人） / to pretend to be; to pass oneself off as"
    },
    {
     "word": "sussurrare",
-    "meaning": "低声说；耳语"
+    "meaning": "低声说；耳语 / to whisper"
    },
    {
     "word": "la tasca",
-    "meaning": "口袋"
+    "meaning": "口袋 / pocket"
    }
   ],
   "title_cn": "抢劫企图",
@@ -1653,23 +1653,23 @@
   "vocab": [
    {
     "word": "impugnare",
-    "meaning": "to grasp; to hold (a weapon)"
+    "meaning": "握持；抓住（武器） / to grasp; to hold (a weapon)"
    },
    {
     "word": "zitto",
-    "meaning": "shut up! / be quiet!"
+    "meaning": "闭嘴！安静！ / shut up!; be quiet!"
    },
    {
     "word": "chiudi il becco",
-    "meaning": "shut your mouth"
+    "meaning": "闭嘴 / shut your mouth"
    },
    {
     "word": "tradire",
-    "meaning": "to betray"
+    "meaning": "背叛 / to betray"
    },
    {
     "word": "chiudi quella boccaccia",
-    "meaning": "shut your cakehole"
+    "meaning": "闭上你那张臭嘴 / shut your foul mouth"
    }
   ],
   "title_cn": "逮捕",
@@ -1706,31 +1706,31 @@
   "vocab": [
    {
     "word": "assistere",
-    "meaning": "to witness"
+    "meaning": "目睹；在场协助 / to witness; to assist (be present)"
    },
    {
     "word": "il trambusto",
-    "meaning": "confusion; commotion; hustle"
+    "meaning": "骚动；混乱 / commotion; confusion; bustle"
    },
    {
     "word": "l'arresto",
-    "meaning": "the arrest; capture"
+    "meaning": "逮捕；抓捕 / the arrest; capture"
    },
    {
     "word": "nel suo tipo",
-    "meaning": "in its kind (unico nel suo tipo = unique in its kind)"
+    "meaning": "在其同类中（unico nel suo tipo = 同类中独一无二） / in its kind (unique in its kind)"
    },
    {
     "word": "mettere all’asta",
-    "meaning": "to put up for auction"
+    "meaning": "（将…）拍卖 / to put up for auction"
    },
    {
     "word": "il valore",
-    "meaning": "worth; value"
+    "meaning": "价值 / value; worth"
    },
    {
     "word": "la base d’asta",
-    "meaning": "the starting price (of an auction)"
+    "meaning": "（拍卖的）起拍价 / the starting price (of an auction)"
    }
   ],
   "title_cn": "曼奇尼先生",
