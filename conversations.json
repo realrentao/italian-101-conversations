@@ -1697,7 +1697,7 @@
    "Agostina:A cosa si riferisce, signor Mancini?",
    "Signor Mancini:Oggi è arrivato nel mio negozio uno degli oggetti più preziosi che abbiamo mai avuto, l’unico esemplare di 1 centesimo magenta della Guiana britannica.",
    "Agostina:E che cos’è?",
-   "Signor Mancini:Che cos’è?! È uno dei tre francobolli più preziosi al mondo. Unico nel suo tipo. Il collezionista che lo possedeva è morto e i suoi figli l’hanno messo in vendita. Sar{ messo all'asta nella nostra Casa d’aste tra una settimana.",
+   "Signor Mancini:Che cos’è?! È uno dei tre francobolli più preziosi al mondo. Unico nel suo tipo. Il collezionista che lo possedeva è morto e i suoi figli l’hanno messo in vendita. Sarà messo all'asta nella nostra Casa d’aste tra una settimana.",
    "Ignazio:Solo per curiosità, signor Mancini. Qual è il valore del francobollo?",
    "Signor Mancini:Beh, il prezzo della base d'asta inizierà da cinque.",
    "Agostina:Cinque mila euro per un francobollo?!",
@@ -1709,31 +1709,45 @@
     "meaning": "to witness"
    },
    {
-    "word": "il trambustoconfusion,",
-    "meaning": "hustle"
+    "word": "il trambusto",
+    "meaning": "confusion; commotion; hustle"
    },
    {
-    "word": "l’",
-    "meaning": "arrestocapture"
+    "word": "l'arresto",
+    "meaning": "the arrest; capture"
    },
    {
     "word": "nel suo tipo",
-    "meaning": "in its kind"
+    "meaning": "in its kind (unico nel suo tipo = unique in its kind)"
    },
    {
-    "word": "mettere",
-    "meaning": "all’astato auction"
+    "word": "mettere all’asta",
+    "meaning": "to put up for auction"
    },
    {
-    "word": "il valoreworth,",
-    "meaning": "value"
+    "word": "il valore",
+    "meaning": "worth; value"
    },
    {
-    "word": "la base d’astaaucti",
-    "meaning": "on starting price"
+    "word": "la base d’asta",
+    "meaning": "the starting price (of an auction)"
    }
   ],
-  "title_cn": "曼奇尼先生"
+  "title_cn": "曼奇尼先生",
+  "translations": [
+   "在目睹自家店铺门前的一阵骚动后，店主曼奇尼先生走出来观看了逮捕过程，并亲自向桑托罗女探员表示感谢。",
+   "那些人是打算抢劫我的店铺吗？",
+   "正是如此，先生。所幸我们及时将他们逮捕了。您店里有什么特别贵重的物品吗？",
+   "当然，许多藏品都价值不菲。不过，他们偏偏选在今天来行窃，绝非偶然。",
+   "您这话是什么意思，曼奇尼先生？",
+   "今天我的店里刚刚到了一件我们有史以来收到的最珍贵的物品之一——英属圭亚那一分洋红邮票，而且是世间仅存的孤品。",
+   "那它到底是什么？",
+   "什么？！这可是全世界最名贵的三枚邮票之一，举世无双。原先收藏这件珍品的人已经去世，他的子女决定将其出售。一周后，它将在我行的拍卖会上正式上拍。",
+   "只是出于好奇问一下，曼奇尼先生——这枚邮票值多少钱？",
+   "嗯，拍卖的起拍底价将从“五”开始。",
+   "五千欧元买一枚邮票？！",
+   "哈哈哈，我的好女士，您可别逗我笑了！当然不是！是五——百万！"
+  ]
  },
  {
   "num": 35,
