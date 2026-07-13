@@ -2511,7 +2511,7 @@
    "Agostina:Cosa dice l’etichetta?",
    "An:Dice “corno di rinoceronte nero”.",
    "Agostina:Cosa? La specie di rinoceronte che si è estinta un paio di mesi fa perché venivano cacciati e uccisi per le loro corna?",
-   "An:Esatto... È una cosa terribile! Deve valere una fortuna... però la cosa peggiore è che sia dovuto morire un animale in estinzione. Nella medicina cinese si crede cheilcornodirinoceronteabbiaproprietà curative. È agghiacciante pensare che ammazzino gli animali per questo.",
+   "An:Esatto... È una cosa terribile! Deve valere una fortuna... però la cosa peggiore è che sia dovuto morire un animale in estinzione. Nella medicina cinese si crede che il corno di rinoceronte abbia proprietà curative. È agghiacciante pensare che ammazzino gli animali per questo.",
    "Donna con foulard rosso:Io non ne sapevo niente! Me lo ha dato un amico... Mi ha detto che era saccarina. Dovevo consegnarlo a un suo amico qui a Roma.",
    "Agostina:Risparmi la sua storia per l’interrogatorio. Questa è una sostanza illegale ed è molto probabile che lei finisca in carcere... Grazie per il tuo aiuto, An.",
    "An:Non c’è di che, detective."
@@ -2519,32 +2519,81 @@
   "vocab": [
    {
     "word": "inorridire",
-    "meaning": "to be horrified"
+    "meaning": "惊骇，吓坏 / to be horrified"
    },
    {
-    "word": "il",
-    "meaning": "cornohorn"
+    "word": "il corno",
+    "meaning": "角 / horn"
    },
    {
-    "word": "curativohealing,",
-    "meaning": "therapeutic"
+    "word": "curativo",
+    "meaning": "有疗效的，治疗性的 / healing, therapeutic"
    },
    {
-    "word": "agghiacciantedreadful,",
-    "meaning": "frightful"
+    "word": "agghiacciante",
+    "meaning": "令人毛骨悚然的 / dreadful, frightful"
    },
    {
-    "word": "ammazzareslay,",
-    "meaning": "murder"
+    "word": "ammazzare",
+    "meaning": "杀死，宰杀 / to slay, to murder"
    },
    {
-    "word": "il",
-    "meaning": "carcerejail"
+    "word": "il carcere",
+    "meaning": "监狱 / jail"
    },
    {
-    "word": "non c’è di cheyou’re",
-    "meaning": "welcome"
+    "word": "non c’è di che",
+    "meaning": "不客气 / you’re welcome"
    }
+  ],
+  "polish": [
+   {
+    "term": "inorridire / orribile",
+    "note": "inorridire = 吓坏 / 骇然，跟 orrore（恐惧）同源。安念标签时「整个人吓坏了」。"
+   },
+   {
+    "term": "si è estinta / in estinzione",
+    "note": "estinto = 已灭绝，in estinzione = 濒临灭绝。阿戈斯蒂娜点出这是「几个月前刚灭绝的犀牛种」——现实里西部黑犀牛 2011 年宣布灭绝，剧本借这个设定。"
+   },
+   {
+    "term": "cacciati e uccisi per le corna",
+    "note": "为取角而被猎杀，野生动物走私的经典悲剧。"
+   },
+   {
+    "term": "valere una fortuna",
+    "note": "价值连城 / 值一大笔钱，fortuna 这里指「大笔财富」而非「运气」。"
+   },
+   {
+    "term": "nella medicina cinese... proprietà curative",
+    "note": "中医里认为犀牛角有药用价值（proprietà curative），这是走私的「需求端」动因。"
+   },
+   {
+    "term": "agghiacciante",
+    "note": "令人不寒而栗的，形容词，跟 ghiaccio（冰）同源，画面感强。"
+   },
+   {
+    "term": "Risparmi la sua storia per l’interrogatorio",
+    "note": "risparmiare 本义「节省」，这里 = 把说辞留到审讯时再讲（「省省吧，留着审讯说」），阿戈斯蒂娜的冷硬台词。"
+   },
+   {
+    "term": "finisca in carcere",
+    "note": "坐牢，被动虚拟式表「极有可能」。"
+   },
+   {
+    "term": "Non c’è di che",
+    "note": "不客气，回应道谢的固定客套，比 prego 更口语随意。"
+   }
+  ],
+  "translations": [
+   "几分钟后，安保负责人带着安回来了——安是他在蒂布尔蒂纳车站某家烟草店工作的中国朋友。红头巾女子看上去紧张得不行。安向桑托罗探员和尼娜打了招呼，念起那个古怪包裹上的标签，念着念着……他整个人都吓坏了！",
+   "安：我真不敢信！这东西太可怕了！",
+   "阿戈斯蒂娜：标签上写的是什么？",
+   "安：写的是「黑犀牛角」。",
+   "阿戈斯蒂娜：什么？就是那几个月前灭绝了的犀牛——就因为被人猎杀取角才没的那种？",
+   "安：对……太惨了！这准能卖一大笔钱……不过最糟的是，一头濒危动物就这么送了命。中医里有人认为犀牛角有药用价值。想到他们为了这个去杀动物，真让人不寒而栗。",
+   "红头巾女子：我什么都不知道！是一个朋友给我的……他说那是糖精。让我在罗马转交给他的一个朋友。",
+   "阿戈斯蒂娜：您的说辞留到审讯时再讲吧。这是违禁物品，您极有可能要坐牢的……安，谢谢你帮忙。",
+   "安：不客气，探员。"
   ],
   "title_cn": "神秘物质"
  },
@@ -2558,35 +2607,91 @@
    "Ignazio:Bene, abbiamo preso i ladri e li stiamo portando al commissariato. Anche se...",
    "Agostina:Cosa? Che è successo?",
    "Ignazio:Beh, mi ci è voluto un po’ per convincere la pattuglia locale ad aiutarmi. All’inizio dicevano che la gioielleria non era in una delle strade che avrebbero dovuto pattugliare oggi... Finché non li ho minacciati che nel caso di rapina in quella gioielleria li avremmo ritenuti direttamente responsabili. Solo così hanno cominciato a collaborare.",
-   "Agostina:Ottimo lavoro, anche se… sì, è molto strano. Sai cosa? Forse è meglio non potare i rapinatori al commissariato. Portali alla stazione di polizia di quartiere. Che ne pensi?",
+   "Agostina:Ottimo lavoro, anche se… sì, è molto strano. Sai cosa? Forse è meglio non portare i rapinatori al commissariato. Portali alla stazione di polizia di quartiere. Che ne pensi?",
    "Ignazio:Sono d’accordo. Farò così.",
    "Agostina:E dopo vieni direttamente a Porta Portese: dobbiamo fermare quella vendita di droga."
   ],
   "vocab": [
    {
-    "word": "il tragittoroute,",
-    "meaning": "way"
+    "word": "il tragitto",
+    "meaning": "路程，途中 / route, way"
    },
    {
-    "word": "ci è volu",
-    "meaning": "to (volerci)it took"
+    "word": "volerci",
+    "meaning": "需要（花费时间/精力） / to take (time, effort)"
    },
    {
     "word": "pattugliare",
-    "meaning": "to patrol"
+    "meaning": "巡逻 / to patrol"
    },
    {
-    "word": "minacciareto threat,",
-    "meaning": "to intimidate"
+    "word": "minacciare",
+    "meaning": "威胁，恐吓 / to threaten, to intimidate"
    },
    {
-    "word": "ritenereto consider,",
-    "meaning": "to believe"
+    "word": "ritenere",
+    "meaning": "认为，认定 / to consider, to believe"
    },
    {
-    "word": "il",
-    "meaning": "quartieredistrict"
+    "word": "il quartiere",
+    "meaning": "片区，街区 / district, neighbourhood"
+   },
+   {
+    "word": "il commissariato",
+    "meaning": "警察总局 / police headquarters"
+   },
+   {
+    "word": "collaborare",
+    "meaning": "配合，合作 / to collaborate, to cooperate"
+   },
+   {
+    "word": "fermare",
+    "meaning": "阻止，拦下 / to stop, to halt"
    }
+  ],
+  "polish": [
+   {
+    "term": "commissariato / stazione di polizia di quartiere",
+    "note": "警局（总局）/ 片区警察局。阿戈斯蒂娜特意改指令——别送总局，送片区局，呼应她「瞒着反常的赞博尼」的线。"
+   },
+   {
+    "term": "tragitto",
+    "note": "途中、路程，固定搭配 durante il tragitto = 路上。"
+   },
+   {
+    "term": "mi ci è voluto un po’ per convincere...",
+    "note": "mi ci è voluto = 我花了/费了（时间精力），convincere = 说服、说动。伊尼亚齐奥「费劲说动」巡逻队。"
+   },
+   {
+    "term": "pattugliare",
+    "note": "巡逻（动词，名词是上幕的 pattuglia）。"
+   },
+   {
+    "term": "minacciati / ritenuti responsabili",
+    "note": "威胁 / 认定失职负责。伊尼亚齐奥拿「出事算你们责」施压，逼出配合——有点野路子的办案风格 😏"
+   },
+   {
+    "term": "collaborare",
+    "note": "配合、合作。"
+   },
+   {
+    "term": "fermare",
+    "note": "阻止、拦下（毒品交易），警务高频动词。"
+   },
+   {
+    "term": "potare → portare",
+    "note": "原文 non potare i rapinatori 的 potare（修剪植物）是 portare（带/送）的误输，已按「带」翻并修正原文。"
+   }
+  ],
+  "translations": [
+   "阿戈斯蒂娜和尼娜离开蒂布尔蒂纳车站，要把红头巾女子带去警局；路上她们给伊尼亚齐奥打了电话，打听珠宝店抢劫案的进展。",
+   "阿戈斯蒂娜：伊尼亚齐奥，情况怎么样？",
+   "伊尼亚齐奥：挺顺利，劫匪我们抓到了，正往警局带呢。不过嘛……",
+   "阿戈斯蒂娜：怎么？出什么事了？",
+   "伊尼亚齐奥：唉，我费了点劲才说动当地巡逻队帮我。一开始他们说，那家珠宝店不在他们今天该巡逻的街道上……直到我威胁他们：要是那家店真遭抢，就直接算他们失职负责。这下他们才肯配合。",
+   "阿戈斯蒂娜：干得漂亮，不过嘛……嗯，是有点反常。这样吧，劫匪或许别往总局带了。把他们送到片区警察局去。你觉得呢？",
+   "伊尼亚齐奥：同意。就这么办。",
+   "阿戈斯蒂娜：然后你直接来波尔塔波尔泰塞——咱们得去拦下那桩毒品交易。"
   ],
   "title_cn": "珠宝店抢劫"
  },
