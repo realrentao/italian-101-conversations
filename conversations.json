@@ -2145,32 +2145,75 @@
   "vocab": [
    {
     "word": "occuparsi di",
-    "meaning": "to take care of, to deal with"
+    "meaning": "照料，处理 / to take care of, to deal with"
    },
    {
-    "word": "il cruscot",
-    "meaning": "todashboard"
+    "word": "il cruscotto",
+    "meaning": "仪表盘 / dashboard"
    },
    {
-    "word": "il",
-    "meaning": "conducentedriver"
+    "word": "il conducente",
+    "meaning": "司机 / driver"
    },
    {
-    "word": "il bagagliaiotrunk,",
-    "meaning": "boot"
+    "word": "il bagagliaio",
+    "meaning": "后备厢 / trunk, boot"
    },
    {
-    "word": "orset",
-    "meaning": "to di pelucheteddy bear"
+    "word": "l’orsetto di peluche",
+    "meaning": "毛绒小熊 / teddy bear"
    },
    {
-    "word": "portellonehatch-back",
-    "meaning": "door"
+    "word": "il portellone",
+    "meaning": "（后备厢）舱门 / hatch-back door"
    },
    {
-    "word": "il sequestrokidn",
-    "meaning": "apping"
+    "word": "il sequestro",
+    "meaning": "绑架 / kidnapping"
    }
+  ],
+  "polish": [
+   {
+    "term": "il cruscotto",
+    "note": "汽车仪表盘，尼娜从上面读出 20:30 这个关键时间。"
+   },
+   {
+    "term": "il bagagliaio / il portellone",
+    "note": "后备厢 / 后备厢门。伊尼亚齐奥灵光一闪——「人可能藏在后备厢」，阿戈斯蒂娜顺着看到门上挂的毛绒小熊，瞬间点破：这是绑架（孩子被塞后备厢带走）。"
+   },
+   {
+    "term": "un orsetto di peluche",
+    "note": "毛绒小熊，peluche 是直接从英语 plush 来的借词，意大利语口语指毛绒玩具。"
+   },
+   {
+    "term": "si tratta di un sequestro",
+    "note": "sequestro = 绑架/劫持（完整说 sequestro di persona）。全剧核心谜题在此揭晓——第五桩犯罪是儿童绑架。"
+   },
+   {
+    "term": "Maledizione!",
+    "note": "该死！口语咒骂，阿戈斯蒂娜意识到自家娃可能也危险，情绪炸了。"
+   },
+   {
+    "term": "la babysitter",
+    "note": "意大利语直接借用英语词指保姆，很地道，不用硬翻成 bambinaia。"
+   },
+   {
+    "term": "hai ragione",
+    "note": "你说得对，固定搭配 avere ragione，伊尼亚齐奥这次立大功。"
+   }
+  ],
+  "translations": [
+   "赞博尼一离开办公室，桑托罗探员、伊尼亚齐奥和尼娜就回头继续破译画里那第五桩犯罪。",
+   "伊尼亚齐奥：这么说，画面上有扇开着的窗、一群愁眉不展的人，其中还有个在掉眼泪！",
+   "尼娜：那这辆车里装着什么？仪表盘上能看到时间，指着 20:30。车里只有一个人。",
+   "伊尼亚齐奥：你怎么断定只有一个人？",
+   "尼娜：你没看见吗？就只有司机一个。",
+   "伊尼亚齐奥：说不定还藏着别人，比如躲在后备厢里……",
+   "阿戈斯蒂娜：伊尼亚齐奥，你说得对！你看，后备厢门上还挂着一个毛绒小熊呢。",
+   "尼娜：你是说……",
+   "阿戈斯蒂娜：对，这是一起绑架！那扇开着的窗是小孩房间的，那一脸愁容的是家属——他们刚得知孩子不见了。该死！我得打个紧急电话！",
+   "伊尼亚齐奥：打给谁？",
+   "阿戈斯蒂娜：打给纳迪亚，马泰奥的保姆。今天我得回家很晚……"
   ],
   "title_cn": "第五起犯罪"
  },
