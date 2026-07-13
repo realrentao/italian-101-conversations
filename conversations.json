@@ -1906,27 +1906,64 @@
   ],
   "vocab": [
    {
-    "word": "accantonext to,",
-    "meaning": "across"
+    "word": "accanto",
+    "meaning": "在……旁边；紧挨着 / next to, beside"
    },
    {
-    "word": "la talpasecret",
-    "meaning": "informer"
+    "word": "la talpa",
+    "meaning": "鼹鼠；内鬼、卧底 / mole; informer, undercover agent"
    },
    {
-    "word": "ti ha da",
-    "meaning": "to di volta il cervello?!have you lost your mind?!"
+    "word": "dare di volta il cervello",
+    "meaning": "犯糊涂、脑子进水 / to lose one's mind (idiom)"
    },
    {
-    "word": "la pitturapainting (artistic",
-    "meaning": "technique)"
+    "word": "la pittura",
+    "meaning": "绘画（艺术手法）/ painting (artistic technique)"
    },
    {
-    "word": "pitturareto paint (usually houses",
-    "meaning": "or walls)"
+    "word": "pitturare",
+    "meaning": "刷漆（通常指房子、墙）/ to paint (usually houses or walls)"
    }
   ],
-  "title_cn": "审讯"
+  "title_cn": "审讯",
+  "polish": [
+   {
+    "term": "uno specchio / dalla stanza di fianco",
+    "note": "劫匪1怀疑有单向镜（specchio 镜子），隔壁屋能看能听——典型警匪片套路，所以他问「不该有面镜子吗」。"
+   },
+   {
+    "term": "Questo non è un film di Hollywood!",
+    "note": "伊尼亚齐奥吐槽「这儿不是好莱坞电影」，呼应劫匪1的影视脑补，口语感拉满。"
+   },
+   {
+    "term": "una talpa（字面「鼹鼠」）",
+    "note": "意大利语里指潜伏的内鬼 / 卧底，跟中文「鼹鼠」做内线的比喻一模一样，翻译时保留「鼹鼠」很有画面感。"
+   },
+   {
+    "term": "Ti ha dato di volta il cervello?!",
+    "note": "超地道口语 =「你脑子进水啦 / 犯什么糊涂」，dare di volta il cervello 是固定搭配，CELI/CILS 听力常客。"
+   },
+   {
+    "term": "pittura case",
+    "note": "劫匪3把 pittura（绘画）理解成「刷房子油漆」，是个幽默梗——阿戈斯蒂娜赶紧澄清是 quadri（画作）、arte（艺术）。"
+   }
+  ],
+  "translations": [
+   "审讯室里，三名劫匪并排坐着。伊尼亚齐奥跟在桑托罗探员身后走进来，关上了门。",
+   "劫匪1：这地方不该有面镜子吗？就是隔壁屋能偷看咱们、偷听咱们的那种？",
+   "劫匪2：闭嘴！",
+   "伊尼亚齐奥：怎么个个都问一样的问题？这儿可不是好莱坞电影！",
+   "阿戈斯蒂娜：没人在偷听咱们说话。这就是个普普通通的房间。",
+   "劫匪1：那……你们是要重新审咱们？",
+   "阿戈斯蒂娜：嘿，这儿问话的可是我们。其实我压根不想问你们什么，反倒想跟你们说点事儿……我怀疑你们这帮人里头，藏着个内线——一只「鼹鼠」。",
+   "劫匪1：我就知道！",
+   "劫匪2：你脑子进水啦？！什么都不能说，这还没跟你讲明白吗？",
+   "劫匪1：谁是内鬼？",
+   "阿戈斯蒂娜：我不敢确定，但可能是个喜欢画画的人。",
+   "劫匪3：画画？是给房子刷漆那种？",
+   "阿戈斯蒂娜：不是，是绘画、是画作、是艺术——这俩字你们听着耳熟不？"
+  ]
  },
  {
   "num": 38,
