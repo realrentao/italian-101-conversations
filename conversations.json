@@ -1762,28 +1762,40 @@
    "Agostina:Non esattamente. Quello che mi interessa di più non è sapere chi ha dipinto il quadro, ma come faceva a sapere che ci sarebbe stato un crimine.",
    "Ignazio:Pensi che possa essere un criminale pentito? Una specie di criminale che ha scoperto di avere il bernoccolo per la pittura?",
    "Agostina:Qualcosa del genere... È possibile. Senza dubbio si tratta di qualcuno che ha accesso alle informazioni.",
-   "Ignazio:E che ha scelto didarciqueste informazioni o almeno diappenderlein un museo.",
+   "Ignazio: E che ha scelto di darci queste informazioni o almeno di appenderle in un museo.",
    "Agostina:E proprio questo è il mistero più grande di tutti: Perché lo avrebbe fatto sotto forma di un dipinto?"
   ],
   "vocab": [
    {
-    "word": "pianton",
-    "meaning": "are to guard, to watch over"
+    "word": "piantonare",
+    "meaning": "看守；守卫 / to guard, to watch over"
    },
    {
-    "word": "la ver",
-    "meaning": "itàtruth"
+    "word": "la verità",
+    "meaning": "真相 / truth"
    },
    {
-    "word": "avere il",
-    "meaning": "bernoccolopredisposition talent"
+    "word": "avere il bernoccolo",
+    "meaning": "有…的天赋（才能） / to have a predisposition/talent (for)"
    },
    {
-    "word": "la pitturapainting technique (artistic",
-    "meaning": "medium)"
+    "word": "la pittura",
+    "meaning": "绘画（艺术媒介） / painting (artistic medium)"
    }
   ],
-  "title_cn": "回到警局"
+  "title_cn": "回到警局",
+  "translations": [
+   "在向西格诺·曼奇尼先生保证——他的店在拍卖前会一直有警察看守——之后，阿戈斯蒂娜和伊尼亚齐奥返回了警察局。路上，两人聊起了这桩案子。",
+   "这么说，那幅画说的都是真的。",
+   "太离奇了。你觉得它能帮咱们预防别的犯罪吗？",
+   "我觉得能。不过最大的谜团其实在别处……",
+   "你想的是谁画的这幅画？",
+   "不全是。我最在意的不是谁画的，而是——他怎么会知道会有一桩犯罪发生。",
+   "你觉得会是个改邪归正的罪犯？就是那种突然发现自己还有绘画天分的主儿？",
+   "差不多吧……有这个可能。这人肯定能接触到内部消息，这点毫无疑问。",
+   "而且他选择把消息透露给我们——或者至少，是挂在博物馆里让我们看见。",
+   "而这恰恰是所有谜团里最大的一个：他为什么要画成一幅画？"
+  ]
  },
  {
   "num": 36,
