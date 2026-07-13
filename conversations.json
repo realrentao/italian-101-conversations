@@ -1837,16 +1837,16 @@
   ],
   "vocab": [
    {
-    "word": "fare il terzo gradogrilling,",
-    "meaning": "interrogation"
+    "word": "fare il terzo grado",
+    "meaning": "严加审讯；轮番逼问 / to grill; third-degree interrogation"
    },
    {
-    "word": "non cavarneget",
-    "meaning": "nowhere"
+    "word": "non cavarne",
+    "meaning": "（从某人身上）什么也套不出来；一无所获 / not to get a thing out of (sb); to draw a blank"
    },
    {
-    "word": "neppurenot",
-    "meaning": "even"
+    "word": "neppure",
+    "meaning": "连……也不；甚至不 / not even"
    }
   ],
   "title_cn": "审讯室",
@@ -1871,6 +1871,18 @@
     "term": "concedere un favore per il tuo compleanno",
     "note": "concedere un favore = 给个面子 / 通融一下；顺带埋了个信息——今天是阿戈斯蒂娜生日，所以长官才松口。"
    }
+  ],
+  "translations": [
+   "赞博尼督察正在审讯室里对三名劫匪严加审讯。佩里利警官站在门边。桑托罗探员和伊尼亚齐奥走上前，想加入审讯。",
+   "早上好，佩里利警官。我们能进去吗？",
+   "赞博尼督察下了令，暂时谁都不许进。",
+   "怪了！……啊，他出来了，正往外走。",
+   "没从他们嘴里掏出多少东西。",
+   "我们想问这三名劫匪几个问题。",
+   "我已经审过了，桑托罗。他们死不开口，连名字都还不知道。",
+   "恕我直言，头儿，我想问他们几个问题……",
+   "嗯……行吧，桑托罗。不过看在今天你过生日的份上，这可是我卖你最后一个面子了。",
+   "谢了，头儿。就五分钟，我保证。"
   ]
  },
  {
