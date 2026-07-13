@@ -2342,31 +2342,78 @@
    "Nina:Dobbiamo sbrigarci, il treno arriva tra cinque minuti. Guarda, lì c’è un responsabile della sicurezza.",
    "Agostina:Salve, sono la detective Santoro, della polizia.",
    "Responsabile della sicurezza:Salve, detective, come posso aiutarla?",
-   "Agostina:Abbiamo motivo di credere che sul treno che proviene da Bologna arriverà un pacchetto con sostanze illegali. É possibile eseguire un controllo bagagli d’emergenza?",
+   "Agostina:Abbiamo motivo di credere che sul treno che proviene da Bologna arriverà un pacchetto con sostanze illegali. È possibile eseguire un controllo bagagli d’emergenza?",
    "Responsabile della sicurezza:Beh, di solito non effettuiamo controlli di sicurezza senza preavviso, però date le circostanze metterò a disposizione tutta la mia squadra.",
    "Agostina:Grazie mille."
   ],
   "vocab": [
    {
-    "word": "lo",
-    "meaning": "schermoscreen"
+    "word": "lo schermo",
+    "meaning": "屏幕，大屏 / screen"
    },
    {
-    "word": "il",
-    "meaning": "binarioplatform"
+    "word": "il binario",
+    "meaning": "站台，轨道 / platform, track"
    },
    {
-    "word": "gli addetti",
-    "meaning": "all a sicurezzasecurity officer"
+    "word": "gli addetti alla sicurezza",
+    "meaning": "安保人员 / security officers"
    },
    {
-    "word": "i",
-    "meaning": "bagagliluggage"
+    "word": "i bagagli",
+    "meaning": "行李 / luggage"
    },
    {
-    "word": "mett",
-    "meaning": "ere a disposizioneput at somebody’s disposal"
+    "word": "mettere a disposizione",
+    "meaning": "提供，调拨（交由使用）/ to put at somebody’s disposal"
    }
+  ],
+  "polish": [
+   {
+    "term": "tabellone degli arrivi / binario",
+    "note": "车站到达大屏 / 站台。binario 11 = 11号站台（也指轨道）。"
+   },
+   {
+    "term": "sbrigarsi",
+    "note": "抓紧、赶紧，口语高频祈使。Sbrigati! = 快点儿！"
+   },
+   {
+    "term": "addetti / responsabile della sicurezza",
+    "note": "安保人员 / 安保负责人。addetto 指「负责某岗的人」，responsabile 指「主管」。"
+   },
+   {
+    "term": "È possibile",
+    "note": "原文大写 É 是 È 的笔误（「能否 / 是否可能」），已按正确意思翻。"
+   },
+   {
+    "term": "proviene da Bologna",
+    "note": "provenire da = 来自 / 从……开来，比 venire da 更书面，适合「车次始发」语境。"
+   },
+   {
+    "term": "sostanze illegali",
+    "note": "违禁物品 / 非法物质（指毒品等），警务固定用语。"
+   },
+   {
+    "term": "senza preavviso / date le circostanze",
+    "note": "无预警 / 鉴于眼下情况——安保负责人的推托+松口，典型「原则上不行但特事特办」，口语听力常考。"
+   },
+   {
+    "term": "mettere a disposizione",
+    "note": "提供、调拨（把某物/某人交由使用）。mettere a disposizione la squadra = 把整个小队都调过来。"
+   }
+  ],
+  "translations": [
+   "在拥挤繁忙的蒂布尔蒂纳火车站，阿戈斯蒂娜和尼娜盯着到达时刻表，想看清那趟下午四点从博洛尼亚开来的火车会停靠几号站台。",
+   "尼娜：在那儿呢，时刻表显示它会进 11 号站台！",
+   "阿戈斯蒂娜：在车站另一头，咱们得跑过去了！",
+   "尼娜：走！",
+   "阿戈斯蒂娜：我去跟安保人员说一声，让他们查查行李。",
+   "尼娜：得抓紧，火车五分钟后就到。看，那边有个安保负责人。",
+   "阿戈斯蒂娜：您好，我是桑托罗探员，警方的人。",
+   "安保负责人：您好，探员，有什么我能效劳的？",
+   "阿戈斯蒂娜：我们有理由相信，那趟从博洛尼亚开来的列车上会有一个装着违禁物品的包裹。能否紧急做一次行李检查？",
+   "安保负责人：唉，平时没有预警我们是不做安全检查的，不过鉴于眼下情况，我会把整个小队都调给你们。",
+   "阿戈斯蒂娜：太感谢了。"
   ],
   "title_cn": "蒂布尔蒂纳车站"
  },
