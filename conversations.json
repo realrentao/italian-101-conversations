@@ -2432,13 +2432,72 @@
   ],
   "vocab": [
    {
-    "word": "dare il viato",
-    "meaning": "give the green light to start"
+    "word": "dare il via",
+    "meaning": "启动，发起 / to give the green light, to start"
    },
    {
-    "word": "la",
-    "meaning": "polveredust"
+    "word": "la polvere",
+    "meaning": "粉末，灰尘 / powder, dust"
+   },
+   {
+    "word": "mettersi in fila",
+    "meaning": "排队 / to line up, to queue"
+   },
+   {
+    "word": "il foulard",
+    "meaning": "头巾，丝巾 / headscarf, silk scarf"
+   },
+   {
+    "word": "la saccarina",
+    "meaning": "糖精 / saccharin"
+   },
+   {
+    "word": "il negozio di tabacchi",
+    "meaning": "烟草店 / tobacco shop"
    }
+  ],
+  "polish": [
+   {
+    "term": "dare il via a",
+    "note": "启动 / 发起，比 iniziare 更生动，常用于「行动 / 项目 / 信号」起跑。ha dato il via a un controllo = 启动了一场检查。"
+   },
+   {
+    "term": "mettersi in fila",
+    "note": "排队（= fare la coda）。被动式 vengono invitati a mettersi in fila = 被请去排队。"
+   },
+   {
+    "term": "foulard",
+    "note": "法语借词，头巾 / 轻丝巾。剧本用它当视觉识别特征（红头巾女子）。"
+   },
+   {
+    "term": "polvere bianca",
+    "note": "白色粉末——意大利语里常暗指可卡因等毒品，所以安保队如临大敌；但本剧是误会，到底是不是毒要看中文标签。"
+   },
+   {
+    "term": "saccarina",
+    "note": "糖精（人工甜味剂）。女子狡辩「只是糖精」，阿戈斯蒂娜一眼识破。"
+   },
+   {
+    "term": "Ufficiale",
+    "note": "阿戈斯蒂娜尊称安保负责人「警官」。严格说对方是车站安保非警察，但意语里 ufficiale 也用作对公职 / 制服人员的客气尊称。"
+   },
+   {
+    "term": "etichetta in cinese",
+    "note": "标签是中文的——这下要喊烟草店的中国店员「安」来翻译了。etichetta = 标签。"
+   },
+   {
+    "term": "negozio di tabacchi",
+    "note": "意大利的烟草店（也卖杂志、彩票、公交票等）。dipendente = 店员 / 雇员。"
+   }
+  ],
+  "translations": [
+   "蒂布尔蒂纳火车站的安保队启动了一场特别的行李检查。博洛尼亚来的列车一进站，所有乘客就被请去排队，逐个出示行李里的东西。安保人员一直没查出什么异常，直到一位头戴红头巾的女子打开了她的包……",
+   "安保负责人：这儿有发现！是个装着白色粉末的包裹。",
+   "阿戈斯蒂娜：过去看看……这包裹里装的是什么？",
+   "安保负责人：女士，包裹里是什么？",
+   "红头巾女子：没什么，是糖精。",
+   "阿戈斯蒂娜：糖精？这可不是糖精……不过看着也不像毒品……上面有个标签，还是中文的。警官，您队里有人会说中文吗？",
+   "安保负责人：没有，不过烟草店有个店员是中国人，是我朋友安。我这就叫他过来。"
   ],
   "title_cn": "行李检查"
  },
