@@ -318,7 +318,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 57; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 58; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -874,7 +874,7 @@ function speakWord(convNum, vocabIdx) {
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
   
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=14`)
+  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=15`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
