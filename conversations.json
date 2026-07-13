@@ -1981,21 +1981,57 @@
   ],
   "vocab": [
    {
-    "word": "suscitarecause,",
-    "meaning": "raise"
+    "word": "suscitare",
+    "meaning": "引起，激起 / to cause, to raise"
    },
    {
-    "word": "la bandamob, gang (",
-    "meaning": "also band)"
+    "word": "la banda",
+    "meaning": "团伙，帮派 / mob, gang"
    },
    {
     "word": "comportarsi",
-    "meaning": "to behave"
+    "meaning": "表现，举止 / to behave"
    },
    {
-    "word": "manieramanner,",
-    "meaning": "way"
+    "word": "la maniera",
+    "meaning": "方式，方法 / manner, way"
    }
+  ],
+  "polish": [
+   {
+    "term": "aver menzionato la pittura non ha suscitato... reazione",
+    "note": "suscitare reazione = 引起反应，经典搭配。译作「提到画画这事，他们一点反应都没有」，把「无人回应」的语感翻出来。"
+   },
+   {
+    "term": "messo piede in un museo in vita loro",
+    "note": "mettere piede in = 踏入/涉足（常用于否定，强调「从没去过」）；in vita loro = 他们这辈子。合起来就是「这辈子没进过博物馆半步」，口语味十足。"
+   },
+   {
+    "term": "nessuno della banda",
+    "note": "banda = 团伙/帮派（犯罪语境），比 gruppo 更带「匪帮」色彩，所以译「团伙」。"
+   },
+   {
+    "term": "riprendiamo la lente d’ingrandimento",
+    "note": "lente d’ingrandimento = 放大镜；riprendere 这里 = 重新拿起/继续。呼应前面分析画作的线索，译「再把放大镜捡起来」既形象又接得上剧情。"
+   },
+   {
+    "term": "lasciarlo fuori da tutto questo",
+    "note": "lasciare fuori = 把……撇开/排除在外。阿戈斯蒂娜决定把赞博尼督察撇开，不让他卷进来。"
+   },
+   {
+    "term": "si comporta in maniera alquanto strana",
+    "note": "comportarsi = 表现/举止，alquanto strana = 颇有些反常。这句是伏笔——督察今天不对劲，留个悬念。"
+   }
+  ],
+  "translations": [
+   "离开审讯室后，伊尼亚齐奥和阿戈斯蒂娜回到阿戈斯蒂娜的办公室，那幅画就放在那儿。",
+   "阿戈斯蒂娜：看来，我提到「画画」这事，他们一点反应都没有。",
+   "伊尼亚齐奥：我猜他们这辈子压根儿没进过博物馆半步。",
+   "阿戈斯蒂娜：看样子，这画不是他们团伙里任何人画的……要找出作画的人是谁，咱们还差得远呢。不管怎样，眼下最要紧的是先设法预防画上预告的所有可能的犯罪，这事儿咱们回头再操心也不迟。",
+   "伊尼亚齐奥：行，那咱们再把放大镜捡起来。",
+   "阿戈斯蒂娜：对，不过最好找个帮手一起干……",
+   "伊尼亚齐奥：你最后还是决定把画的事儿全告诉赞博尼督察了？",
+   "阿戈斯蒂娜：没，我觉得还是把他撇开比较好——他今天的表现有点反常。我给尼娜打个电话，论艺术她可比咱俩懂多了，你说是不是？"
   ],
   "title_cn": "救命"
  },
