@@ -2229,7 +2229,7 @@
    "Agostina, Ignazio e Nina devono stabilire un piano su come fare a prevenire i crimini rappresentati nel quadro.",
    "Ignazio:Allora, dovremo parlare con Zamboni, non credi? In questo modo potremo assegnare una pattuglia a ciascun caso.",
    "Agostina:In realtà... Mi crederai pazza, ma penso che non dovremmo dire niente a Zamboni. Si sta comportando in modo strano. Inoltre, meno gente è al corrente della situazione, più è probabile che anche i criminali non vengano a sapere nulla.",
-   "Ignazio:Non credo affatto che tu sia pazza, in realt{, sono d’accordo con te. Bene, allora facciamo tutto noi due.",
+   "Ignazio:Non credo affatto che tu sia pazza, in realtà, sono d’accordo con te. Bene, allora facciamo tutto noi due.",
    "Nina:Ehi, anch’io posso dare una mano!",
    "Agostina:Nina, potrebbe essere pericoloso.",
    "Nina:Anche quella volta che abbiamo risolto il furto dei disegni di Luca Giordano era un caso pericoloso. Quell’uomo aveva un’arma, ricordi?",
@@ -2240,17 +2240,92 @@
   ],
   "vocab": [
    {
-    "word": "stabiliredecide",
-    "meaning": "upon establish"
+    "word": "stabilire",
+    "meaning": "确定，制定 / to establish, decide upon"
    },
    {
-    "word": "il",
-    "meaning": "casocase"
+    "word": "il caso",
+    "meaning": "案件 / case"
    },
    {
-    "word": "esporreexpose,",
-    "meaning": "subject"
+    "word": "la pattuglia",
+    "meaning": "巡逻队 / patrol"
+   },
+   {
+    "word": "essere al corrente",
+    "meaning": "知晓，了解情况 / to be aware, in the know"
+   },
+   {
+    "word": "dare una mano",
+    "meaning": "搭把手，帮忙 / to give a hand, help out"
+   },
+   {
+    "word": "esporsi",
+    "meaning": "使自己暴露，涉险 / to expose oneself, take a risk"
+   },
+   {
+    "word": "le vicinanze",
+    "meaning": "附近，周边 / vicinity, surroundings"
+   },
+   {
+    "word": "dividersi",
+    "meaning": "分头行动，分开 / to split up"
    }
+  ],
+  "polish": [
+   {
+    "term": "la pattuglia",
+    "note": "巡逻队（阴性名词）。assegnare una pattuglia a ciascun caso = 给每个案子派一队巡警。"
+   },
+   {
+    "term": "Mi crederai pazza / Non credo affatto che tu sia pazza",
+    "note": "「你准觉得我疯了 / 我一点不觉得你疯」——pazzo 疯的，口语互怼常用。"
+   },
+   {
+    "term": "meno gente è al corrente... più è probabile",
+    "note": "al corrente di = 知晓；meno...più... = 越（少）…越（可能）。经典「越…越…」结构，考试高频。"
+   },
+   {
+    "term": "in realtà",
+    "note": "原文笔误 in realt{，正确为 in realtà = 其实（我译在「其实我完全同意你」）。"
+   },
+   {
+    "term": "dare una mano",
+    "note": "（口语）搭把手 / 帮个忙，= aiutare。尼娜抢活儿的口气。"
+   },
+   {
+    "term": "volerti esporre di nuovo",
+    "note": "esporsi = 让自己暴露/涉险，「再趟这浑水」。"
+   },
+   {
+    "term": "nelle vicinanze / nel caso",
+    "note": "在附近 / 万一，nel caso (che) + 虚拟式（doveste = dovere 虚拟式），口语高频。"
+   },
+   {
+    "term": "dividerci",
+    "note": "dividere 反身 = 分头行动。"
+   },
+   {
+    "term": "Luca Giordano",
+    "note": "卢卡·乔尔达诺，真实的那不勒斯巴洛克画家——剧本在埋「尼娜和阿戈斯蒂娜以前一起破过艺术品案」的背景线。"
+   },
+   {
+    "term": "pattuglia locale e.… / fa’ attenzione",
+    "note": "原文 e.… 即 e...（「还有……」）；fa’ attenzione = fai attenzione 命令式缩写 = 小心。"
+   }
+  ],
+  "translations": [
+   "阿戈斯蒂娜、伊尼亚齐奥和尼娜得定个方案，好去阻止画里预言的那些犯罪。",
+   "伊尼亚齐奥：那咱们总得跟赞博尼通个气吧，你说呢？这样每个案子都能派一队巡逻警过去。",
+   "阿戈斯蒂娜：其实吧……你准得觉得我疯了，但我觉得咱们不该跟赞博尼透半句。他最近表现反常。再说了，知道内情的人越少，罪犯摸不着风声的可能性才越大。",
+   "伊尼亚齐奥：我一点都不觉得你疯了，其实我完全同意你。行，那咱俩把所有事都揽下来。",
+   "尼娜：嘿，我也能搭把手啊！",
+   "阿戈斯蒂娜：尼娜，这可能会有危险。",
+   "尼娜：上次咱们破的那桩卢卡·乔尔达诺画作失窃案，不也危险嘛。那人还带着武器呢，记得不？",
+   "阿戈斯蒂娜：你说得对，可你确定要再趟这浑水？",
+   "尼娜：我不会有事的。我就待在附近，万一你们需要我帮忙呢。",
+   "阿戈斯蒂娜：好吧。接下来两桩犯罪眼看就要发生，而且时间挨得很近，咱们得分头行动。我和尼娜去蒂布尔蒂纳火车站，看看能不能截住那个四点该到的可疑包裹；你伊尼亚齐奥去珠宝店，盯五点半那场抢劫。伊尼亚齐奥，尽量争取当地巡逻队的支援，还有……务必小心！",
+   "伊尼亚齐奥：你们俩也是！"
   ],
   "title_cn": "策略"
  },
