@@ -2714,25 +2714,72 @@
   ],
   "vocab": [
    {
-    "word": "il buiod",
-    "meaning": "arkness"
+    "word": "il buio",
+    "meaning": "黑暗，暗处 / darkness"
    },
    {
-    "word": "lo spaccio di stupefacentidrug",
-    "meaning": "traffiking"
+    "word": "lo spaccio di stupefacenti",
+    "meaning": "毒品交易，贩毒 / drug trafficking"
    },
    {
     "word": "di per sé",
-    "meaning": "in itself"
+    "meaning": "本身，就其本身而言 / in itself"
    },
    {
-    "word": "la",
-    "meaning": "roba(slang) dope drugs"
+    "word": "la roba",
+    "meaning": "（俚语）货，东西（此处指毒品）/ (slang) stuff, dope"
    },
    {
-    "word": "le",
-    "meaning": "manettecuffs"
+    "word": "le manette",
+    "meaning": "手铐 / handcuffs"
    }
+  ],
+  "polish": [
+   {
+    "term": "spaccio di stupefacenti / spacciatore",
+    "note": "毒品交易 / 毒贩。spaccio 是「贩卖」（尤指毒品），stupefacenti = 麻醉品/毒品。警务固定词。"
+   },
+   {
+    "term": "target principale",
+    "note": "直接借用英语 target，= 主要目标群体。意大利语口语/商业里常用，年轻人是毒贩的「主目标」。"
+   },
+   {
+    "term": "tagliare la droga",
+    "note": "tagliare 字面「切」，贩毒黑话里指掺假/稀释增重（掺入杂质增大份量），比毒品本身还致命——阿戈斯蒂娜的科普点。"
+   },
+   {
+    "term": "i giovani sono il loro target",
+    "note": "呼应 C1 级社会议题表达，考试写作常考「青少年与毒品」。"
+   },
+   {
+    "term": "ammanettare / manette",
+    "note": "铐住 / 手铐（复数名词）。伊尼亚齐奥「全队戴铐最快」，人设细节拉满。"
+   },
+   {
+    "term": "con che velocità!",
+    "note": "con che + 名词 = 多么……地 / 那叫一个……，感叹句型，= 那叫一个快！同类：Con che coraggio!"
+   },
+   {
+    "term": "parcheggiato ad un angolo, al buio",
+    "note": "停在街角、藏在暗处——埋伏 standard 操作。"
+   },
+   {
+    "term": "roba",
+    "note": "（口语）货 / 东西，此处委婉指毒品（passargli la roba = 把货递给他）。"
+   }
+  ],
+  "translations": [
+   "阿戈斯蒂娜和尼娜坐在阿戈斯蒂娜的车里。远远望去，伊尼亚齐奥把车停在暗处街角。他们挨着奥林匹克体育场，要阻止一场毒品交易。",
+   "尼娜：我不明白，伊尼亚齐奥在干嘛呢？",
+   "阿戈斯蒂娜：什么都没干。",
+   "尼娜：什么都没干？",
+   "阿戈斯蒂娜：对。这种时候最管用的法子，就是摸到怀疑有贩毒的地方，在那儿守着等。毒贩迟早会凑上来兜售，尤其是你是个年轻小伙的时候——年轻人是他们的主要目标群体。",
+   "尼娜：太可怕了。",
+   "阿戈斯蒂娜：可不是！毒品本身就很可怕，连用来掺假、增大分量的那些东西也一样要命。每天都有好多年轻人死在这上头……看，有人正朝他走过去！",
+   "尼娜：他在跟伊尼亚齐奥说话。",
+   "阿戈斯蒂娜：盯仔细了，那男的跟他握手递货的时候，看伊尼亚齐奥怎么做。",
+   "尼娜：他把他铐起来了！而且那叫一个快！",
+   "阿戈斯蒂娜：论戴手铐，伊尼亚齐奥全队最快！你待这儿。我去帮他。"
   ],
   "title_cn": "毒品交易"
  },
