@@ -1785,7 +1785,7 @@
   ],
   "title_cn": "回到警局",
   "translations": [
-   "在向西格诺·曼奇尼先生保证——他的店在拍卖前会一直有警察看守——之后，阿戈斯蒂娜和伊尼亚齐奥返回了警察局。路上，两人聊起了这桩案子。",
+   "在向曼奇尼先生保证——他的店在拍卖前会一直有警察看守——之后，阿戈斯蒂娜和伊尼亚齐奥返回了警察局。路上，两人聊起了这桩案子。",
    "这么说，那幅画说的都是真的。",
    "太离奇了。你觉得它能帮咱们预防别的犯罪吗？",
    "我觉得能。不过最大的谜团其实在别处……",
@@ -1798,24 +1798,24 @@
   ],
   "polish": [
    {
-    "term": "fare il terzo grado",
-    "note": "字面“第三度”，引申为严刑逼供、轮番审问、软硬兼施地拷问。译作“严加审讯”既保留力度又不至于太过血腥。"
+    "term": "piantonata（被看守）",
+    "note": "原文指警察盯梢保护店铺，译作\"有警察看守\"比直译\"被驻守\"自然得多。"
    },
    {
-    "term": "cavarne molto（cavare qc. da qn.）",
-    "note": "从某人身上“掏/套”出东西，口语感极强，对应中文“从嘴里掏出”。"
+    "term": "attività",
+    "note": "此处语境是曼奇尼的店铺/生意，不是\"活动\"。"
    },
    {
-    "term": "Con tutto il rispetto",
-    "note": "固定客套，=「恕我直言 / 冒昧地说」，职场/上下级对话高频，听力必认识。"
+    "term": "bernoccolo per la pittura",
+    "note": "bernoccolo 本义\"肿块\"，口语里指\"在某方面有天赋/天分\"，译作\"绘画天分\"并加了\"主儿\"衬出伊尼亚齐奥调侃的语气。"
    },
    {
-    "term": "capo",
-    "note": "「头儿 / 长官」，下级对直属上司的亲昵称呼（Zamboni 是她的督察，正好压她一头）。"
+    "term": "criminale pentito",
+    "note": "法律/日常用语，指\"悔过自新的罪犯 / 改邪归正的人\"，对应中文刑侦语境。"
    },
    {
-    "term": "concedere un favore per il tuo compleanno",
-    "note": "concedere un favore = 给个面子 / 通融一下；顺带埋了个信息——今天是阿戈斯蒂娜生日，所以长官才松口。"
+    "term": "appenderle in un museo",
+    "note": "appenderle 指把那些信息\"挂\"出来，这里用\"挂在博物馆里让我们看见\"还原了\"把情报当画展出\"的荒诞感。"
    }
   ]
  },
@@ -1849,7 +1849,29 @@
     "meaning": "even"
    }
   ],
-  "title_cn": "审讯室"
+  "title_cn": "审讯室",
+  "polish": [
+   {
+    "term": "fare il terzo grado",
+    "note": "字面“第三度”，引申为严刑逼供、轮番审问、软硬兼施地拷问。译作“严加审讯”既保留力度又不至于太过血腥。"
+   },
+   {
+    "term": "cavarne molto（cavare qc. da qn.）",
+    "note": "从某人身上“掏/套”出东西，口语感极强，对应中文“从嘴里掏出”。"
+   },
+   {
+    "term": "Con tutto il rispetto",
+    "note": "固定客套，=「恕我直言 / 冒昧地说」，职场/上下级对话高频，听力必认识。"
+   },
+   {
+    "term": "capo",
+    "note": "「头儿 / 长官」，下级对直属上司的亲昵称呼（Zamboni 是她的督察，正好压她一头）。"
+   },
+   {
+    "term": "concedere un favore per il tuo compleanno",
+    "note": "concedere un favore = 给个面子 / 通融一下；顺带埋了个信息——今天是阿戈斯蒂娜生日，所以长官才松口。"
+   }
+  ]
  },
  {
   "num": 37,
