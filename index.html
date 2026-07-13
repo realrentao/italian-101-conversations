@@ -204,6 +204,23 @@
   .vocab-meaning { color: var(--text2); flex: 1; }
   .vocab-play { cursor: pointer; color: var(--accent2); font-size: .8rem; }
 
+  /* ===== Polish notes (润色要点) ===== */
+  .polish-section {
+    margin-top: 24px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .polish-header {
+    padding: 12px 18px; background: var(--surface2); font-weight: 600; font-size: .88rem;
+    color: var(--gold); cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  }
+  .polish-header:hover { filter: brightness(1.08); }
+  .polish-body { padding: 0 18px; max-height: 0; overflow: hidden; transition: all .3s; }
+  .polish-body.open { max-height: 6000px; padding: 14px 18px; }
+  .polish-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .polish-item:last-child { border: none; }
+  .polish-term { font-family: var(--font-ita); font-weight: 600; color: var(--gold); font-size: .95rem; margin-bottom: 4px; }
+  .polish-note { color: var(--text2); font-size: .88rem; line-height: 1.7; }
+
   /* ===== Loading ===== */
   .loading {
     display: flex; align-items: center; justify-content: center; height: 60vh;
@@ -301,7 +318,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 48; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 49; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -582,6 +599,24 @@ function showConversation(idx) {
       <audio id="${audioId}" preload="none" src=""></audio>
     </div>`;
   });
+  
+  // Polish notes (润色要点) — shown between body and vocab when present
+  if (conv.polish && conv.polish.length > 0) {
+    html += `
+    <div class="polish-section">
+      <div class="polish-header" onclick="this.nextElementSibling.classList.toggle('open')">
+        ✨ 润色要点 · Note di revisione <span>${conv.polish.length} 条</span>
+      </div>
+      <div class="polish-body open">
+        ${conv.polish.map(p => `
+          <div class="polish-item">
+            <div class="polish-term">${escHtml(p.term)}</div>
+            <div class="polish-note">${escHtml(p.note)}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }
   
   // Vocab
   if (conv.vocab && conv.vocab.length > 0) {
