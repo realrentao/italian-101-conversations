@@ -2061,17 +2061,67 @@
   ],
   "vocab": [
    {
-    "word": "man manolittle",
-    "meaning": "by little, gradually"
+    "word": "man mano",
+    "meaning": "逐渐地，一点点地 / gradually, little by little"
    },
    {
-    "word": "avere un’ariaappearance,",
-    "meaning": "to look"
+    "word": "avere un’aria",
+    "meaning": "显出……的神情，看上去 / to have an air of, to look"
    },
    {
-    "word": "la",
-    "meaning": "soffiatatip-off"
+    "word": "la soffiata",
+    "meaning": "线报，通风报信 / tip-off, inside information"
    }
+  ],
+  "polish": [
+   {
+    "term": "Tiburtina / Porta Portese / stadio Olimpico",
+    "note": "都是罗马真实地名（蒂布尔蒂纳火车站、波尔塔波尔泰塞跳蚤市场区、奥林匹克体育场）。保留音译即可，考听力时这些专名一出口你就知道在说哪。"
+   },
+   {
+    "term": "rapina a una gioielleria",
+    "note": "rapina = 抢劫，gioielleria = 珠宝店。译「珠宝店要遭抢」。"
+   },
+   {
+    "term": "Non riesco a decifrare",
+    "note": "decifrare = 破译/辨认，比 capire 更贴合「看画猜剧情」的语境。"
+   },
+   {
+    "term": "un’aria preoccupata",
+    "note": "avere un’aria + agg. = 一副……的神情，「一脸愁容」。"
+   },
+   {
+    "term": "Toc, toc",
+    "note": "意大利语敲门声就是「toc toc」（对应英语 knock knock），译「咚咚」很贴切。"
+   },
+   {
+    "term": "cosa possiamo fare per lei",
+    "note": "礼貌套话 =「您有什么需要我们做的 / 您有什么指示」，下级对上司用 lei 敬称。"
+   },
+   {
+    "term": "si tratti di un falso",
+    "note": "trattarsi di = 是/关乎；falso = 赝品。阿戈斯蒂娜拿「可能是假画」当幌子，糊弄督察。"
+   },
+   {
+    "term": "dato la soffiata",
+    "note": "soffiata 是超地道口语 = 线报/通风报信，dare la soffiata (su) = 告密。赞博尼提到的「内线」呼应前面团伙里的 talpa（鼹鼠）。"
+   }
+  ],
+  "translations": [
+   "在尼娜的帮助下，阿戈斯蒂娜和伊尼亚齐奥试着辨认那幅神秘画作里另外四桩犯罪所在的地点和时间。每当他们从画中元素里发现线索和痕迹，尼娜就一一记在小本子上。",
+   "尼娜：这么说，咱们有——一个古怪的包裹，下午四点会送到蒂布尔蒂纳火车站；五点半，波尔塔波尔泰塞有家珠宝店要遭抢……",
+   "阿戈斯蒂娜：还有晚上七点，奥林匹克体育场有一桩毒品交易。至于第五个场景……我实在看不出在演什么。",
+   "伊尼亚齐奥：那些人看着一脸愁容，但不像是罪犯。",
+   "阿戈斯蒂娜：还有一栋房子，窗户开着，可里头啥也看不清。",
+   "赞博尼：咚咚。下午好。",
+   "阿戈斯蒂娜：头儿，您有什么指示？",
+   "赞博尼：我有个问题……不过你们在干什么呢？",
+   "伊尼亚齐奥：我们在想办法破译……",
+   "阿戈斯蒂娜：我们觉得这画也许是幅赝品，所以请尼娜来帮我们分析一下。",
+   "赞博尼：行吧……我想打听件事，那个向你们通风报信、说集邮店要遭抢的内线，你们查出点什么眉目没有？",
+   "阿戈斯蒂娜：没……有，他是从市中心一个公用电话打来的，根本没法定位。",
+   "赞博尼：好，要是他再打来，或者你们有什么新发现，记得通知我。",
+   "阿戈斯蒂娜：遵命，头儿。"
   ],
   "title_cn": "赞博尼敲门"
  },
