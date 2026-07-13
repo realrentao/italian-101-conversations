@@ -2874,29 +2874,72 @@
     ],
     "vocab": [
       {
-        "word": "il gri",
-        "meaning": "doscream"
+        "word": "il grido",
+        "meaning": "尖叫、喊声 / scream, cry"
       },
       {
-        "word": "affacciarsito",
-        "meaning": "to look out the window"
+        "word": "affacciarsi",
+        "meaning": "从窗口探身、探出头 / to look out (the window)"
       },
       {
-        "word": "intantoin",
-        "meaning": "the meantime"
+        "word": "intanto",
+        "meaning": "与此同时、趁现在 / in the meantime"
       },
       {
-        "word": "i",
-        "meaning": "nemicienemies"
+        "word": "i nemici",
+        "meaning": "敌人、仇家 / enemies"
       },
       {
-        "word": "facoltosowell-",
-        "meaning": "off wealthy"
+        "word": "facoltoso",
+        "meaning": "富裕的、有财力的 / well-off, wealthy"
       },
       {
-        "word": "essere al correnteto know, to be aw",
-        "meaning": "are of something"
+        "word": "essere al corrente",
+        "meaning": "知情、了解某事 / to be aware of something"
       }
+    ],
+    "polish": [
+      {
+        "term": "grido / affacciarsi",
+        "note": "尖叫 / 从窗口探身，grido 是“喊声”，affacciarsi 专指“探出窗口”，画面感强。"
+      },
+      {
+        "term": "disperata",
+        "note": "绝望的，形容女子冲下楼的状态。"
+      },
+      {
+        "term": "la detective Santoro",
+        "note": "桑托罗探员；对女子用 Signora（女士）敬称。"
+      },
+      {
+        "term": "non le dispiaccia... intanto...",
+        "note": "dispiacersi 虚拟式 = 希望您不介意，intanto = 趁现在/这期间，阿戈斯蒂娜边安抚边抢问话的客套句式，口语听力常考。"
+      },
+      {
+        "term": "facoltosi",
+        "note": "富裕的（比 ricchi 更书面），绑架动机之一。"
+      },
+      {
+        "term": "lavoro di alto profilo",
+        "note": "高调/高曝光的工作——“高调”让她家成公开目标，逻辑闭环。"
+      },
+      {
+        "term": "presidentessa",
+        "note": "女总裁（presidente 的阴性，指女性主席/总裁）。"
+      },
+      {
+        "term": "ritrovare",
+        "note": "寻回、找回（ri- 表“重新”），“找回您女儿”的郑重承诺。"
+      }
+    ],
+    "translations": [
+      "伊尼亚齐奥追车而去后，从那扇开着的窗户里传来一声尖叫。片刻之后，只见一名女子从开着的窗户探出身来，随即绝望地冲下楼跑到街上。",
+      "我女儿！我女儿！我女儿在哪？她窗边怎么会有把梯子？",
+      "女士，我们是警察。我是桑托罗探员。我们停在这儿，是因为看到了那把梯子。我同事正追着一辆刚从这儿开走的车。咱们得等等。",
+      "噢不！我的孩子……",
+      "女士，希望您不介意我先问几个问题。有没有可能是她被人绑架了？你们家是富裕家庭，还是有仇家？",
+      "仇家倒没有，不过我们相当富裕。很多人都知道这事，因为我的工作很高调……我是一家重要科技公司的总裁。",
+      "好的，女士。我们会尽一切可能找回您女儿。瞧，我同事追车回来了。"
     ],
     "title_cn": "尖叫"
   },
