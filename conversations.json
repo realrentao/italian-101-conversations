@@ -3168,18 +3168,18 @@
   {
     "num": 52,
     "title": "Zamboni capisce",
-    "file": "Text/index_split_063.html",
     "paragraphs": [
       "Mentre Matteo osserva il quadro, Zamboni e la detective Santoro concludono la discussione sui casi del giorno.",
       "Agostina:Va bene, Zamboni. Come procedono le ricerche della squadra antisequestro?",
-      "Zamboni:Lavoreranno sodo tutta la notte, però dubito che sapremo qualcosa sul sequestro prima di domani mattina. Sono gi{ riusciti a identificare l’auto che Ignazio ha inseguito: rubata, naturalmente.",
+      "Zamboni:Lavoreranno sodo tutta la notte, però dubito che sapremo qualcosa sul sequestro prima di domani mattina. Sono già riusciti a identificare l’auto che Ignazio ha inseguito: rubata, naturalmente.",
       "Agostina:Me l’immaginavo! Va bene, ci vediamo domani allora.",
       "Zamboni:Non credere che mi sia dimenticat della questione dell’informatore, Santoro.",
       "Agostina:Sì, capo, lo so.",
       "Matteo:Mamma, assomiglia ai miei libri di “Dov’è Wally?”",
       "Agostina:Sì, tesoro, proprio così.",
       "Matteo:Hai già trovato tutti i cattivi nel quadro?",
-      "Agostina:Ehm… tesoro, ne parliamo dopo…Zamboni:Come hai detto? A che cosa ti riferisci quando dici “tutti i cattivi nel quadro”, Matteo?",
+      "Agostina:Ehm… tesoro, ne parliamo dopo…",
+      "Zamboni:Come hai detto? A che cosa ti riferisci quando dici “tutti i cattivi nel quadro”, Matteo?",
       "Matteo:Tutti i cattivi hanno un foulard rosso!",
       "Zamboni:Allora era il quadro... Santoro, chi ha dipinto questo quadro?",
       "Agostina:Gliel’ho detto, capo, è comparso misteriosamente al Vittoriano. Stiamo ancora cercando di scoprirlo.",
@@ -3188,25 +3188,77 @@
     ],
     "vocab": [
       {
-        "word": "squadr",
-        "meaning": "a antisequestrohostage rescue team"
+        "word": "squadra antisequestro",
+        "meaning": "反绑架小组 / hostage rescue team"
       },
       {
-        "word": "lavorare",
-        "meaning": "sodo to work hard"
+        "word": "lavorare sodo",
+        "meaning": "苦干 / to work hard"
       },
       {
-        "word": "assomigli",
-        "meaning": "are to seem like"
+        "word": "assomigliare",
+        "meaning": "像、类似 / to seem like"
       },
       {
-        "word": "scapp",
-        "meaning": "are run off, dash"
+        "word": "scappare",
+        "meaning": "跑掉、溜走 / run off, dash"
       },
       {
-        "word": "gli impegnicomm",
-        "meaning": "itments"
+        "word": "gli impegni",
+        "meaning": "安排、事务 / commitments"
       }
+    ],
+    "polish": [
+      {
+        "term": "squadra antisequestro",
+        "note": "反绑架小组，anti- 前缀表\"反\"，同族有 antimafia（反黑）。"
+      },
+      {
+        "term": "lavorare sodo",
+        "note": "苦干，sodo = 辛苦的，比 lavorare tanto 更生动。"
+      },
+      {
+        "term": "dubito che + 虚拟式",
+        "note": "怀疑……（不确定语气，后接 congjuntivo），考试高频结构。"
+      },
+      {
+        "term": "non credere che mi sia dimenticato",
+        "note": "dimenticarsi di = 忘记；non credere che... = \"别以为我忘了\"——赞博尼的威胁式提醒。原文 dimenticat 是 dimenticato 笔误。"
+      },
+      {
+        "term": "Dov'è Wally?",
+        "note": "《威利在哪里？》——著名找茬绘本（满页小人里找红白条纹帽的威利）。马泰奥说画\"像威利书\"，神来之笔：画里密密麻麻全是细节，坏人藏在里头。"
+      },
+      {
+        "term": "riferirsi a",
+        "note": "指的是、指向/涉及，赞博尼追问关键词：\"tutti i cattivi nel quadro\" 指的是什么。"
+      },
+      {
+        "term": "foulard rosso",
+        "note": "红头巾闭环：马泰奥点出\"所有坏人都有红头巾\"！呼应第九幕那个戴红头巾的犀牛角走私女——原来画里用红头巾标记\"坏人\"，伏笔收束。"
+      },
+      {
+        "term": "una bella chiacchierata",
+        "note": "好好聊一聊，赞博尼留了个\"中午约谈\"的悬念。"
+      }
+    ],
+    "translations": [
+      "马泰奥盯着画看的时候，赞博尼和桑托罗探员把今天的案子收了个尾。",
+      "阿戈斯蒂娜： 好吧，赞博尼。反绑架小组查得怎么样了？",
+      "赞博尼： 他们得熬一整夜，不过在明天早上之前，绑架案怕是不会有消息。他们已经认出了伊尼亚齐奥追的那辆车：自然是偷来的。",
+      "阿戈斯蒂娜： 我就知道！那行，咱们明天见。",
+      "赞博尼： 桑托罗，别以为我把线人的事给忘了。",
+      "阿戈斯蒂娜： 是，头儿，我知道。",
+      "马泰奥： 妈妈，这画好像我的《威利在哪里？》书诶。",
+      "阿戈斯蒂娜： 对呀，宝贝，就是这样。",
+      "马泰奥： 你已经把画里所有的坏人都找出来了吗？",
+      "阿戈斯蒂娜： 呃……宝贝，这个咱们待会儿再说……",
+      "赞博尼： 你刚才说什么？马泰奥，你说\"画里所有的坏人\"，指的是什么？",
+      "马泰奥： 所有坏人都有红头巾！",
+      "赞博尼： 所以情报是来自这幅画……桑托罗，这画是谁画的？",
+      "阿戈斯蒂娜： 我跟您说过，头儿，它是神秘出现在维托里亚诺的。我们还在查是谁画的。",
+      "赞博尼： 行。我现在得走了。明天上午我有安排，不过我一回来——大概中午——咱俩得好好聊一聊。",
+      "马泰奥： 晚安，头儿！"
     ],
     "title_cn": "赞博尼明白了"
   },
