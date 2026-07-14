@@ -3265,14 +3265,13 @@
   {
     "num": 53,
     "title": "I foulard rossi",
-    "file": "Text/index_split_064.html",
     "paragraphs": [
-      "Quando Zamboni va via, Agostina riguarda attentamente il quadro. Dopo un po’, chiama Ignazio e Nina, che si trovavano nell’ufficio di quest’ultimo.",
+      "Quando Zamboni va via, Agostina riguarda attentamente il quadro. Dopo un po' chiama Ignazio e Nina, che si trovavano nell'ufficio di quest'ultimo.",
       "Agostina:Matteo ha scoperto qualcosa, vero, tesoro?",
       "Ignazio:Ciao, Matteo!",
       "Matteo:Ciao, Ignazio. Sì, ho scoperto qualcosa, sono un detective proprio come voi!",
       "Agostina:Perché non dici a Ignazio e a Nina cosa hai scoperto mentre osservavi il quadro?",
-      "Matteo:Stavo guardando il quadro, che sembrava come uno dei miei libri “Dov’è Wally?” E mi sono accorto che c’erano tanti cattivi. Li ho trovati subito, perché hanno tutti una sciarpa rossa.",
+      "Matteo:Stavo guardando il quadro, che sembrava come uno dei miei libri “Dov’è Wally?”. E mi sono accorto che c’erano tanti cattivi. Li ho trovati subito, perché hanno tutti una sciarpa rossa.",
       "Nina:Cavolo! Sì! Come abbiamo fatto a non accorgercene prima?",
       "Ignazio:Questo cosa significa?",
       "Agostina:Può significare due cose: o che tutti questi criminali fanno parte alla stessa banda... o che qualcuno gli sta passando queste sciarpe rosse come segno di identificazione, per proteggerli.",
@@ -3281,27 +3280,75 @@
     ],
     "vocab": [
       {
-        "word": "quest’ultimothe",
-        "meaning": "latter"
+        "word": "quest'ultimo",
+        "meaning": "后者 / the latter"
       },
       {
         "word": "i cattivi",
-        "meaning": "the “bad guys”"
+        "meaning": "坏人 / the “bad guys”"
       },
       {
-        "word": "cavolo!holy smoke! (lit.",
-        "meaning": "cabbage)"
+        "word": "cavolo!",
+        "meaning": "天哪！ / holy smoke!"
       },
       {
-        "word": "la mazzetta(slang) bribe",
-        "meaning": "roll of bills"
+        "word": "la mazzetta",
+        "meaning": "贿赂 / bribe"
       },
       {
         "word": "sparare",
-        "meaning": "to shoot"
+        "meaning": "射击 / to shoot"
       }
     ],
-    "title_cn": "红色围巾"
+    "polish": [
+      {
+        "term": "accorgersi di",
+        "note": "察觉、注意到，come abbiamo fatto a non accorgercene = 咱们怎么之前没看出来，尼娜的恍然大悟。"
+      },
+      {
+        "term": "sciarpa rossa / foulard",
+        "note": "红围巾 / 红头巾——本幕马泰奥说 sciarpa（围巾），与第九幕女子戴的 foulard（头巾）是同一个红标识，伏笔闭环。"
+      },
+      {
+        "term": "fare parte di",
+        "note": "属于、是……一份子，fanno parte alla stessa banda = 同属一个团伙。"
+      },
+      {
+        "term": "polizia corrotta / corrotto",
+        "note": "腐败警察 / 腐败的，全剧最黑的真相——内鬼不是某个画家，而是警队内部的保护伞。"
+      },
+      {
+        "term": "in cambio di / mazzetta",
+        "note": "作为交换 / 贿赂赃款，in cambio di una mazzetta = 拿回扣换保护，反腐题材高频。"
+      },
+      {
+        "term": "segno identificativo",
+        "note": "身份标识，红围巾就是罪犯的免死牌。"
+      },
+      {
+        "term": "fare la propria parte",
+        "note": "各司其职、尽自己那份，这里带讽刺——巡逻队尽的是保护罪犯的共犯之责。"
+      },
+      {
+        "term": "non dover sparare né inseguire",
+        "note": "对带标识的罪犯既不开枪也不追——腐败默契的运作机制，把前面伊尼亚齐奥威胁巡逻队才配合的怪象圆回来了。"
+      }
+    ],
+    "translations": [
+      "赞博尼一走，阿戈斯蒂娜又仔细端详起那幅画。过了一会儿，她叫来了伊尼亚齐奥和尼娜——他俩当时正在伊尼亚齐奥的办公室里。",
+      "马泰奥发现了什么，对吧，宝贝？",
+      "嗨，马泰奥！",
+      "嗨，伊尼亚齐奥。对，我发现了东西，我是个跟你们一样的侦探了！",
+      "你跟伊尼亚齐奥和尼娜说说，你盯着画的时候发现了什么，好不好？",
+      "我看着那幅画，它好像我的一本《威利在哪里？》书。然后我注意到里面有好多坏人。我一下就找着了，因为他们都围着红围巾。",
+      "天哪！对啊！咱们怎么之前就没看出来？",
+      "这能说明什么？",
+      "可能意味着两件事：要么这些罪犯全属于同一个团伙……要么有人把红围巾当身份标记发给他们，好护着他们。",
+      "我不太明白这到底是怎么运作的。",
+      "通常是腐败警察干的。这又不是头一回了。一个腐败警察拿赃款换，给罪犯提供保护。这种情况下，那个标识——也就是头巾——是给巡逻队的，他们也是共犯……他们心里有数：对带了标识的罪犯，既不能开枪，也不能追。"
+    ],
+    "title_cn": "红头巾",
+    "file": "Text/index_split_064.html"
   },
   {
     "num": 54,
