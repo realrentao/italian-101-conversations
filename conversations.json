@@ -3437,7 +3437,6 @@
   {
     "num": 55,
     "title": "La buona notte",
-    "file": "Text/index_split_066.html",
     "paragraphs": [
       "Agostina torna a casa con suo figlio Matteo. Dopo avergli preparato la cena e avergli fatto il bagno, lo mette a letto.",
       "Agostina:Vuoi che leggiamo uno dei tuoi libri?",
@@ -3446,7 +3445,7 @@
       "Matteo:Mamma, posso farti una domanda?",
       "Agostina:Sì, certo, quello che vuoi.",
       "Matteo:Il tuo capo è cattivo?",
-      "Agostina:Non lo so, tesoro. Però, ricorda che tutte le cose che senti nell’ufficio della mamma sono informazioni riservate... Sai cos’è un’informazioneriservata?",
+      "Agostina:Non lo so, tesoro. Però, ricorda che tutte le cose che senti nell’ufficio della mamma sono informazioni riservate... Sai cos’è un’informazione riservata?",
       "Matteo:No, cosa vuol dire?",
       "Agostina:Significa che è qualcosa di segreto, che non si deve raccontare a nessuno.",
       "Matteo:Va bene, ho capito. Ma è cattivo?",
@@ -3457,22 +3456,65 @@
     "vocab": [
       {
         "word": "essere stanco morto",
-        "meaning": "to be dead tired"
+        "meaning": "累死了 / to be dead tired"
       },
       {
-        "word": "informazione",
-        "meaning": "riservataclassified information"
+        "word": "informazione riservata",
+        "meaning": "机密信息 / classified information"
       },
       {
-        "word": "rendersene contoto",
-        "meaning": "realize"
+        "word": "rendersene conto",
+        "meaning": "意识到 / to realize"
       },
       {
-        "word": "sogni d’",
-        "meaning": "oro!sweet dreams!"
+        "word": "sogni d'oro",
+        "meaning": "好梦 / sweet dreams"
       }
     ],
-    "title_cn": "晚安"
+    "polish": [
+      {
+        "term": "stanco morto",
+        "note": "累死了（夸张口语，morto 字面死），小男孩撒娇式疲惫，比 molto stanco 生动百倍。"
+      },
+      {
+        "term": "fare una domanda",
+        "note": "提问，posso farti una domanda = 我能问你个问题吗，礼貌套话。"
+      },
+      {
+        "term": "informazione riservata",
+        "note": "机密信息，riservata = 保密的。阿戈斯蒂娜借机给娃做保密教育——既温柔又职业。"
+      },
+      {
+        "term": "cosa vuol dire / segreto",
+        "note": "……是什么意思？ / 秘密的，volere dire = 意为；non si deve raccontare a nessuno = 不能讲给任何人。母子对话里的词汇教学现场。"
+      },
+      {
+        "term": "ce ne renderemo conto",
+        "note": "我们会弄清楚的，rendersi conto 将来时 + ce ne（对此），很快见分晓。"
+      },
+      {
+        "term": "tesoro mio / sogni d'oro",
+        "note": "我的心肝 / 好梦，睡前昵称+祝福，sogni d'oro 是意大利语标准晚安语（= sweet dreams）。"
+      }
+    ],
+    "translations": [
+      "阿戈斯蒂娜带着儿子马泰奥回了家。给他备好晚饭、洗完澡，就哄他上了床。",
+      "要不要妈妈念一本你的书？",
+      "不用了，谢谢妈妈。我累死了。",
+      "好，宝贝。今天对咱俩来说都够长的了。",
+      "妈妈，我能问你个问题吗？",
+      "当然，想问什么问什么。",
+      "你的老板是坏人吗？",
+      "我不知道，宝贝。不过你要记住，在妈妈办公室里听到的所有事，都是机密信息……你知道什么是机密信息吗？",
+      "不知道，那是什么意思？",
+      "意思就是那是秘密，不能讲给任何人听。",
+      "好，我懂了。但他是坏人吗？",
+      "咱们很快就能知道了，宝贝。现在，睡觉！",
+      "好。晚安，妈妈。爱你。",
+      "妈妈也爱你，我的心肝。好梦！"
+    ],
+    "title_cn": "晚安",
+    "file": "Text/index_split_066.html"
   },
   {
     "num": 56,
