@@ -3517,41 +3517,88 @@
     "file": "Text/index_split_066.html"
   },
   {
+    "vocab": [
+      {
+        "word": "sorseggiare",
+        "meaning": "小口抿 / to sip"
+      },
+      {
+        "word": "tanto per cominciare",
+        "meaning": "首先 / first of all"
+      },
+      {
+        "word": "segnalare",
+        "meaning": "举报、报告 / to report"
+      },
+      {
+        "word": "a modo suo",
+        "meaning": "以他自己的方式 / in his own way"
+      }
+    ],
+    "polish": [
+      {
+        "term": "sorseggiando un tè",
+        "note": "啜着茶，现在分词表伴随动作，sorseggiare = 小口抿，画面感（疲惫警探深夜独处的松弛感）。"
+      },
+      {
+        "term": "all'improvviso / chiamata inaspettata",
+        "note": "突然 / 意外的来电，inaspettato = 没料到的。"
+      },
+      {
+        "term": "avere senso",
+        "note": "说得通、合理，la teoria...abbia senso（虚拟式，因 credo che），=ha senso。"
+      },
+      {
+        "term": "tanto per cominciare",
+        "note": "首先（列举开场白），口语高频。"
+      },
+      {
+        "term": "testimone / rivisitare gli archivi",
+        "note": "证人 / 重查档案，rivisitare = 重新查阅，刑侦剧标配动作。"
+      },
+      {
+        "term": "per pura coincidenza",
+        "note": "纯属巧合地——这里其实是反讽：哪有什么巧合，分明是保护伞刻意安排。"
+      },
+      {
+        "term": "sotto il nostro naso",
+        "note": "在眼皮子底下，sotto il naso = 在鼻子下（喻近在眼前却没察觉），经典习语。"
+      },
+      {
+        "term": "a modo suo",
+        "note": "用他自己的方式——暗示“预言画”就是那个人（画家/知情者）独有的提醒方式，为揭晓画家埋线。"
+      }
+    ],
+    "translations": [
+      "哄马泰奥睡着后，阿戈斯蒂娜来到客厅，在沙发上坐下，边啜着茶，突然接到一个意料之外的电话。",
+      "喂？",
+      "晚上好，阿戈斯蒂娜。是我，阿德里亚诺。",
+      "嗨，阿德里亚诺。今天发生的事你听说了吗？",
+      "听说了，我刚跟尼娜聊完，她把一切都告诉我了。",
+      "这局面你怎么看？",
+      "我觉得“腐败警察”这个推断说得通……我自己也查出些东西。",
+      "你知道什么？",
+      "嗯，首先，这几年好几起暴力犯罪的证人都指认过红头巾。我们翻了报纸档案，发现这些犯罪大多数——就像纯属巧合似的——总发生在警察管辖的地段，可不知为啥，案发那一刻警察偏偏不在场。",
+      "也就是说，这事儿早就在咱们眼皮子底下发生了。",
+      "对，只是现在终于有人决定提醒你了……虽说用的是他自己的法子！"
+    ],
+    "title_cn": "阿德里亚诺再次来电",
     "num": 56,
     "title": "Nuova chiamata di Adriano",
     "file": "Text/index_split_067.html",
     "paragraphs": [
-      "Dopo aver fatto addormentare Matteo, Agostina va in soggiorno, si siede sul divano sorseggiando un tè e all’improvviso riceve una chiamata inaspettata.",
+      "Dopo aver fatto addormentare Matteo, Agostina va in soggiorno, si siede sul divano sorseggiando un tè e all'improvviso riceve una chiamata inaspettata.",
       "Agostina:Pronto?",
       "Adriano:Buona sera, Agostina. Sono io, Adriano.",
-      "Agostina:Ciao, Adriano. Hai saputo di quello che è successo oggi?",
-      "Adriano:Sì, ho appena finito di parlare con Nina, mi ha raccontato tutto.",
+      "Agostina: Ciao, Adriano. Hai saputo di quello che è successo oggi?",
+      "Adriano: Sì, ho appena finito di parlare con Nina, mi ha raccontato tutto.",
       "Agostina:Che ne pensi della situazione?",
-      "Adriano:Credo che la teoria della polizia corrotta abbia senso... Anch’io ho scoperto alcune cose.",
+      "Adriano: Credo che la teoria della polizia corrotta abbia senso... Anch'io ho scoperto alcune cose.",
       "Agostina:Che cosa sai?",
-      "Adriano:Beh, tanto per cominciare, i foulard rossi sono stati segnalati da diversi testimoni di crimini violenti negli ultimi anni. Abbiamo rivisitato gli archivi di giornali e, la maggior parte di questi crimini, come per pura coincidenza, succedevano sempre in luoghi controllati dalla polizia, la quale però, per qualche strano motivo, in quel momento non era lì presente.",
-      "Agostina:Quindi è qualcosa che avviene sotto il nostro naso già da tempo.",
-      "Adriano:Sì, solo che ora qualcuno ha finalmente deciso di avvisarti... anche se a modo suo!"
-    ],
-    "vocab": [
-      {
-        "word": "sorseggiare",
-        "meaning": "to sip"
-      },
-      {
-        "word": "tanto per cominciarefirst",
-        "meaning": "of all"
-      },
-      {
-        "word": "segnalare",
-        "meaning": "to report"
-      },
-      {
-        "word": "a modo suo",
-        "meaning": "in his own way"
-      }
-    ],
-    "title_cn": "阿德里亚诺再次来电"
+      "Adriano: Beh, tanto per cominciare, i foulard rossi sono stati segnalati da diversi testimoni di crimini violenti negli ultimi anni. Abbiamo rivisitato gli archivi di giornali e, la maggior parte di questi crimini, come per pura coincidenza, succedevano sempre in luoghi controllati dalla polizia, la quale però, per qualche strano motivo, in quel momento non era lì presente.",
+      "Agostina: Quindi è qualcosa che avviene sotto il nostro naso già da tempo.",
+      "Adriano: Sì, solo che ora qualcuno ha finalmente deciso di avvisarti... anche se a modo suo!"
+    ]
   },
   {
     "num": 57,
