@@ -3601,36 +3601,82 @@
     ]
   },
   {
+    "vocab": [
+      {
+        "word": "comunque sia",
+        "meaning": "无论如何 / either way"
+      },
+      {
+        "word": "senza ombra di dubbio",
+        "meaning": "毫无疑问 / without a doubt"
+      },
+      {
+        "word": "tenere presente",
+        "meaning": "记在心里 / to keep in mind"
+      },
+      {
+        "word": "premere",
+        "meaning": "要紧、关切 / to matter (also: to press)"
+      }
+    ],
+    "polish": [
+      {
+        "term": "società di investigatori privati",
+        "note": "私人侦探社，investigatore privato = 私家侦探；阿德里亚诺的身份底牌翻开——艺术品方向的私人调查员。"
+      },
+      {
+        "term": "Alice",
+        "note": "新名字出现，是尼娜+阿德里亚诺的共同朋友，目前未露面，可能是艺术圈或技术线人物，留钩子。"
+      },
+      {
+        "term": "stile / artista",
+        "note": "风格 / 作者，阿德里亚诺查遍画廊博物馆档案，找不到同风格者→画家不在“公开艺术圈”。"
+      },
+      {
+        "term": "qualcuno che non",
+        "note": "原文两词粘连，已按“一个从没展示过作品的人”断句翻。"
+      },
+      {
+        "term": "senza ombra di dubbio",
+        "note": "毫无疑问，固定短语，ombra=影子，dubbio=怀疑，直译“连怀疑的影子都没有”。"
+      },
+      {
+        "term": "formazione artistica",
+        "note": "艺术科班训练，推断画家“有专业底子”——缩小嫌疑人范围（业余画不出这水平）。"
+      },
+      {
+        "term": "tenere presente",
+        "note": "记在心里，阿戈斯蒂娜的“我会留意这点”。"
+      },
+      {
+        "term": "mi preme di più",
+        "note": "我最挂心的，premere 此处=紧迫/重要（非“按压”），比 mi preoccupa 更显主动关切。"
+      },
+      {
+        "term": "impedire il rapimento",
+        "note": "阻止绑架，impedire 与第十二幕 fermare 近义，阿戈斯蒂娜的遗憾——“早几分钟就能拦下”。"
+      }
+    ],
+    "translations": [
+      "桑托罗探员正和阿德里亚诺通着电话。这人是一家专攻艺术品方向的私人侦探社成员，因为和尼娜、艾丽丝是朋友，才参与进来帮忙。",
+      "我把所有画廊和博物馆的档案都查了，没找到任何人的风格跟这幅神秘画的作者相似。",
+      "说不定是一个从没向世界展示过作品的人，你说呢？",
+      "有可能。不管怎样，这技法相当好。毫无疑问，作画的人受过专业艺术训练。",
+      "我会记着这点。我当然想查出是谁在背后护着这些犯罪……可我最挂心的，还是找到那个可怜的小女孩。真希望咱们能早几分钟到现场，把绑架拦下来。",
+      "我确信一切都会好起来的。咱们只要继续查下去……"
+    ],
+    "title_cn": "与阿德里亚诺通话",
     "num": 57,
     "title": "Conversazione con Adriano",
     "file": "Text/index_split_068.html",
     "paragraphs": [
-      "La detective Santoro parla al telefono con Adriano. L’uomo, membro di una società di investigatori privati che si occupa di arte, sta collaborando al caso perché è amico di Nina e Alice.",
-      "Adriano:Ho cercato in tutti gli archivi di gallerie e musei, e non ho trovato nessuno con uno stile simile all’artista del quadro misterioso.",
-      "Agostina:Potrebbe essere qualcuno chenon ha mai mostrato al mondo i suoi lavori, non credi?",
-      "Adriano:È possibile. Comunque sia, la tecnica è molto buona. Senza ombra di dubbio è qualcuno con una formazione artistica.",
-      "Agostina:Lo terrò presente. Naturalmente mi interessa scoprire chi sta proteggendo questi crimini... Ma quello che mi preme di più è trovare quella povera bambina. Vorrei che fossimo arrivati sul posto qualche minuto prima per impedire il rapimento.",
-      "Adriano:Sono certo che andrà tutto bene. Dobbiamo solo continuare a investigare..."
-    ],
-    "vocab": [
-      {
-        "word": "comunque siaeither",
-        "meaning": "way"
-      },
-      {
-        "word": "senza ombra di dubbiowithout",
-        "meaning": "a doubt"
-      },
-      {
-        "word": "tenere presenteto",
-        "meaning": "to keep in mind in consideration"
-      },
-      {
-        "word": "premereto matter (",
-        "meaning": "also to press)"
-      }
-    ],
-    "title_cn": "与阿德里亚诺通话"
+      "La detective Santoro parla al telefono con Adriano. L'uomo, membro di una società di investigatori privati che si occupa di arte, sta collaborando al caso perché è amico di Nina e Alice.",
+      "Adriano: Ho cercato in tutti gli archivi di gallerie e musei, e non ho trovato nessuno con uno stile simile all'artista del quadro misterioso.",
+      "Agostina: Potrebbe essere qualcuno che non ha mai mostrato al mondo i suoi lavori, non credi?",
+      "Adriano: È possibile. Comunque sia, la tecnica è molto buona. Senza ombra di dubbio è qualcuno con una formazione artistica.",
+      "Agostina: Lo terrò presente. Naturalmente mi interessa scoprire chi sta proteggendo questi crimini... Ma quello che mi preme di più è trovare quella povera bambina. Vorrei che fossimo arrivati sul posto qualche minuto prima per impedire il rapimento.",
+      "Adriano: Sono certo che andrà tutto bene. Dobbiamo solo continuare a investigare..."
+    ]
   },
   {
     "num": 58,
