@@ -3091,9 +3091,8 @@
   {
     "num": 51,
     "title": "La visita inaspettata",
-    "file": "Text/index_split_062.html",
     "paragraphs": [
-      "Zamboni e Agostina stanno discutendo sull’informatore anonimo che li ha avvisati dei crimini, quando qualcuno arriva nell’ufficio di Agostina.",
+      "Zamboni e Agostina stanno discutendo sull'informatore anonimo che li ha avvisati dei crimini, quando qualcuno arriva nell'ufficio di Agostina.",
       "Matteo:Mamma!",
       "Agostina:Tesoro! Che bella sorpresa! Che ci fai qui? Eri a fare una passeggiata con Nadia?",
       "Nadia:Ciao, Agostina. Stavamo tornando dal cinema ed eravamo di passaggio, e Matteo mi ha chiesto di salire un attimo a salutarti, spero che non sia un problema.",
@@ -3102,19 +3101,67 @@
       "Agostina:Puoi andare a casa, Nadia. Me ne occupo io.",
       "Nadia:Va bene, a domani!",
       "Matteo:Ciao, Nadia! Ti voglio bene!",
-      "Nadia: Anch’io!",
-      "Matteo:Cos’è questo quadro, mamma? È molto bello...",
+      "Nadia: Anch'io!",
+      "Matteo:Cos'è questo quadro, mamma? È molto bello...",
       "Agostina:Puoi rimanere qui a guardarlo, se vuoi, mentre io finisco di parlare con il capo."
     ],
     "vocab": [
       {
-        "word": "un",
-        "meaning": "attimoa moment"
+        "word": "un attimo",
+        "meaning": "一会儿 / a moment"
       },
       {
-        "word": "che te ne parewh",
-        "meaning": "at do you think"
+        "word": "che te ne pare",
+        "meaning": "你觉得怎么样 / what do you think"
       }
+    ],
+    "polish": [
+      {
+        "term": "Matteo / mamma / tesoro",
+        "note": "马泰奥喊\"妈妈\"，阿戈斯蒂娜回\"宝贝\"（tesoro = 宝藏/心肝，对娃昵称）。把第六幕埋的\"马泰奥安危\"悬念一秒解除——娃好好的，刚看电影回来。"
+      },
+      {
+        "term": "Nadia",
+        "note": "娜迪亚，第六幕出现的保姆，这里证实她一直在尽职带娃，所以预言画里的\"绑架\"不是马泰奥。"
+      },
+      {
+        "term": "di passaggio",
+        "note": "路过、顺路，娜迪亚\"正好路过\"才上楼，合情合理。"
+      },
+      {
+        "term": "che te ne pare se...",
+        "note": "\"……你觉得怎么样？\"提议句型（= che ne dici di），阿戈斯蒂娜哄娃\"去吃点然后睡觉好不好\"。"
+      },
+      {
+        "term": "dritti a letto",
+        "note": "直接去睡觉，dritto = 径直地，口语感强。"
+      },
+      {
+        "term": "ti voglio bene / anch'io",
+        "note": "\"我爱你 / 我也爱你\"——注意 ti voglio bene 是亲情友情版\"爱\"（比 ti amo 日常温和），小男孩对保姆说，很自然。"
+      },
+      {
+        "term": "me ne occupo io",
+        "note": "occuparsene = 我来照料/搞定这事，ne = 指代\"孩子\"，阿戈斯蒂娜打发娜迪亚下班。"
+      },
+      {
+        "term": "questo quadro",
+        "note": "炸弹钩子：结尾马泰奥盯着画说\"真好看\"——他会不会就是能\"看穿\"画的人？结合画预言了自家附近绑架，父子线可能要收束。"
+      }
+    ],
+    "translations": [
+      "赞博尼和阿戈斯蒂娜正聊着那个预警犯罪的匿名线人，这时有人走进了阿戈斯蒂娜的办公室。",
+      "马泰奥： 妈妈！",
+      "阿戈斯蒂娜： 宝贝！真是惊喜！你怎么来了？你不是跟娜迪亚散步去了吗？",
+      "娜迪亚： 嗨，阿戈斯蒂娜。我们刚从电影院回来，正好路过，马泰奥就求我上去跟你打声招呼，希望没打扰你。",
+      "阿戈斯蒂娜： 哪有的事。反正我也差不多要回家了，都九点多了！宝贝，咱们去吃点东西，然后直接睡觉，好不好？",
+      "马泰奥： 好呀好呀，妈妈！",
+      "阿戈斯蒂娜： 娜迪亚，你先回去吧。孩子我来管就行。",
+      "娜迪亚： 行，明天见！",
+      "马泰奥： 拜拜，娜迪亚！我爱你！",
+      "娜迪亚： 我也爱你！",
+      "马泰奥： 妈妈，这幅画是什么呀？真好看……",
+      "阿戈斯蒂娜： 你想看就在这儿看吧，我跟头儿把话说完。"
     ],
     "title_cn": "意外来访"
   },
