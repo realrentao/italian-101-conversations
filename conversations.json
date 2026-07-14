@@ -3681,35 +3681,81 @@
   {
     "num": 58,
     "title": "Le fasi successive",
-    "file": "Text/index_split_069.html",
+    "title_cn": "后续阶段",
     "paragraphs": [
       "Agostina e Adriano continuano a discutere sul mistero del quadro e sui passi successivi da mettere in atto per risolvere il caso. Inoltre, la detective Santoro gli fa una confessione.",
       "Adriano:Senti, scusa se te lo chiedo, Agostina, ma cosa pensi di fare adesso?",
-      "Agostina:Non l’ho detto né a Ignazio né a Nina, perché sapevo che avrebbero cercato di dissuadermi, però ho deciso che domani pedinerò il mio capo.",
-      "Adriano:Vuoi pedinare l’ispettore Zamboni?",
+      "Agostina:Non l'ho detto né a Ignazio né a Nina, perché sapevo che avrebbero cercato di dissuadermi, però ho deciso che domani pedinerò il mio capo.",
+      "Adriano:Vuoi pedinare l'ispettore Zamboni?",
       "Agostina:Sì, ha detto che ha degli impegni in mattinata, e voglio sapere dove deve andare.",
       "Adriano:Agostina, posso farti una domanda?",
       "Agostina:Certo.",
       "Adriano:Perché mi dici tutto questo? Perché ti stai confidando con me?",
       "Agostina:Adriano... io sono una detective. So tutto del Club degli storici da anni.",
       "Adriano:Sai di noi?",
-      "Agostina:Certo che so di voi, e so che sei l’uomo col cappello, Adriano."
+      "Agostina:Certo che so di voi, e so che sei l'uomo col cappello, Adriano."
     ],
     "vocab": [
       {
-        "word": "in",
-        "meaning": "attounderway in action"
+        "word": "mettere in atto",
+        "meaning": "实施、采取措施 / to put into action"
       },
       {
-        "word": "dissuadereto talk",
-        "meaning": "somebody out of something to dissuade"
+        "word": "dissuadere",
+        "meaning": "劝阻、打消念头 / to dissuade"
       },
       {
-        "word": "pedinareto tail,",
-        "meaning": "to shadow"
+        "word": "pedinare",
+        "meaning": "跟踪、尾随 / to tail, to shadow"
       }
     ],
-    "title_cn": "后续阶段"
+    "polish": [
+      {
+        "term": "mettere in atto",
+        "note": "实施、采取措施，i passi da mettere in atto = 要采取的步骤，比 fare 更正式。"
+      },
+      {
+        "term": "confessione / confidarsi",
+        "note": "坦白 / 交心，confidarsi con qn. = 向某人吐露心声，阿德里亚诺追问“为何对我交底”。"
+      },
+      {
+        "term": "dissuadere",
+        "note": "劝阻、打消念头，阿戈斯蒂娜瞒着队友是因为怕被劝退——人物性格的孤勇面。"
+      },
+      {
+        "term": "pedinare",
+        "note": "跟踪、尾随（= seguire di nascosto），全剧关键动作——明天跟踪赞博尼，推动大结局。"
+      },
+      {
+        "term": "scusa se te lo chiedo",
+        "note": "恕我冒昧问一句，客套开场白，scusa si + 直陈式，比 permesso 更口语。"
+      },
+      {
+        "term": "Club degli storici",
+        "note": "历史学家俱乐部——阿德里亚诺所属的神秘组织，首次点名，疑与“预言画”源头有关。"
+      },
+      {
+        "term": "l'uomo col cappello",
+        "note": "戴帽子的男人，col = con il 缩合。阿戈斯蒂娜早认出阿德里亚诺的真身——暗示他可能就是画作的关联人（甚至画作者？留钩子）。"
+      },
+      {
+        "term": "da anni",
+        "note": "多年来，da + 时间表“自……以来”，阿戈斯蒂娜“早已知情”的底蕴。"
+      }
+    ],
+    "translations": [
+      "阿戈斯蒂娜和阿德里亚诺继续琢磨画的谜团，以及下一步该采取什么行动来破案。此外，桑托罗探员还向他坦白了件事。",
+      "听我说，阿戈斯蒂娜，恕我冒昧问一句——你现在打算怎么办？",
+      "这事我没跟伊尼亚齐奥也没跟尼娜说，因为我知道他俩准会劝我打消念头，不过我已经定了：明天我要跟踪我的头儿。",
+      "你要跟踪赞博尼督察？",
+      "对，他说上午有事要办，我想知道他到底要去哪儿。",
+      "阿戈斯蒂娜，我能问你个问题吗？",
+      "当然。",
+      "你为什么把这些全告诉我？为什么肯对我交心？",
+      "阿德里亚诺……我是个侦探。你们“历史学家俱乐部”的事，我早就知道了。",
+      "你晓得我们？",
+      "我当然晓得你们，而且我知道你就是那个戴帽子的男人，阿德里亚诺。"
+    ]
   },
   {
     "num": 59,
