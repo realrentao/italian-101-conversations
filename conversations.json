@@ -3353,39 +3353,86 @@
   {
     "num": 54,
     "title": "Il sospetto",
-    "file": "Text/index_split_065.html",
     "paragraphs": [
-      "Agostina, Ignazio, Nina e Matteo sono nell’ufficio di Agostina discutendo sulla questione dei foulard rossi che svelano i criminali nel quadro.",
+      "Agostina, Ignazio, Nina e Matteo sono nell'ufficio di Agostina discutendo sulla questione dei foulard rossi che svelano i criminali nel quadro.",
       "Ignazio:Un attimo... Stai sospettando di Zamboni?",
       "Agostina:Purtroppo, sì!",
       "Nina:No! Sul serio?",
-      "Agostina:Sinceramente, preferirei che non fosse così, però si è comportato in un modo molto strano per tutto il giorno... specialmente poco fa, quando Matteo ha detto dei foulard. Prima sembrava essere molto interessato alla questione dell’informatore; quando alla fine si è reso conto che tutte le informazioni si trovavano nel dipinto, se n’è semplicemente andato, non ha chiesto niente dei foulard, come se già sapesse che cosa significano.",
+      "Agostina:Sinceramente, preferirei che non fosse così, però si è comportato in un modo molto strano per tutto il giorno... specialmente poco fa, quando Matteo ha detto dei foulard. Prima sembrava essere molto interessato alla questione dell'informatore; quando alla fine si è reso conto che tutte le informazioni si trovavano nel dipinto, se n'è semplicemente andato, non ha chiesto niente dei foulard, come se già sapesse che cosa significano.",
       "Ignazio:Magari non è lui il corrotto, però sta proteggendo un amico.",
       "Agostina:Potrebbe essere...",
       "Matteo:Mamma... Ho sonno.",
       "Agostina:Va bene, tesoro, andiamo a casa. Ignazio, Nina, andate a casa pure voi. Domani riprenderemo da qui.",
-      "Ignazio:Va bene, avvisaci se scopri qualcos’altro.",
+      "Ignazio:Va bene, avvisaci se scopri qualcos'altro.",
       "Agostina:Certo, voi fate lo stesso."
     ],
     "vocab": [
       {
         "word": "svelare",
-        "meaning": "to reveal"
+        "meaning": "揭露 / to reveal"
       },
       {
-        "word": "sul serio?re",
-        "meaning": "ally?"
+        "word": "sul serio?",
+        "meaning": "真的吗？ / really?"
       },
       {
-        "word": "pureas",
-        "meaning": "well"
+        "word": "pure",
+        "meaning": "也 / as well"
       },
       {
         "word": "riprendere",
-        "meaning": "to resume"
+        "meaning": "继续 / to resume"
       }
     ],
-    "title_cn": "嫌疑"
+    "polish": [
+      {
+        "term": "sospettare di qn.",
+        "note": "怀疑某人，Stai sospettando di Zamboni? = 你在怀疑赞博尼？伊尼亚齐奥点破大家都不敢说的揣测。"
+      },
+      {
+        "term": "sul serio",
+        "note": "真的吗 / 说真的，尼娜的震惊反应，= davvero。"
+      },
+      {
+        "term": "rendersi conto che",
+        "note": "意识到，阿戈斯蒂娜推理链的关键节点——赞博尼终于发现情报都出自画里。"
+      },
+      {
+        "term": "se n'è andato",
+        "note": "andarsene = 走开了，se ne = 从那儿离开。赞博尼直接走了、绝口不问红头巾 = 心虚铁证。"
+      },
+      {
+        "term": "come se + 虚拟式",
+        "note": "好像……似的，考试高频虚拟式结构，come se già sapesse = 好像他早知道。"
+      },
+      {
+        "term": "magari",
+        "note": "说不定 / 但愿，伊尼亚齐奥给赞博尼留余地——或许他没腐败只是护友，剧情留悬念。"
+      },
+      {
+        "term": "riprendere da qui",
+        "note": "从这儿接着查，收尾工作指令，口语自然。"
+      },
+      {
+        "term": "avvisaci / fate lo stesso",
+        "note": "通知我们 / 你们也照样，同事间互通情报的约定。"
+      }
+    ],
+    "translations": [
+      "阿戈斯蒂娜、伊尼亚齐奥、尼娜和马泰奥在阿戈斯蒂娜的办公室里，正讨论画里那些揭露罪犯的红头巾。",
+      "等等……你在怀疑赞博尼？",
+      "很遗憾，是的！",
+      "不会吧！真的吗？",
+      "说心里话，我宁可不是他，可他一整天表现都反常得厉害……尤其是刚才，马泰奥一说红头巾的时候。之前他对线人的事显得特别上心；等到终于发现所有情报都出自那幅画，他就直接走了，对红头巾只字未问，好像早知道那是什么意思似的。",
+      "说不定腐败的不是他，只是他在护着一个朋友。",
+      "也有可能……",
+      "妈妈……我困了。",
+      "好，宝贝，咱们回家。伊尼亚齐奥、尼娜，你们也回家吧。明天接着从这往下查。",
+      "行，要是你再查出什么，通知我们。",
+      "当然，你们也是。"
+    ],
+    "title_cn": "怀疑",
+    "file": "Text/index_split_065.html"
   },
   {
     "num": 55,
