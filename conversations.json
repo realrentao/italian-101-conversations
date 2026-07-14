@@ -2957,24 +2957,65 @@
     ],
     "vocab": [
       {
-        "word": "seminare(slang) to",
-        "meaning": "lose, to leave behind"
+        "word": "seminare",
+        "meaning": "（口语）甩掉、摆脱跟踪 / (slang) to lose, to leave behind"
       },
       {
         "word": "beccare",
-        "meaning": "to catch"
+        "meaning": "（口语）逮住、抓到 / (slang) to catch"
       },
       {
-        "word": "la targalicense",
-        "meaning": "plate"
+        "word": "la targa",
+        "meaning": "车牌 / license plate"
       }
+    ],
+    "polish": [
+      {
+        "term": "centrale",
+        "note": "总局 / 指挥中心，avvisare la centrale = 通知总部。"
+      },
+      {
+        "term": "seminare",
+        "note": "（口语）甩掉、摆脱跟踪，字面“播种”——把追的人“撒”在身后。超地道，Mi hanno seminato = 他们把我甩了。"
+      },
+      {
+        "term": "beccare",
+        "note": "（口语）逮住、抓到，本义“啄”，黑话里 = 抓人。non sono riuscito a beccarli = 没逮着他们。"
+      },
+      {
+        "term": "distanziare / perdere di vista",
+        "note": "拉开距离 / 跟丢，perdere di vista = 从视线消失，警匪片标配台词。"
+      },
+      {
+        "term": "targa",
+        "note": "车牌，memorizzare la targa = 记下号牌——追丢车但记住牌，剧情合理性拉满。"
+      },
+      {
+        "term": "pur sempre",
+        "note": "好歹、终究（表让步），è pur sempre un inizio = 但好歹是个开头/线索。"
+      },
+      {
+        "term": "rinforzi",
+        "note": "增援（复数），chiedere rinforzi = 调支援。"
+      },
+      {
+        "term": "Mi dispiace, signora / le assicuro che...",
+        "note": "“抱歉，女士 / 我向您保证……”——伊尼亚齐奥安慰受害家属的客套+承诺句式，口语考试常用。"
+      }
+    ],
+    "translations": [
+      "伊尼亚齐奥回到绑架发生的那栋房子。不过，他是一个人回来的。",
+      "阿戈斯蒂娜！得通知总局了。他们把我甩了。我追了，可没逮着他们——他们把我远远甩在后面，车开得飞快，我眼睁睁跟丢了。",
+      "不——！我女儿！",
+      "抱歉，女士。但我向您保证，我们一定会找回您女儿。我记下了车牌号，还有车型和颜色。这大概率是辆赃车，但好歹是个线索。",
+      "求求你们，找回我的孩子！",
+      "会的。尼娜，你陪着这位女士。我开车去调增援。"
     ],
     "title_cn": "伊尼亚齐奥归来"
   },
   {
     "num": 50,
     "title": "Al commissariato",
-    "file": "Text/index_split_061.html",
     "paragraphs": [
       "Dopo aver chiamato dei rinforzi a casa della donna, Agostina, Ignazio e Nina tornano alla stazione centrale, su espressa richiesta di Zamboni. Quando Agostina entra nel suo ufficio, Zamboni è lì che l’aspetta. Sembra furente.",
       "Zamboni:Una rapina a una gioielleria? Un pacchetto sospetto a Tiburtina? Una vendita di droga? Un sequestro! Avete agito tutto il giorno alle mie spalle. Mi volete dire cosa sta succedendo?",
@@ -2986,21 +3027,64 @@
     ],
     "vocab": [
       {
-        "word": "furentelivid,",
-        "meaning": "furious"
+        "word": "furente",
+        "meaning": "怒不可遏的 / furious"
       },
       {
-        "word": "alle spallebehind",
-        "meaning": "somebody’s back"
+        "word": "alle spalle",
+        "meaning": "在背后 / behind somebody's back"
       },
       {
-        "word": "tenere",
-        "meaning": "all’oscuro to keep somebody in the dark about something"
+        "word": "tenere all'oscuro",
+        "meaning": "瞒着 / to keep in the dark"
       },
       {
         "word": "tracciare",
-        "meaning": "to track"
+        "meaning": "追踪 / to track"
       }
+    ],
+    "polish": [
+      {
+        "term": "su espressa richiesta di",
+        "note": "应……的明确要求，espressa = 明确的/专门的，比 su richiesta 语气更强。"
+      },
+      {
+        "term": "furente",
+        "note": "怒不可遏的（= furioso），督察等门的怒相。"
+      },
+      {
+        "term": "alle mie spalle",
+        "note": "在我背后（暗指\"背着我干\"），经典职场/悬疑台词。"
+      },
+      {
+        "term": "tenuta all'oscuro",
+        "note": "瞒着 / 把……蒙在鼓里，all'oscuro 字面\"在黑暗中\"，阿戈斯蒂娜的道歉点。"
+      },
+      {
+        "term": "tracciare le chiamate",
+        "note": "追踪来电，警务术语；赞博尼的逻辑——要是线人打过电话就能定位。"
+      },
+      {
+        "term": "immischiato in affari sporchi",
+        "note": "卷进肮脏勾当，sporco 喻\"非法/见不得光\"，immischiato = 牵连其中。"
+      },
+      {
+        "term": "informatore anonimo / soffiate",
+        "note": "匿名线人 / 线报，呼应前面 soffiata（第五幕）。赞博尼把\"预言画\"也当成\"线人爆料\"了——信息不对称制造的喜剧张力。"
+      },
+      {
+        "term": "non ha mai chiamato",
+        "note": "炸弹台词：他从来没打过电话——直接戳破\"线人\"谎言，因为真正的消息源是那幅画。下一幕赞博尼怕是要追问\"那情报哪来的？\""
+      }
+    ],
+    "translations": [
+      "向女总裁家调了增援后，阿戈斯蒂娜、伊尼亚齐奥和尼娜应赞博尼的明确要求回到总局。阿戈斯蒂娜走进自己办公室时，赞博尼正等在那儿，看上去怒不可遏。",
+      "赞博尼： 珠宝店抢劫？蒂布尔蒂纳的可疑包裹？毒品交易？还有绑架！你们一整天都在我背后行动。能不能告诉我到底发生了什么？",
+      "阿戈斯蒂娜： 很抱歉，长官，我们收到了匿名线人的另一些线报，又因为怀疑这警察局里有内鬼，才决定秘密行动。瞒着您，我们道歉。",
+      "赞博尼： 听好了，桑托罗，我必须知道这个线人是谁。",
+      "阿戈斯蒂娜： 我们真不知道！说真的，长官。是个完全匿名的线人。",
+      "赞博尼： 那你们就没法追踪他的来电吗？显然这人是个罪犯——要么是黑帮老大，要么是卷进见不得光勾当的人，才可能对罗马所有的犯罪都了如指掌。",
+      "阿戈斯蒂娜： 问题是……我们没追踪他的来电，因为……嗯，他从来没打过电话。"
     ],
     "title_cn": "在警察局"
   },
