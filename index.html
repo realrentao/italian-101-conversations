@@ -318,7 +318,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 75; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 76; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -480,7 +480,7 @@ async function loadParaAudio(num, pIdx) {
   const key = `${num}-${pIdx}`;
   if (loadedParaAudio[key]) return loadedParaAudio[key];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=18`);
+    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=19`);
     if (resp.ok) {
       const data = await resp.json();
       loadedParaAudio[key] = data;
@@ -874,7 +874,7 @@ function speakWord(convNum, vocabIdx) {
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
   
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=32`)
+  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=33`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.b64 && data.b64.length > 200) {
