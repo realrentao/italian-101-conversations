@@ -3851,22 +3851,68 @@
     "vocab": [
       {
         "word": "a debita distanza",
-        "meaning": "at a safe distance"
+        "meaning": "保持安全距离 / at a safe distance"
       },
       {
-        "word": "di fiduci",
-        "meaning": "atrusted"
+        "word": "di fiducia",
+        "meaning": "信得过的 / trusted"
       },
       {
-        "word": "gli affaribus",
-        "meaning": "iness"
+        "word": "gli affari",
+        "meaning": "事务，生意 / business"
       },
       {
-        "word": "fare",
-        "meaning": "in modo to make sure that"
+        "word": "fare in modo che",
+        "meaning": "设法让……（后接虚拟式）/ to make sure that"
       }
     ],
-    "title_cn": "在建建筑"
+    "title_cn": "在建大楼",
+    "polish": [
+      {
+        "term": "edificio in costruzione",
+        "note": "在建大楼，尾随终点，荒僻好密谋，剧情合理。"
+      },
+      {
+        "term": "a debita distanza",
+        "note": "保持安全距离，debita = 适当的，阿戈斯蒂娜专业跟踪素养。"
+      },
+      {
+        "term": "di fiducia",
+        "note": "信得过的，赞博尼反复强调手下“都是自己人”——恰恰暴露了他搞小圈子、护私人的腐败模式。"
+      },
+      {
+        "term": "unirsi alla nostra causa",
+        "note": "加入我们的阵营，causa 此处=事业/阵线（贬义语境=犯罪团伙），呼应第19幕腐败网。"
+      },
+      {
+        "term": "indossare / ben visibile",
+        "note": "穿戴 / 显眼的，赞博尼分发红头巾并命令“戴在显眼处”——坐实了第19幕阿戈斯蒂娜的推理：“红头巾=保护伞标识”。"
+      },
+      {
+        "term": "fare in modo che + 虚拟式",
+        "note": "设法让……，考试高频虚拟式结构，赞博尼定下新案时间表。"
+      },
+      {
+        "term": "l’otto ottobre, alle tre e mezza precise",
+        "note": "10月8日下午3:30整——新一场预言犯罪的倒计时启动，与画中“未来犯罪”模式一致，暗示还有第二幅画/续集。"
+      },
+      {
+        "term": "rumore / C’è qualcuno qui?",
+        "note": "声响 / 这儿有人？——阿戈斯蒂娜暴露，枪战/抓捕前奏拉响，大结局一触即发。"
+      }
+    ],
+    "translations": [
+      "卢卡走后，桑托罗探员看见赞博尼督察出了门。她开车一路尾随，跟了老长一段路，直到两人停在一栋在建大楼前。她始终保持着安全距离，也跟着进了楼，听见赞博尼正跟人说话。",
+      "赞博尼：您不知道卷进来的都是些什么人，不过我认为您离真相不远了……有人在给您递消息。",
+      "男人1：不是咱们的人！准是您部门里的谁。",
+      "赞博尼：不可能。我手下全是信得过的……是那个画了画的人。",
+      "男人2：那今天您带来的这位，咱们又知道多少？",
+      "赞博尼：他是我信得过的。",
+      "男人1：以前怎么从没见过他？",
+      "赞博尼：因为他刚加入咱们的阵营，但我信他……听着，现在谈正事。头巾在这儿。别忘了让他们戴在显眼的地方……10月8号，我会让那片区域在下午三点半整清空。",
+      "男人2：完美……刚才那是什么声响？",
+      "赞博尼：这儿有人？"
+    ]
   },
   {
     "num": 61,
