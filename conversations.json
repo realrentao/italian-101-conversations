@@ -3381,7 +3381,7 @@
       },
       {
         "word": "riprendere",
-        "meaning": "继续 / to resume"
+        "meaning": "重新开始 / to resume"
       }
     ],
     "polish": [
@@ -3431,7 +3431,7 @@
       "行，要是你再查出什么，通知我们。",
       "当然，你们也是。"
     ],
-    "title_cn": "怀疑",
+    "title_cn": "红头巾疑云",
     "file": "Text/index_split_065.html"
   },
   {
@@ -3513,14 +3513,14 @@
       "好。晚安，妈妈。爱你。",
       "妈妈也爱你，我的心肝。好梦！"
     ],
-    "title_cn": "晚安",
+    "title_cn": "红头巾之谜",
     "file": "Text/index_split_066.html"
   },
   {
     "vocab": [
       {
         "word": "sorseggiare",
-        "meaning": "小口抿 / to sip"
+        "meaning": "小口喝 / to sip"
       },
       {
         "word": "tanto per cominciare",
@@ -3528,11 +3528,11 @@
       },
       {
         "word": "segnalare",
-        "meaning": "举报、报告 / to report"
+        "meaning": "报告 / to report"
       },
       {
         "word": "a modo suo",
-        "meaning": "以他自己的方式 / in his own way"
+        "meaning": "按自己的方式 / in his own way"
       }
     ],
     "polish": [
@@ -3582,7 +3582,7 @@
       "也就是说，这事儿早就在咱们眼皮子底下发生了。",
       "对，只是现在终于有人决定提醒你了……虽说用的是他自己的法子！"
     ],
-    "title_cn": "阿德里亚诺再次来电",
+    "title_cn": "红头巾真相",
     "num": 56,
     "title": "Nuova chiamata di Adriano",
     "file": "Text/index_split_067.html",
@@ -3612,11 +3612,11 @@
       },
       {
         "word": "tenere presente",
-        "meaning": "记在心里 / to keep in mind"
+        "meaning": "记住 / to keep in mind"
       },
       {
         "word": "premere",
-        "meaning": "要紧、关切 / to matter (also: to press)"
+        "meaning": "重要 / to matter (also: to press)"
       }
     ],
     "polish": [
@@ -3665,7 +3665,7 @@
       "我会记着这点。我当然想查出是谁在背后护着这些犯罪……可我最挂心的，还是找到那个可怜的小女孩。真希望咱们能早几分钟到现场，把绑架拦下来。",
       "我确信一切都会好起来的。咱们只要继续查下去……"
     ],
-    "title_cn": "与阿德里亚诺通话",
+    "title_cn": "私人侦探社",
     "num": 57,
     "title": "Conversazione con Adriano",
     "file": "Text/index_split_068.html",
@@ -3681,7 +3681,7 @@
   {
     "num": 58,
     "title": "Le fasi successive",
-    "title_cn": "后续阶段",
+    "title_cn": "历史学家俱乐部",
     "paragraphs": [
       "Agostina e Adriano continuano a discutere sul mistero del quadro e sui passi successivi da mettere in atto per risolvere il caso. Inoltre, la detective Santoro gli fa una confessione.",
       "Adriano:Senti, scusa se te lo chiedo, Agostina, ma cosa pensi di fare adesso?",
@@ -3698,15 +3698,15 @@
     "vocab": [
       {
         "word": "mettere in atto",
-        "meaning": "实施、采取措施 / to put into action"
+        "meaning": "实施 / to put into action"
       },
       {
         "word": "dissuadere",
-        "meaning": "劝阻、打消念头 / to dissuade"
+        "meaning": "劝阻 / to dissuade"
       },
       {
         "word": "pedinare",
-        "meaning": "跟踪、尾随 / to tail, to shadow"
+        "meaning": "跟踪 / to tail, to shadow"
       }
     ],
     "polish": [
@@ -3760,7 +3760,7 @@
   {
     "num": 59,
     "title": "Sulle orme di Zamboni",
-    "title_cn": "尾随赞博尼",
+    "title_cn": "尾随遇Luca",
     "paragraphs": [
       "Il giorno seguente, di mattina presto, la detective Santoro si reca nelle vicinanze della casa del suo capo, l'ispettore Zamboni, per seguirlo quando uscirà di casa. Tuttavia, mentre aspetta in macchina, qualcuno la sorprende.",
       "Luca:Detective, Santoro! È lei?",
@@ -3775,15 +3775,15 @@
     "vocab": [
       {
         "word": "sorprendere",
-        "meaning": "使惊讶、出其不意 / to surprise"
+        "meaning": "使惊讶 / to surprise"
       },
       {
         "word": "aspettarsi",
-        "meaning": "预料、预期 / to expect"
+        "meaning": "预料 / to expect"
       },
       {
         "word": "scambiare due parole",
-        "meaning": "聊两句、简短交谈 / to have a quick word"
+        "meaning": "简短交谈 / to have a quick word"
       }
     ],
     "polish": [
@@ -3859,11 +3859,11 @@
       },
       {
         "word": "gli affari",
-        "meaning": "事务，生意 / business"
+        "meaning": "事务 / business"
       },
       {
         "word": "fare in modo che",
-        "meaning": "设法让……（后接虚拟式）/ to make sure that"
+        "meaning": "设法让… / to make sure that"
       }
     ],
     "title_cn": "在建大楼",
@@ -3919,59 +3919,138 @@
     "title": "Il salto",
     "file": "Text/index_split_072.html",
     "paragraphs": [
-      "La detective Santoro riesce a intrufolarsi all’interno dell’edificio senza farsi vedere, però un rumore la tradisce e ora criminali e polizia corrotta la stanno cercando. Cerca di fuggire uscendo da una scala di emergenza, ma la porta è chiusa a chiave. I criminali si avvicinano e la detective Santoro alla fine decide di uscire da una finestra. Ma non sa dove andare...",
-      "Zamboni:Dov’è s’è infilato? Tu, vai a cercare fuori, subito!",
-      "Uomo 1:Sei riuscito a vedere chi era?",
-      "Zamboni:No, non ce l’ho fatta a vederlo. Tu?",
-      "Uomo 1:Nemmeno io. Non dovrebbe essere troppo lontano...non ci sono altre uscite qui.",
-      "Zamboni:ALLORA CERCATE MEGLIO! Se quello è riuscito a sentire quello di cuiparlavamo, è finita! Quindi è meglio che lo troviate... e quando sarà... Sapete già cosa fare!"
+      "La detective Santoro riesce a intrufolarsi all'interno dell'edificio senza farsi vedere, però un rumore la tradisce e ora criminali e polizia corrotta la stanno cercando. Cerca di fuggire uscendo da una scala di emergenza, ma la porta è chiusa a chiave. I criminali si avvicinano e la detective Santoro alla fine decide di uscire da una finestra. Ma non sa dove andare...",
+      "Zamboni: Dov'è s'è infilato? Tu, vai a cercare fuori, subito!",
+      "Uomo 1: Sei riuscito a vedere chi era?",
+      "Zamboni: No, non ce l'ho fatta a vederlo. Tu?",
+      "Uomo 1: Nemmeno io. Non dovrebbe essere troppo lontano... non ci sono altre uscite qui.",
+      "Zamboni: ALLORA CERCATE MEGLIO! Se quello è riuscito a sentire quello di cui parlavamo, è finita! Quindi è meglio che lo troviate... e quando sarà... Sapete già cosa fare!"
     ],
     "vocab": [
       {
-        "word": "chiuso",
-        "meaning": "a chiavelocked"
+        "word": "chiuso a chiave",
+        "meaning": "锁着的 / locked"
       },
       {
-        "word": "infilareto burrow,",
-        "meaning": "to hide"
+        "word": "infilarsi",
+        "meaning": "钻进 / to slip into"
       }
     ],
-    "title_cn": "跳跃"
+    "polish": [
+      {
+        "term": "intrufolarsi (senza farsi vedere)",
+        "note": "悄悄溜进（不被发现），阿戈斯蒂娜的潜入动作，\"a debita distanza 跟着进楼\"衔接。"
+      },
+      {
+        "term": "un rumore la tradisce",
+        "note": "一声响动暴露了她，tradire 本义\"背叛\"，这里\"声响出卖了她\"——戏剧性转折的元凶。"
+      },
+      {
+        "term": "scala di emergenza / chiuso a chiave",
+        "note": "紧急楼梯 / 锁着的，逃生路被堵，逼出\"跳窗\"的险招。"
+      },
+      {
+        "term": "fuggire",
+        "note": "逃跑（= scappare），与第15幕 scappare 近义复习。"
+      },
+      {
+        "term": "Dov'è s'è infilato?",
+        "note": "他钻哪儿去了？infilarsi = 钻进/溜入，赞博尼以为逃的是\"他\"（男性），说明还没认出是女探员。"
+      },
+      {
+        "term": "non ce l'ho fatta a vederlo",
+        "note": "没来得及看清，farcela = 办成，否定式=没做到。"
+      },
+      {
+        "term": "non ci sono altre uscite",
+        "note": "没有别的出口，uscita = 出口，把阿戈斯蒂娜逼到绝境。"
+      },
+      {
+        "term": "è finita! / Sapete già cosa fare!",
+        "note": "咱们就完了！/ 该怎么做你们心里有数！——赞博尼明着下令\"抓到就灭口\"，腐败网的真面目彻底摊开，大结局的生死对峙一触即发。"
+      }
+    ],
+    "translations": [
+      "桑托罗探员悄无声息地溜进楼里，可一声响动暴露了她，如今罪犯和腐败警察正在搜她。她想从紧急楼梯逃走，但门被锁上了。罪犯们逼近，桑托罗探员最终决定从窗户出去。可她不知该往哪儿去……",
+      "他钻哪儿去了？你，出去搜，马上！",
+      "你看出是谁了吗？",
+      "没，我没来得及看清。你呢？",
+      "我也没。他应该跑不太远……这儿没有别的出口了。",
+      "那就给我仔细搜！要是那家伙听到了咱们刚才说的事，咱们就完了！所以你们最好把他找出来……等找到了……该怎么做你们心里有数！"
+    ],
+    "title_cn": "紧急楼梯"
   },
   {
     "num": 62,
     "title": "La via di salvataggio",
     "file": "Text/index_split_073.html",
     "paragraphs": [
-      "Agostina è fuori da una finestra, e al momento l’ispettore Zamboni e i delinquenti non possono vederla, ma è in trappola. É al terzo piano, per cui non può saltare giù in strada senza infortunarsi. Improvvisamente sente una voce venire dal basso.",
-      "Ignazio:Pssst, pssst.",
-      "Agostina:Ignazio, shhh... che ci fai qui?",
-      "Ignazio:Dopo ti spiego. Senti... Prova a scalare quel ponteggio fino a dove sono io.",
-      "Agostina:Quale ponteggio?",
-      "Ignazio:Quello lì, alla tua sinistra. Ha delle lattine di vernice... sicuramente l’hanno usato dei pittori... Qualcuno sta aprendo la finestra! Vai! SBRIGATI!",
-      "Uomo 2:Guardate! Qualcuno sta scappando da quel ponteggio!",
-      "Uomo 1:Capo, spariamo?",
-      "Zamboni:Lasciatela andare. Non avrà mai abbastanza prove per incriminarmi!"
+      "Agostina è fuori da una finestra, e al momento l'ispettore Zamboni e i delinquenti non possono vederla, ma è in trappola. È al terzo piano, per cui non può saltare giù in strada senza infortunarsi. Improvvisamente sente una voce venire dal basso.",
+      "Ignazio: Pssst, pssst.",
+      "Agostina: Ignazio, shhh... che ci fai qui?",
+      "Ignazio: Dopo ti spiego. Senti... Prova a scalare quel ponteggio fino a dove sono io.",
+      "Agostina: Quale ponteggio?",
+      "Ignazio: Quello lì, alla tua sinistra. Ha delle lattine di vernice... sicuramente l'hanno usato dei pittori... Qualcuno sta aprendo la finestra! Vai! SBRIGATI!",
+      "Uomo 2: Guardate! Qualcuno sta scappando da quel ponteggio!",
+      "Uomo 1: Capo, spariamo?",
+      "Zamboni: Lasciatela andare. Non avrà mai abbastanza prove per incriminarmi!"
     ],
     "vocab": [
       {
-        "word": "essere",
-        "meaning": "in trappolato be trapped"
+        "word": "in trappola",
+        "meaning": "陷入陷阱 / trapped"
       },
       {
         "word": "infortunarsi",
-        "meaning": "to get injured"
+        "meaning": "受伤 / to get injured"
       },
       {
-        "word": "il",
-        "meaning": "ponteggioscaffolding"
+        "word": "il ponteggio",
+        "meaning": "脚手架 / scaffolding"
       },
       {
-        "word": "le lattine di vernicepaint",
-        "meaning": "cans"
+        "word": "le lattine di vernice",
+        "meaning": "油漆罐 / paint cans"
       }
     ],
-    "title_cn": "逃生之路"
+    "polish": [
+      {
+        "term": "in trappola",
+        "note": "陷入陷阱，呼应\"无处可去\"，把绝境写满。"
+      },
+      {
+        "term": "terzo piano / infortunarsi",
+        "note": "三楼 / 受伤，解释了为什么不能直接跳窗——只能靠脚手架，逻辑闭环。"
+      },
+      {
+        "term": "scalare / ponteggio / lattina di vernice",
+        "note": "攀爬 / 脚手架 / 油漆罐，伊尼亚齐奥的救命通道，油漆罐暗示\"画家/油漆工\"线索延续（呼应画家真身伏笔）。"
+      },
+      {
+        "term": "pssst / shhh / SBRIGATI!",
+        "note": "拟声+祈使，紧张感拉满，sbrigati = 赶紧（来自 sbrigarsi）。"
+      },
+      {
+        "term": "Capo, spariamo?",
+        "note": "头儿，开枪吗？capo = 头儿，男人们对赞博尼的称呼，再次坐实他是犯罪团伙老大。"
+      },
+      {
+        "term": "Lasciatela andare. Non avrà mai abbastanza prove per incriminarmi!",
+        "note": "放她走。她永远拿不出足够证据指控我！——赞博尼的致命傲慢，他以为\"没证据\"就安全，但阿戈斯蒂娜已经掌握：内鬼身份、10月8日新犯罪、红头巾暗号……大结局的反杀伏笔就埋在这儿。"
+      }
+    ],
+    "translations": [
+      "阿戈斯蒂娜在窗外，此刻赞博尼督察和那帮罪犯看不见她，但她已落入陷阱。她在三楼，所以不能直接跳到街上而不受伤。突然她听见下面传来一个声音。",
+      "嘘，嘘。",
+      "伊尼亚齐奥，嘘……你在这儿干嘛？",
+      "回头再跟你解释。听我说……试着爬上那个脚手架，爬到我这儿来。",
+      "哪个脚手架？",
+      "那个，你左边。上面有油漆罐……肯定是油漆工用的……有人要开窗了！快走！赶紧！",
+      "看！有人顺着脚手架跑了！",
+      "头儿，开枪吗？",
+      "放她走。她永远拿不出足够证据来指控我！"
+    ],
+    "title_cn": "脚手架逃生"
   },
   {
     "num": 63,
