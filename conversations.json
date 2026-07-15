@@ -3760,33 +3760,77 @@
   {
     "num": 59,
     "title": "Sulle orme di Zamboni",
-    "file": "Text/index_split_070.html",
+    "title_cn": "尾随赞博尼",
     "paragraphs": [
-      "Il giorno seguente, di mattina presto, la detective Santoro si reca nelle vicinanze della casa del suo capo, l’ispettore Zamboni, per seguirlo quando uscirà di casa. Tuttavia, mentre aspetta in macchina, qualcuno la sorprende.",
+      "Il giorno seguente, di mattina presto, la detective Santoro si reca nelle vicinanze della casa del suo capo, l'ispettore Zamboni, per seguirlo quando uscirà di casa. Tuttavia, mentre aspetta in macchina, qualcuno la sorprende.",
       "Luca:Detective, Santoro! È lei?",
       "Agostina:Ah! Luca, mi hai spaventata! Non mi aspettavo di vederti qui.",
       "Luca:Beh, io vivo qui... Cerca mio padre?",
       "Agostina:Eh, sì, speravo di scambiare due parole con lui prima di andare in ufficio.",
       "Luca:Sembra qualcosa di confidenziale, non farò altre domande.",
       "Agostina:E tu dove vai così presto? Vai già al museo?",
-      "Luca:No, non vado quasi mai al museo prima di mezzogiorno. Ho una lezione all’universit{ tra poco. Ah, ecco il mio autobus, arrivederci!",
+      "Luca:No, non vado quasi mai al museo prima di mezzogiorno. Ho una lezione all'università tra poco. Ah, ecco il mio autobus, arrivederci!",
       "Agostina:Ciao! Passa una bella giornata!"
     ],
     "vocab": [
       {
         "word": "sorprendere",
-        "meaning": "to surprise"
+        "meaning": "使惊讶、出其不意 / to surprise"
       },
       {
         "word": "aspettarsi",
-        "meaning": "to expect"
+        "meaning": "预料、预期 / to expect"
       },
       {
         "word": "scambiare due parole",
-        "meaning": "to quickly speak with"
+        "meaning": "聊两句、简短交谈 / to have a quick word"
       }
     ],
-    "title_cn": "追随赞博尼的踪迹"
+    "polish": [
+      {
+        "term": "recarsi",
+        "note": "前往（= andare，较正式书面），蹲守戏的“去到附近”。"
+      },
+      {
+        "term": "scambiare due parole",
+        "note": "聊两句，固定短语，阿戈斯蒂娜给赞博尼儿子找的台阶——“想跟他聊两句”。"
+      },
+      {
+        "term": "confidenziale",
+        "note": "私密的，卢卡懂事地“不多问”，呼应前面 informazione riservata 的保密氛围。"
+      },
+      {
+        "term": "mi hai spaventata",
+        "note": "你吓着我了，spaventare 使动；阿戈斯蒂娜跟踪被撞破的慌乱反应，很有人情味。"
+      },
+      {
+        "term": "non mi aspettavo",
+        "note": "我没料到，aspettarsi = 预期。"
+      },
+      {
+        "term": "università",
+        "note": "大学，原文 universit{ 笔误，已按“大学课”翻。"
+      },
+      {
+        "term": "Luca 身份揭晓",
+        "note": "卢卡是赞博尼的儿子，且提到“博物馆”“大学课”——学艺术/考古的年轻人形象浮现，和前面艺术品线、画家线隐隐呼应（他会不会跟画有关？留钩子）。"
+      },
+      {
+        "term": "“中午前几乎不去博物馆”",
+        "note": "这句看似闲笔，但结合前面“维托里亚诺/博物馆现画”“画家必有科班训练”，卢卡的形象开始和“画”缠绕，悬念加深。"
+      }
+    ],
+    "translations": [
+      "第二天一早，桑托罗探员来到她头儿——赞博尼督察——家附近，想在赞博尼出门时跟上去。不过，正当她在车里等着，有人冷不丁吓了她一跳。",
+      "桑托罗探员！是您吗？",
+      "哎呀！卢卡，你吓我一跳！没想到会在这儿碰见你。",
+      "嗯，我就住这儿啊……您在找我爸？",
+      "呃，对，本想上班前跟他聊两句。",
+      "听起来挺私密的，那我就不多问了。",
+      "你这么早去哪儿？已经要去博物馆了？",
+      "不，中午前我几乎不去博物馆。我待会儿有节大学课。啊，我公交车来了，再见！",
+      "拜拜！祝你今天愉快！"
+    ]
   },
   {
     "num": 60,
