@@ -4060,22 +4060,65 @@
    "Agostina scende velocemente dal ponteggio e quando è a qualche metro dal suolo, salta vicino a Ignazio. I due corrono verso la sua macchina, che è parcheggiata dietro l'angolo.",
    "Ignazio:Credi che ti abbiano vista?",
    "Agostina:Di sicuro non mi hanno vista in faccia... però è possibile che Zamboni mi abbia riconosciuta... Aspetta, tu cosa ci facevi lì?",
-   "Ignazio:Ho pensato che avresti fatto una cosa del genere, sai, pedinare Zamboni, agire da sola... Ma anch’io avevo sospetti e avevo intenzione di seguire Zamboni.",
+   "Ignazio:Ho pensato che avresti fatto una cosa del genere, sai, pedinare Zamboni, agire da sola... Ma anch'io avevo sospetti e avevo intenzione di seguire Zamboni.",
    "Agostina:Bene, la prossima volta avvisami... possiamo andare direttamente insieme. Comunque, grazie!",
    "Ignazio:Che cosa sei riuscita a scoprire?",
    "Agostina:Molte cose... Molte cose terribili."
   ],
   "vocab": [
    {
-    "word": "il",
-    "meaning": "suologround"
+    "word": "il suolo",
+    "meaning": "地面 / ground"
    },
    {
-    "word": "agireto act,",
-    "meaning": "to operate"
+    "word": "agire",
+    "meaning": "行动 / to act, to operate"
+   },
+   {
+    "word": "avere intenzione",
+    "meaning": "打算 / to intend to do, mean to"
    }
   ],
-  "title_cn": "成功逃脱"
+  "title_cn": "成功逃脱",
+  "polish": [
+   {
+    "term": "scendere dal ponteggio / suolo",
+    "note": "从脚手架下来 / 地面，28幕 ponteggio 复现，剧情连贯；suolo = 地面（比 terra 书面）。"
+   },
+   {
+    "term": "dietro l'angolo",
+    "note": "在街角后面，伊尼亚齐奥把车停隐蔽处，救场细节满分。"
+   },
+   {
+    "term": "in faccia / riconoscere",
+    "note": "脸上 / 认出，non mi hanno vista in faccia（没看清脸）+ 虚拟式 mi abbia riconosciuta（认出我）——呼应28幕赞博尼说“放她走没证据”，但“凭身形/步态认出”埋了隐患。"
+   },
+   {
+    "term": "pedinare",
+    "note": "跟踪（= seguire di nascosto），伊尼亚齐奥点破阿戈斯蒂娜“单干跟踪赞博尼”的老毛病，呼应第25、26幕。"
+   },
+   {
+    "term": "avere sospetti / avere intenzione di",
+    "note": "有怀疑 / 打算，关键转折——原来伊尼亚齐奥也早怀疑赞博尼！说明警队里不止阿戈斯蒂娜清醒，大结局有可靠战友了 👮"
+   },
+   {
+    "term": "avvisare",
+    "note": "通知/提醒，avvisami（提前跟我说），下次联手伏笔。"
+   },
+   {
+    "term": "scoprire",
+    "note": "发现/查明，Molte cose terribili 收尾——把第26、27幕偷听的惊天内幕（内鬼身份、10月8日新犯罪、红头巾暗号）浓缩成一句，张力拉满，大结局直接引爆 💣"
+   }
+  ],
+  "translations": [
+   "阿戈斯蒂娜迅速从脚手架下来，离地还有几米时，跳到了伊尼亚齐奥身边。两人朝他的车跑去，车停在了街角后面。",
+   "伊尼亚齐奥：你觉得他们看见你了吗？",
+   "阿戈斯蒂娜：他们肯定没看清我的脸……不过赞博尼有可能认出了我……等等，你当时在那儿干嘛？",
+   "伊尼亚齐奥：我猜你会干这种事，你知道的，跟踪赞博尼、单枪匹马行动……不过我也早有怀疑，本打算跟踪赞博尼。",
+   "阿戈斯蒂娜：行，下次提前跟我说……咱俩直接一起去。总之，谢了！",
+   "伊尼亚齐奥：你查到什么了？",
+   "阿戈斯蒂娜：很多……很多可怕的事。"
+  ]
  },
  {
   "num": 64,
