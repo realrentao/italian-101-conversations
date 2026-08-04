@@ -4469,9 +4469,9 @@
   "title": "Chi sono i sequestratori?",
   "file": "Text/index_split_079.html",
   "paragraphs": [
-   "La detective Santoro vuole ascoltare tutti i file audio che si trovano nella scheda di memoria. Però Ignazio la ferma. Ha l’aria molto preoccupata.",
+   "La detective Santoro vuole ascoltare tutti i file audio che si trovano nella scheda di memoria. Però Ignazio la ferma. Ha l'aria molto preoccupata.",
    "Ignazio:Aspetta, prima di ascoltarli tutti, non credi che dovremmo preoccuparci del sequestro? Chi sa dove si trova quella povera bambina?",
-   "Agostina:Ma certo, hai pienamente ragione! Guarda, questo qui dovrebbe essere il file del rapimento. Ha la data e l’ora del crimine.",
+   "Agostina:Ma certo, hai pienamente ragione! Guarda, questo qui dovrebbe essere il file del rapimento. Ha la data e l'ora del crimine.",
    "Ignazio:Va bene, ascoltiamo che dice.",
    "Zamboni [registrazione]:Allora, ho detto alle otto e mezza, e devi essere puntuale!",
    "Uomo [registrazione]:Sai quanto mi costa essere puntuale...",
@@ -4483,15 +4483,70 @@
   ],
   "vocab": [
    {
-    "word": "puntualeto",
-    "meaning": "be on time"
+    "word": "puntuale",
+    "meaning": "准时的 / to be on time"
    },
    {
-    "word": "un lasso di tempolapse",
-    "meaning": "span of time"
+    "word": "fare sul serio",
+    "meaning": "当真的 / to mean it"
+   },
+   {
+    "word": "un lasso di tempo",
+    "meaning": "时间窗口 / lapse, span of time"
+   },
+   {
+    "word": "pignolo",
+    "meaning": "爱较真的 / fastidious"
    }
   ],
-  "title_cn": "绑架者是谁？"
+  "title_cn": "绑架者是谁？",
+  "translations": [
+   "桑托罗探员想把存储卡里的音频文件全都听一遍。可伊尼亚齐奥拦住了她，一脸忧心忡忡。",
+   "伊尼亚齐奥：等等，在全都听之前，你不觉得咱们该先操心那桩绑架案吗？谁知道那可怜的小女孩在哪儿呢？",
+   "阿戈斯蒂娜：当然，你说得完全对！你看，这个应该就是绑架案的文件。上面有犯罪的日期和时间。",
+   "伊尼亚齐奥：行，听听里面说什么。",
+   "赞博尼[录音]：听着，我说的是八点半，你必须准时！",
+   "男人[录音]：你知道准时对我有多难……",
+   "赞博尼[录音]：零，我是认真的。我只能给你保证大约五分钟的时间窗口。",
+   "男人[录音]：行行行。你真是爱较真……八点半就办好，别担心。",
+   "阿戈斯蒂娜：你听到了吗？",
+   "伊尼亚齐奥：什么？",
+   "阿戈斯蒂娜：他说了“Zero”。"
+  ],
+  "polish": [
+   {
+    "term": "sequestro / rapimento",
+    "note": "绑架（两词近义，sequestro 偏法律/劫持，rapimento 偏绑人质），伊尼亚齐奥把人质安危摆第一，拦下“全听”的冲动，人性光辉 ✨"
+   },
+   {
+    "term": "preoccuparsi / povera bambina",
+    "note": "担心 / 可怜的女孩，被绑女孩下落悬念再起，呼应前面的绑架案。"
+   },
+   {
+    "term": "avere pienamente ragione",
+    "note": "完全有道理，hai pienamente ragione = 你说得太对了，考试高频认同表达。"
+   },
+   {
+    "term": "puntuale / costare",
+    "note": "准时的 / 让……为难，Sai quanto mi costa essere puntuale = 你知道准时对我多难（“费劲”），口语化抱怨。"
+   },
+   {
+    "term": "fare sul serio",
+    "note": "当真/认真，faccio sul serio = 我是说真的，赞博尼的严厉口吻。"
+   },
+   {
+    "term": "garantire / lasso di tempo",
+    "note": "保证 / 时间窗口，un lasso di tempo di circa cinque minuti = 约五分钟的时间段，作案时间窗精确设定。"
+   },
+   {
+    "term": "pignolo",
+    "note": "爱挑剔的/较真的，口语词，Come sei pignolo = 你真爱较真，同伙对赞博尼的吐槽。"
+   },
+   {
+    "term": "Zero (codename)",
+    "note": "🔑 关键伏笔：赞博尼喊同伙“Zero”——这是人名/代号！呼应那个“一言不发、看不清脸”的 quell'altro（另一个同伙）。极可能揭晓：沉默同伙就是代号“Zero”的人，甚至可能跟画家/历史学家俱乐部有关。阿戈斯蒂娜特意点出，说明这是锁定真身的关键线索。"
+   }
+  ]
  },
  {
   "num": 69,
