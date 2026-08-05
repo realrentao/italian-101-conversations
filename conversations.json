@@ -4901,7 +4901,7 @@
       "Teresa:Vieni, amore della mamma. Abbracciami! Grazie, grazie, detective! Non sa quanto le sia grata per avermi riportato mia figlia.",
       "Agostina:È il mio lavoro, signora.",
       "Teresa:Che ne è stato degli uomini responsabili di tutto questo? Li avete presi?",
-      "Agostina:Abbiamo effettuato un arresto. Però ci sono ancora un paio di persone da arrestare. Nel frattempo, le offriremola protezione della polizia. Vede quelle donne in quella macchina?",
+      "Agostina:Abbiamo effettuato un arresto. Però ci sono ancora un paio di persone da arrestare. Nel frattempo, le offriremo la protezione della polizia. Vede quelle donne in quella macchina?",
       "Teresa:Sì, le vedo.",
       "Agostina:Sono anche loro della polizia. Ho la massima fiducia in loro. Rimarranno a sorvegliare la casa giorno e notte. Per favore, non apra la porta a gente sconosciuta e non esca di casa. Se ha bisogno di andare da qualche parte, parli con loro.",
       "Teresa:Ho capito. Ma non potrebbe rimanere lei invece?",
@@ -4909,19 +4909,70 @@
     ],
     "vocab": [
       {
-        "word": "ancor",
-        "meaning": "a una voltaonce more"
+        "word": "ancora una volta",
+        "meaning": "再一次 / once more"
       },
       {
         "word": "abbracciare",
-        "meaning": "to hug"
+        "meaning": "拥抱 / to hug"
       },
       {
-        "word": "colpevoleculprit,",
-        "meaning": "felon"
+        "word": "colpevole",
+        "meaning": "罪犯 / culprit, felon"
+      },
+      {
+        "word": "grato",
+        "meaning": "感激的 / thankful"
+      },
+      {
+        "word": "sconosciuto",
+        "meaning": "陌生的 / unknown"
       }
     ],
-    "title_cn": "回家"
+    "title_cn": "回家",
+    "translations": [
+      "伊尼亚齐奥负责逮捕卡斯蒂廖内太太，而太太仍不肯说出儿子的下落，坚持说绑架是她一个人干的。与此同时，阿戈斯蒂娜·桑托罗把小梅拉尼亚送回了她妈妈身边。",
+      "特蕾莎：我的孩子！真的是你吗？",
+      "梅拉尼亚：妈妈！妈妈！是我，是我！",
+      "特蕾莎：来，妈妈的心肝。抱抱我！谢谢您，谢谢您，探员！您不知道我有多感激您把我女儿送回来。",
+      "阿戈斯蒂娜：这是我的工作，太太。",
+      "特蕾莎：干出这一切的那些人呢？你们抓到他们了吗？",
+      "阿戈斯蒂娜：我们已经逮捕了一个。不过还有几个人要抓。眼下，我们会为您提供警察保护。看到那辆车里的那些女人了吗？",
+      "特蕾莎：嗯，我看到了。",
+      "阿戈斯蒂娜：她们也是警察。我对她们完全信任。她们会日夜守着您的家。请不要给陌生人开门，也不要出门。如果您要去哪儿，跟她们说就行。",
+      "特蕾莎：我明白了。可您不能留下来吗？",
+      "阿戈斯蒂娜：抱歉，我得去抓那些罪犯了。"
+    ],
+    "polish": [
+      {
+        "term": "occuparsi (di) / rifiutarsi (di)",
+        "note": "负责处理 / 拒绝，伊尼亚齐奥接管逮捕 + 老太太死扛「绑架是我一个人干的」——护子狂魔模式全开。"
+      },
+      {
+        "term": "nel frattempo",
+        "note": "与此同时，分头行动的时间并行词，考试写作常用。"
+      },
+      {
+        "term": "abbracciami",
+        "note": "抱抱我（命令式），母女相认的温情爆发时刻 🤍"
+      },
+      {
+        "term": "grata / riportare",
+        "note": "感激的 / 送回，Non sa quanto le sia grata = 您不知道我有多感激（虚拟式 sia，考试高频句型）。"
+      },
+      {
+        "term": "responsabile / un paio di",
+        "note": "责任人 / 几个，阿戈斯蒂娜说「还有一个/几个要抓」——指 Zero 和赞博尼。"
+      },
+      {
+        "term": "protezione della polizia / sorvegliare / sconosciuto",
+        "note": "警察保护 / 日夜看守 / 陌生人，证人保护标准三件套（24小时监控 + 不开门 + 不外出），专业感拉满 👮‍♀️"
+      },
+      {
+        "term": "colpevole",
+        "note": "罪犯，andare ad arrestare i colpevoli = 去抓那些罪犯——阿戈斯蒂娜下一站直奔赞博尼，大结局最后一搏启动 💨"
+      }
+    ]
   },
   {
     "num": 74,
