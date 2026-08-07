@@ -4991,14 +4991,58 @@
     "vocab": [
       {
         "word": "unico",
-        "meaning": "the only one"
+        "meaning": "唯一的 / the only one"
       },
       {
-        "word": "in lungo e",
-        "meaning": "in largoanywhere"
+        "word": "inspiegabile",
+        "meaning": "无法解释的 / unexplicable"
+      },
+      {
+        "word": "in lungo e in largo",
+        "meaning": "到处，各处 / anywhere"
       }
     ],
-    "title_cn": "存储卡去哪儿了？"
+    "title_cn": "存储卡去哪儿了？",
+    "translations": [
+      "桑托罗探员回到警局，准备用从画里找到的那张存储卡里的证据举报赞博尼督察。然而她一到，伊尼亚齐奥就得告诉她一件事。",
+      "伊尼亚齐奥：存储卡！不见了！",
+      "阿戈斯蒂娜：什么？怎么可能？你不是说只有你知道密码吗？",
+      "伊尼亚齐奥：对，可这样居然还是出了事，真是没法解释。",
+      "阿戈斯蒂娜：到底怎么搞的？！",
+      "伊尼亚齐奥：我到处都找遍了，就是找不到。肯定有人把它拿走了。",
+      "阿戈斯蒂娜：这一切背后肯定是赞博尼。",
+      "伊尼亚齐奥：嘘……有人来了。"
+    ],
+    "polish": [
+      {
+        "term": "denunziare / supporto (di prove)",
+        "note": "举报 / 证据支撑，阿戈斯蒂娜带着存储卡回警局，准备正式举报赞博尼——正当程序走起。"
+      },
+      {
+        "term": "ritrovata",
+        "note": "被找回的/被发现的，阴性形容词，修饰 scheda di memoria，回扣第32幕“从画里取出存储卡”的关键道具。"
+      },
+      {
+        "term": "svelare",
+        "note": "揭露/告诉，伊尼亚齐奥要说的事——结果一说出来就是惊天炸弹 💣"
+      },
+      {
+        "term": "sparire / inspiegabile",
+        "note": "消失 / 无法解释，È sparita! 简短有力；inspiegabile + 虚拟式 sia potuto succedere（怎么可能发生）——密码只有伊尼亚齐奥知道，居然还能丢？"
+      },
+      {
+        "term": "in lungo e in largo",
+        "note": "到处/各处，经典习语（字面“纵向横向”），伊尼亚齐奥“翻遍了保险箱”的写照。"
+      },
+      {
+        "term": "dietro a tutto questo",
+        "note": "这一切的幕后，阿戈斯蒂娜凭直觉锁定义兄赞博尼——呼应第36幕她说的“只有他知道密码”反而成了漏洞。"
+      },
+      {
+        "term": "🔑惊天逆转",
+        "note": "赞博尼不仅知道保险箱密码，还能在伊尼亚齐奥外出期间潜入办公室把卡偷走——说明警局里还有他的人，腐败网比想象的更深。“有人来了”是谁？是赞博尼本人来灭口？还是其他卧底？还是反杀机会？悬念直接拉满！⚡"
+      }
+    ]
   },
   {
     "num": 75,
