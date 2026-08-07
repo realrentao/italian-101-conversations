@@ -5068,15 +5068,63 @@
     ],
     "vocab": [
       {
-        "word": "rimandareto postpone",
-        "meaning": "to put off"
+        "word": "rimandare",
+        "meaning": "推迟，拖延 / to postpone, to put off"
       },
       {
-        "word": "all’ertaheads",
-        "meaning": "up, watch out"
+        "word": "all'erta",
+        "meaning": "提高警惕 / heads up, watch out"
+      },
+      {
+        "word": "ricevuto",
+        "meaning": "收到（通信用语）/ roger"
       }
     ],
-    "title_cn": "在赞博尼的办公室"
+    "title_cn": "在赞博尼的办公室",
+    "translations": [
+      "阿戈斯蒂娜和伊尼亚齐奥正在警局走廊里争论，赞博尼最信任的人之一——佩里利警官到了。",
+      "佩里利：桑托罗，加利纳里。",
+      "阿戈斯蒂娜：怎么了，佩里利警官？",
+      "佩里利：赞博尼要你们立刻去他办公室。",
+      "阿戈斯蒂娜：好的……我们马上去。",
+      "佩里利：我奉命跟你们一起去。",
+      "阿戈斯蒂娜：行。走吧，伊尼亚齐奥。别再拖了。",
+      "伊尼亚齐奥：好。",
+      "阿戈斯蒂娜[低声]：小心点，他可能动手。枪握好，随时准备。",
+      "伊尼亚齐奥[低声]：收到，同事。",
+      "赞博尼：进来，把门关上。",
+      "阿戈斯蒂娜：我们更想开着门。",
+      "赞博尼：伊尼亚齐奥，把门关上。",
+      "伊尼亚齐奥：是，头儿。",
+      "阿戈斯蒂娜：伊尼亚齐奥，你干什么？",
+      "伊尼亚齐奥：结束了，阿戈斯蒂娜。"
+    ],
+    "polish": [
+      {
+        "term": "corridoio / uno degli uomini più fidati",
+        "note": "走廊 / 最信任的手下，佩里利警官登场——他是赞博尼“最信任的人”，这身份一出来就是危险信号 🚩"
+      },
+      {
+        "term": "disposizioni",
+        "note": "命令/指令，佩里利“奉命”陪同——等于监视+押送，阿戈斯蒂娜其实已经被盯上了。"
+      },
+      {
+        "term": "rimandare oltre",
+        "note": "再拖延，Meglio non rimandare oltre = 别再拖了，阿戈斯蒂娜想速战速决。"
+      },
+      {
+        "term": "sussurrando / all'erta / tenere la mano sull'arma",
+        "note": "低声 / 保持警惕 / 手放枪上，三连战术口令——阿戈斯蒂娜在走廊里用专业战术语言叮嘱战友，她完全没察觉伊尼亚齐奥是内鬼。"
+      },
+      {
+        "term": "Ricevuto, collega",
+        "note": "收到，同事——伊尼亚齐奥的回令听起来完全正常，完美的卧底表演 🎭"
+      },
+      {
+        "term": "Preferiamo lasciarla aperta",
+        "note": "我们更想开着门，阿戈斯蒂娜坚持留门保退路——但赞博尼直接点名伊尼亚齐奥关门，等于用伊尼亚齐奥亲手封死阿戈斯蒂娜的退路。"
+      }
+    ]
   },
   {
     "num": 76,
