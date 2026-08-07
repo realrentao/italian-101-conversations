@@ -5146,19 +5146,71 @@
     ],
     "vocab": [
       {
-        "word": "sbalorditobewildered,",
-        "meaning": "astonished"
+        "word": "sbalordito",
+        "meaning": "bewildered, astonished / 震惊的，目瞪口呆的"
       },
       {
-        "word": "di fattoas a matter",
-        "meaning": "of fact"
+        "word": "l’aggiunta",
+        "meaning": "addition / 加入，新增的人"
       },
       {
-        "word": "a quattr’occhiface",
-        "meaning": "to face, speak to somebody privately"
+        "word": "di fatto",
+        "meaning": "as a matter of fact / 事实上，实际上"
+      },
+      {
+        "word": "a quattr’occhi",
+        "meaning": "face to face, speak to somebody privately / 私下，两人密谈"
       }
     ],
-    "title_cn": "意外的转折"
+    "title_cn": "意外的转折",
+    "translations": [
+      "阿戈斯蒂娜和伊尼亚齐奥在赞博尼的办公室里。阿戈斯蒂娜刚刚意识到伊尼亚齐奥也卷入了赞博尼的腐败集团。她震惊不已！",
+      "阿戈斯蒂娜：你也是其中一员？从一开始就是？",
+      "赞博尼：不是。加利纳里探员是咱们队伍最新加入的。实际上，可以说正是因为有你，桑托罗探员，伊尼亚齐奥才知道了咱们的事。他摸清情况之后，私下找我谈，说想加入咱们。",
+      "阿戈斯蒂娜：真是这样吗？",
+      "伊尼亚齐奥：是的，就是这样。",
+      "阿戈斯蒂娜：所以那张存储卡……",
+      "伊尼亚齐奥：我办公室里根本就没有保险箱。",
+      "阿戈斯蒂娜：那追绑匪的时候，你追的那个罪犯呢？",
+      "伊尼亚齐奥：我故意放他跑的。",
+      "阿戈斯蒂娜：那你在建楼里接应我那次呢？",
+      "伊尼亚齐奥：严格来说，是我先找到的你。",
+      "阿戈斯蒂娜：所以你就是那个人——我没能看清脸的那个警察，跟赞博尼一起跟罪犯做交易的那个……"
+    ],
+    "polish": [
+      {
+        "term": "sbalordita",
+        "note": "震惊的/目瞪口呆的——阿戈斯蒂娜面对「唯一信任的战友是叛徒」的全剧最大冲击。"
+      },
+      {
+        "term": "da sempre / ultima aggiunta / di fatto",
+        "note": "从一开始 / 最新加入的 / 事实上——赞博尼补刀：伊尼亚齐奥不是老成员，是跟着阿戈斯蒂娜摸清腐败网后主动投诚的；反转绝了：不是赞博尼派人监视，而是伊尼亚齐奥自己嗅到「商机」主动入伙。"
+      },
+      {
+        "term": "rendersi conto (della situazione)",
+        "note": "认清形势——Resosi conto della situazione = 他摸清情况之后（过去分词短语作状语）。"
+      },
+      {
+        "term": "a quattr’occhi",
+        "note": "私下/两人密谈（习语，字面「四只眼」）——伊尼亚齐奥主动找赞博尼私聊入伙，完美隐蔽。"
+      },
+      {
+        "term": "far parte di / nemmeno",
+        "note": "加入 / 根本没有——Non ho nemmeno una cassaforte = 我办公室里根本没有保险箱，所有「藏卡」的戏全是演的。"
+      },
+      {
+        "term": "inseguire / lasciare scappare",
+        "note": "追赶 / 放跑——伊尼亚齐奥「追绑匪」结果是故意放跑，一切都是配合演戏。"
+      },
+      {
+        "term": "tecnicamente",
+        "note": "严格来说——伊尼亚齐奥用法律腔狡辩「严格来说是我先找到你」，连救命那场都是他主导设计的。"
+      },
+      {
+        "term": "fare affari (con)",
+        "note": "与……做交易——阿戈斯蒂娜把那个「看不清脸的人」对上了，就是伊尼亚齐奥本人！"
+      }
+    ]
   },
   {
     "num": 77,
