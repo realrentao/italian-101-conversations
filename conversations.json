@@ -5300,39 +5300,79 @@
       "Ignazio:Ma io...",
       "Zamboni:E tu, Santoro. Ti credi meglio di tutti noi, con i tuoi principi morali impeccabili. Beh, notizia dell’ultima ora, non lo sei! Immagina di non ricevere mai più una promozione in vita tua. Di avere lo stesso stipendio per altri vent’anni e poi di andare in pensione. Tuo figlio andrà via di casa, sarai povera e sola e non avrai nessuno che ti faccia i complimenti per quanto sei stata brava come agente di polizia. È questo che vuoi?",
       "Santoro:Però...",
-      "Zamboni:Silenzio. Ora farò qualcosa che avrei dovuto fare gi{ un po’ di tempo fa..."
+      "Zamboni:Silenzio. Ora farò qualcosa che avrei dovuto fare già un po’ di tempo fa..."
     ],
     "vocab": [
       {
-        "word": "il cinturoneholster",
-        "meaning": "gun belt"
+        "word": "il cinturone",
+        "meaning": "holster, gun belt / 武装带，枪套腰带"
       },
       {
-        "word": "la pistola di",
-        "meaning": "ordinanzaservice weapon"
+        "word": "la pistola di ordinanza",
+        "meaning": "service weapon / 配枪"
       },
       {
         "word": "sprecare",
-        "meaning": "to waste"
+        "meaning": "to waste / 浪费"
       },
       {
-        "word": "farla francaget away",
-        "meaning": "with it, get off scot-free"
+        "word": "ingiusto",
+        "meaning": "unfair / 不公平的"
+      },
+      {
+        "word": "farla franca",
+        "meaning": "get away with it, get off scot-free / 逍遥法外，逃脱制裁"
       },
       {
         "word": "strappare",
-        "meaning": "to rip-off"
+        "meaning": "to rip off / 抢走，剥夺"
       },
       {
-        "word": "notizi",
-        "meaning": "a dell’ultima orabreaking news"
+        "word": "notizia dell'ultima ora",
+        "meaning": "breaking news / 最新消息，突发新闻"
       },
       {
-        "word": "la pensi",
-        "meaning": "oneretirement"
+        "word": "la pensione",
+        "meaning": "retirement / 退休"
       }
     ],
-    "title_cn": "武器"
+    "title_cn": "武器",
+    "translations": [
+      "赞博尼沉默了一会儿，从腰间掏出东西。是他的配枪！阿戈斯蒂娜僵住了。",
+      "阿戈斯蒂娜：督察，您拿这个想干什么？",
+      "伊尼亚齐奥：等一下，头儿。这是不是有点太极端了？整个警局都会听见的。",
+      "赞博尼：都给我闭嘴！伊尼亚齐奥，别浪费精力找借口了——体制不公平、尊严……我们当初都是这么说的，但你越早接受越好。你图的是钱，而且你喜欢来钱容易、来钱快……你还喜欢逍遥法外的感觉！你想要更多钱……哪怕是从无辜的人手里抢。",
+      "伊尼亚齐奥：可我……",
+      "赞博尼：还有你，桑托罗。你以为自己比我们所有人都强，满口无可挑剔的道德原则。呵，最新消息——你并没有！想象一下，你这辈子再也不会得到晋升。接下来的二十年工资不变，然后退休。你儿子会离开家，你会又穷又孤单，没有人会因为你当警察当得好而夸你半句。这就是你想要的吗？",
+      "桑托罗：但是……",
+      "赞博尼：安静。现在我要做一件我早就该做的事了……"
+    ],
+    "polish": [
+      {
+        "term": "cinturone / pistola d'ordinanza",
+        "note": "武装带 / 配枪，赞博尼拔枪的动作，暴力威胁拉满——剧情正式进入生死关头。"
+      },
+      {
+        "term": "paralizzata",
+        "note": "吓呆的，阿戈斯蒂娜面对枪口僵住——她是职业警察却被恐惧钉在原地，张力拉满。"
+      },
+      {
+        "term": "estremo / sprecare energie",
+        "note": "极端的 / 白费力气，伊尼亚齐奥那句「整个警局都会听见」既是人道主义挣扎，也是为自己留后路的借口。"
+      },
+      {
+        "term": "accettare / prima lo accetti, meglio è",
+        "note": "接受 / 越早接受越好，赞博尼的「前辈教诲」——腐败老油条的生存哲学，讽刺拉满。"
+      },
+      {
+        "term": "in maniera facile e veloce / farla franca",
+        "note": "轻轻松松 / 逍遥法外，赞博尼撕破伊尼亚齐奥的道德伪装——「你不是为了正义，是为了快钱和逃脱制裁」，全剧最犀利的反派独白 💀。"
+      },
+      {
+        "term": "principi morali impeccabili / promozione / stipendio / andare in pensione / povero e solo",
+        "note": "无可挑剔的道德原则 / 晋升 / 工资 / 退休 / 又穷又孤单，赞博尼的「预言」把警察的终极困境具象化：永远不升职、二十年同薪、退休后孤独终老（🇮🇹 警察晋升缓慢是出了名的）。用信念打击信念，是全剧最有分量的心理战。"
+      }
+    ]
   },
   {
     "num": 79,
