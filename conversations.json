@@ -5214,8 +5214,7 @@
   },
   {
     "num": 77,
-    "title": "Le motivazioni",
-    "file": "Text/index_split_088.html",
+    "title_cn": "动机",
     "paragraphs": [
       "Nel venire a sapere che il suo collega è corrotto tanto quanto il suo capo, Agostina esige delle spiegazioni. Non riesce a capire cosa gli avrebbe fatto decidere di passare dalla parte dei buoni a quella dei cattivi.",
       "Agostina:Ma perché, Ignazio? Perché? Pensavo che tu fossi diverso!",
@@ -5227,31 +5226,67 @@
     ],
     "vocab": [
       {
-        "word": "tanto quantojust",
-        "meaning": "as much"
+        "word": "tanto quanto",
+        "meaning": "just as much / 同样多"
       },
       {
-        "word": "esigereto demand,",
-        "meaning": "to require"
+        "word": "esigere",
+        "meaning": "to demand, to require / 要求"
       },
       {
-        "word": "le",
-        "meaning": "briciolecrumbs"
+        "word": "le briciole",
+        "meaning": "crumbs / 残羹剩饭，面包屑"
       },
       {
-        "word": "percorr",
-        "meaning": "ere to go down [a path]"
+        "word": "passare",
+        "meaning": "to hand to / 交给；此处指 passare dalla parte（倒向一边）"
       },
       {
-        "word": "entrateincome,",
-        "meaning": "revenue"
+        "word": "percorrere",
+        "meaning": "to go down [a path] / 走（某条路）"
       },
       {
-        "word": "fare la stessa fineto",
-        "meaning": "end up like"
+        "word": "entrate",
+        "meaning": "income, revenue / 收入"
+      },
+      {
+        "word": "fare la stessa fine",
+        "meaning": "to end up like / 落得同样下场"
       }
     ],
-    "title_cn": "动机"
+    "polish": [
+      {
+        "term": "esigere spiegazioni / passare dalla parte dei buoni a quella dei cattivi",
+        "note": "要求解释 / 从好人变坏人，开场两句就把对峙的紧迫感拉满。"
+      },
+      {
+        "term": "le briciole (che ti passa il sistema)",
+        "note": "体制给的残羹剩饭；briciole 本义面包屑，比喻体制给警察的微薄薪水，讽刺辛辣。"
+      },
+      {
+        "term": "dignità / percorrere",
+        "note": "尊严 / 走（这条路），全剧最有深度的对白——「走这条路你找不到尊严」，阿戈斯蒂娜的信念 vs 伊尼亚齐奥的现实。"
+      },
+      {
+        "term": "entrate extra / cameriere",
+        "note": "外快 / 服务员，伊尼亚齐奥的核心控诉：每天拿命拼、收入跟服务员一样——意大利警察的真实困境 🇮🇹。"
+      },
+      {
+        "term": "alle stesse condizioni / la tua stessa fine / a malapena / mantenere",
+        "note": "同等条件 / 步你后尘 / 勉强 / 养活，伊尼亚齐奥对阿戈斯蒂娜发出灵魂拷问——系统逼人变坏，不是坏人天生坏。"
+      }
+    ],
+    "translations": [
+      "得知自己的同事和上司一样腐败，阿戈斯蒂娜要求一个解释。她无法理解，是什么让他从好人变成坏人的。",
+      "阿戈斯蒂娜：为什么，伊尼亚齐奥？为什么？我以为你是不一样的！",
+      "伊尼亚齐奥：你真想让我相信你从没想过？你就没动过“从体制那儿多捞一点”的念头？我想过更好的日子，我想活得有尊严。",
+      "阿戈斯蒂娜：我们都想活得更好，伊尼亚齐奥。但我跟你说，走这条路你找不到尊严。是什么让你觉得这个选择会让你过得更好？",
+      "伊尼亚齐奥：你在问我为什么找外快？我每天拿命去拼，收入跟个服务员差不多！",
+      "阿戈斯蒂娜：咱们工作条件都一样，你应该清楚。",
+      "伊尼亚齐奥：所以我就该步你后尘？熬到四十岁，住在破房子里，开着二手车，勉强养活我儿子？"
+    ],
+    "title": "Le motivazioni",
+    "file": "Text/index_split_088.html"
   },
   {
     "num": 78,
