@@ -6161,7 +6161,7 @@
   {
     "num": 89,
     "title": "La rete di corruzione",
-    "file": "Text/index_split_100.html",
+    "title_cn": "腐败网络",
     "paragraphs": [
       "Ignazio spiega ad Agostina che la rete di corruzione su cui stava investigando è molto più grande di quello che sembrava all’inizio. Ci sono molti agenti coinvolti, oltre a Zamboni.",
       "Agostina:Ma una volta ottenute le prove, la scheda di memoria, perché non denunciare Zamboni subito?",
@@ -6172,19 +6172,57 @@
     ],
     "vocab": [
       {
-        "word": "la",
-        "meaning": "retenet"
+        "word": "la rete",
+        "meaning": "网络 / the network"
       },
       {
-        "word": "un gioco da ragazzia piece",
-        "meaning": "of cake"
+        "word": "un gioco da ragazzi",
+        "meaning": "小菜一碟 / a piece of cake"
       },
       {
-        "word": "farsi",
-        "meaning": "intimidireto be frightened, to be intimidated"
+        "word": "cedere",
+        "meaning": "妥协让步 / to give in"
+      },
+      {
+        "word": "farsi intimidire",
+        "meaning": "被吓倒 / to be frightened, to be intimidated"
       }
     ],
-    "title_cn": "腐败网络"
+    "polish": [
+      {
+        "term": "la rete di corruzione / oltre a",
+        "note": "腐败网络 / 除了……之外，腐败规模比表面大得多——赞博尼只是冰山一角，他背后还有一整张腐败网，这也是伊尼亚齐奥要花时间的原因：抓一个赞博尼不够，要一锅端。"
+      },
+      {
+        "term": "una volta ottenute le prove / denunciare",
+        "note": "拿到证据后 / 举报，阿戈斯蒂娜的灵魂拷问：“你为什么不直接举报他？”——因为格局太小，要抓就得抓整个网络。"
+      },
+      {
+        "term": "un gioco da ragazzi / cedere",
+        "note": "小菜一碟 / 妥协让步，伊尼亚齐奥说服赞博尼让他去接马泰奥的说辞——“我认识孩子和保姆，让我去就是小菜一碟”。赞博尼在“效率”面前让步，他没想到伊尼亚齐奥会用这个授权反过来保护马泰奥 😏"
+      },
+      {
+        "term": "spacciarsi per qualcuno / dare un ordine",
+        "note": "冒充 / 下命令，全剧最精彩的骗中骗——伊尼亚齐奥直接冒充赞博尼打电话，给自己人下假命令！这就是第八十二篇里佩里利被紧急调走的真正原因！赞博尼以为是自己下的令，实际上是伊尼亚齐奥反向操作！"
+      },
+      {
+        "term": "assicurarsi che Matteo fosse al sicuro / richiamare Perilli con urgenza",
+        "note": "确保马泰奥安全 / 紧急叫回佩里利，伊尼亚齐奥的双线保护网——线一：说服赞博尼派他去接马泰奥，把孩子控制在自己手里；线二：冒充赞博尼紧急调走佩里利，给阿戈斯蒂娜开锁逃跑的窗口。两条线同时布阵，滴水不漏！这才是真正的特工级操作 🕵️"
+      },
+      {
+        "term": "non ti saresti fatta intimidire",
+        "note": "不会被吓倒的，伊尼亚齐奥了解阿戈斯蒂娜——他知道她是哪种人，所以故意创造逃跑窗口，他相信她一定会冲出去！同事之间的默契和信任，之前的铺垫在这一刻全部兑现。"
+      }
+    ],
+    "translations": [
+      "伊尼亚齐奥向阿戈斯蒂娜解释，他一直在调查的腐败网络比最初看起来的要大得多。除了赞博尼之外，还有很多警员涉案。",
+      "阿戈斯蒂娜： 但是既然证据都拿到了，那张存储卡也有了，为什么不直接举报赞博尼？",
+      "伊尼亚齐奥： 问题是这不只是赞博尼一个人的事。我们必须把所有和他一起腐败的警察都抓起来。所以我需要一点时间来搜集其他涉案人员的证据，现在我手上已经全都齐了。",
+      "阿戈斯蒂娜： 那马泰奥呢？你是怎么做到的？",
+      "伊尼亚齐奥： 我们出来的时候，赞博尼正准备打电话给Zero，让他去绑架你儿子。但我说服了他，让我去。我说孩子和保姆我都认识，让我去的话就是小菜一碟。费了点口舌，最后他同意了。这样我就能确保马泰奥平安。然后我又冒充赞博尼，给赞博尼的其他几个手下打了电话，让他们紧急叫回佩里利……这样你就能逃出来了，我知道你不会轻易被吓倒的！",
+      "阿戈斯蒂娜： 朋友，你救了我儿子！"
+    ],
+    "file": "Text/index_split_100.html"
   },
   {
     "num": 90,
