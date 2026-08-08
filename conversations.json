@@ -5533,11 +5533,11 @@
   {
     "num": 81,
     "title": "Rinchiusa nell’ufficio",
-    "file": "Text/index_split_092.html",
+    "title_cn": "被关在办公室里",
     "paragraphs": [
       "Agostina si trova rinchiusa nell’ufficio di Zamboni. La porta è chiusa a chiave e sulla porta c’è l’ufficiale Perilli, pronto ad assicurarsi che non esca. Agostina prova a parlare con lui, per cercare di convincerlo a lasciarla uscire.",
       "Agostina:Perilli, ascoltami! Se mi lasci uscire e ti penti di tutto, è possibile che tu faccia meno anni di galera.",
-      "Perilli:Taci! Non ti lascerò uscire da qui! E poi, tu sei l’unica qui che andr{ in prigione.",
+      "Perilli:Taci! Non ti lascerò uscire da qui! E poi, tu sei l’unica qui che andrà in prigione.",
       "Agostina:Quindi Zamboni ha intenzione di incolparmi? Non ci posso credere! Nessuno ci crederà!",
       "Perilli:Davvero credi che il Commissario Generale crederà a te invece di credere a lui? Io non ne sarei così tanto sicuro. Zamboni è qui da molti più anni di te. Conosce un sacco di persone, ha più potere.",
       "Agostina:Lui ha più potere, però non ha nessuna prova contro di me. Non ha niente da usare contro di me!",
@@ -5545,19 +5545,65 @@
     ],
     "vocab": [
       {
-        "word": "la",
-        "meaning": "galerajail"
+        "word": "la galera",
+        "meaning": "监狱 / jail"
       },
       {
-        "word": "tacerebe",
-        "meaning": "quiet"
+        "word": "tacere",
+        "meaning": "保持安静 / be quiet"
       },
       {
-        "word": "incolpareto blame,",
-        "meaning": "to accuse"
+        "word": "incolpare",
+        "meaning": "嫁祸 / to blame, to accuse"
+      },
+      {
+        "word": "rinchiuso",
+        "meaning": "被关押的 / locked up"
+      },
+      {
+        "word": "pentirsi",
+        "meaning": "后悔 / to repent, to regret"
       }
     ],
-    "title_cn": "被关在办公室里"
+    "polish": [
+      {
+        "term": "rinchiusa / assicurarsi che",
+        "note": "被关押 / 确保，场景设定——阿戈斯蒂娜物理上被困，但仍在用法律武器搏斗。"
+      },
+      {
+        "term": "pentirsi (di tutto) / anni di galera",
+        "note": "后悔 / 坐牢年数，阿戈斯蒂娜的心理攻势——给佩里利指条明路：\"自首减刑\"，职业探员的审讯本能。"
+      },
+      {
+        "term": "incolpare",
+        "note": "嫁祸，赞博尼的下一步棋——毁掉阿戈斯蒂娜的清白，用她的名义掩盖一切。"
+      },
+      {
+        "term": "il Commissario Generale / più potere",
+        "note": "总局长 / 更大权力，佩里利那句\"你真觉得总局长会信你？\"——把意大利腐败网的权力结构一语道破：关系网比证据管用，资历就是硬道理。"
+      },
+      {
+        "term": "in qualche modo qualcosa troverà",
+        "note": "总会找到办法的，佩里利的冷血预言——赞博尼能凭空制造证据，腐败系统会自运转。"
+      },
+      {
+        "term": "stare zitta / zitta",
+        "note": "闭嘴（命令式阴性），佩里利两次命令阿戈斯蒂娜闭嘴，最后那句\"有人来了\"——大结局的转折点！门外是谁？悬念直接拉满。"
+      },
+      {
+        "term": "se non vuoi che + 虚拟式",
+        "note": "如果你不想……的话，佩里利最后一次用马泰奥威胁——但话音未落，门外已经有人来了，反杀即将开始！"
+      }
+    ],
+    "translations": [
+      "阿戈斯蒂娜被关在赞博尼的办公室里。门上了锁，佩里利警官守在门外，随时准备确保她出不去。阿戈斯蒂娜试着跟他说话，想说服他放她出去。",
+      "阿戈斯蒂娜：佩里利，听我说！要是你放我出去，又悔悟了一切去自首，你坐的牢就会少很多年。",
+      "佩里利：闭嘴！我不会让你离开这儿的！而且，在这儿唯一要进监狱的人就是你。",
+      "阿戈斯蒂娜：所以赞博尼打算嫁祸给我？我简直不敢相信！没人会信的！",
+      "佩里利：你真以为总局局长会信你而不是信他？我可没那么确定。赞博尼待在这儿的时间比你长得多。他认识一大票人，权力也大得多。",
+      "阿戈斯蒂娜：他权力是大，可他没有任何能用来对付我的证据。他手里没有任何能整我的东西！",
+      "佩里利：他总有办法找到点什么的，你别担心。现在给我闭嘴，除非你不想让你儿子出事。……有人来了，闭嘴……"
+    ]
   },
   {
     "num": 82,
