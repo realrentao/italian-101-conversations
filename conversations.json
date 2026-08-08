@@ -5774,31 +5774,75 @@
     ],
     "vocab": [
       {
-        "word": "a perd",
-        "meaning": "ifiatobreathlessly"
+        "word": "a perdifiato",
+        "meaning": "上气不接下气地 / breathlessly"
       },
       {
         "word": "sirene spiegate",
-        "meaning": "with sirens wailing"
+        "meaning": "警笛全开 / with sirens wailing"
       },
       {
-        "word": "implicatoimplicated,",
-        "meaning": "involved"
+        "word": "implicato",
+        "meaning": "涉案的 / implicated, involved"
       },
       {
-        "word": "per quan",
-        "meaning": "to ne soas far as I know"
+        "word": "per quanto ne so",
+        "meaning": "据我所知 / as far as I know"
       },
       {
-        "word": "confisc",
-        "meaning": "are to confiscate, requisition"
+        "word": "confiscare",
+        "meaning": "没收 / to confiscate, requisition"
       },
       {
-        "word": "rivolgersito speak to,",
-        "meaning": "to address"
+        "word": "rivolgersi",
+        "meaning": "求助 / to speak to, to address"
       }
     ],
-    "title_cn": "前往公园"
+    "title_cn": "前往公园",
+    "translations": [
+      "阿戈斯蒂娜和尼娜飞奔到探员的车前。一上车，阿戈斯蒂娜就开着警笛全速直奔罗马的多利亚·潘菲利公园——马泰奥正在那里和保姆在一起。",
+      "存储卡里有赞博尼腐败的铁证。之前藏在画的颜料层底下。",
+      "所以你最终是对的！赞博尼涉案画作里描绘的所有罪行！",
+      "是的，而且还不止那些……现在他还威胁要扣押我儿子。",
+      "那个人简直是个恶魔！马泰奥现在在哪儿？",
+      "据我所知，他跟保姆在公园里。赞博尼没收了我的手机，所以我没能联系上她。希望我们能赶在赞博尼的人之前找到他。",
+      "之后呢？我们怎么才能逮捕他？",
+      "有了这些证据，我们去国家警察总局，要求见弗拉泰利总局长。这才是正路——由他来签发赞博尼的逮捕令。"
+    ],
+    "polish": [
+      {
+        "term": "correre a perdifiato / a sirene spiegate",
+        "note": "拼命跑 / 开着警笛，开场的紧迫感——阿戈斯蒂娜和尼娜冲上车，全速飙向公园，两条线同时推进：救儿子 + 拿证据。"
+      },
+      {
+        "term": "Villa Doria Pamphili",
+        "note": "多利亚·潘菲利公园，罗马真实地名，罗马最大的公园——赞博尼要在这里动手，说明他早就盯上了马泰奥的行动轨迹。"
+      },
+      {
+        "term": "la babysitter",
+        "note": "临时保姆，赞博尼没收阿戈斯蒂娜手机的真正原因——切断她和保姆的联系，让他的人先到公园。腐败分子的战术素养 😈"
+      },
+      {
+        "term": "essere implicato / rappresentato",
+        "note": "涉案 / 被描绘的，尼娜的这句总结非常精炼——画即预言，预言即真相，画家用画笔记录了赞博尼的全部罪行。"
+      },
+      {
+        "term": "sequestrare / confiscare",
+        "note": "扣押 / 没收，两个法律词汇——sequestrare 是扣押人（绑架），confiscare 是没收物品（手机）。赞博尼对阿戈斯蒂娜物理隔绝和信息隔绝，双管齐下。"
+      },
+      {
+        "term": "prima che + 虚拟式",
+        "note": "在……之前（从句虚拟式），阿戈斯蒂娜这句里的紧迫感：\"希望我们先找到他，别让赞博尼的人先到。\"时间竞赛正式开始！"
+      },
+      {
+        "term": "far + inf. (far arrestare)",
+        "note": "使役式\"让某人被……\"，意大利语特有结构——far arrestare = \"让某人被捕\"，比直接说 arrestare 多了一层\"借他人之手\"的意味。"
+      },
+      {
+        "term": "rivolgersi a / il mandato di arresto",
+        "note": "求助 / 逮捕令，阿戈斯蒂娜的法律武器——不走腐败系统内渠道，直接找总局局长弗拉泰利走正规程序。用正规权力反杀腐败权力，讽刺意味拉满 ⚖️"
+      }
+    ]
   },
   {
     "num": 85,
