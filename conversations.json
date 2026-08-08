@@ -5860,19 +5860,55 @@
     ],
     "vocab": [
       {
-        "word": "un battibalenotwinkling",
-        "meaning": "of an eye"
+        "word": "un battibaleno",
+        "meaning": "一眨眼（的工夫） / twinkling of an eye"
       },
       {
-        "word": "che scioccahow",
-        "meaning": "silly"
+        "word": "che sciocca",
+        "meaning": "我真傻 / how silly"
       },
       {
-        "word": "avere la testa altrovebe distracted",
-        "meaning": "have the head in the clouds"
+        "word": "avere la testa altrove",
+        "meaning": "心不在焉 / be distracted, have the head in the clouds"
       }
     ],
-    "title_cn": "马泰奥不在保姆那里"
+    "title_cn": "马泰奥不在保姆那里",
+    "translations": [
+      "阿戈斯蒂娜和尼娜一路风驰电掣穿过罗马街头，转眼就到了公园。她们径直朝马泰奥通常跟保姆散步的地方走去。几分钟后，她们遇到了娜迪亚——马泰奥的保姆——她正独自悠闲地走着。",
+      "娜迪亚，马泰奥在哪儿？他怎么样？",
+      "你好，阿戈斯蒂娜！马泰奥很好！",
+      "是吗，但他现在在哪儿？",
+      "刚才伊尼亚齐奥来接走了他，你让我等他的。",
+      "我让你等他了？",
+      "对，你给我发了条短信，让我知道他要来接马泰奥，你忘了吗？几分钟前，伊尼亚齐奥来了接走了他。怎么，有什么问题吗？",
+      "没有……没问题。是的，没错，我真傻，我差点忘了！我最近脑子里乱得很，真的该休个假了……好，娜迪亚，那我先回家了，明天见。谢谢你。"
+    ],
+    "polish": [
+      {
+        "term": "a tutta velocità / in un battibaleno",
+        "note": "全速 / 转眼间，阿戈斯蒂娜和尼娜飙车到达公园，时间竞赛——但伊尼亚齐奥比她们还早几分钟。一切已经太迟。"
+      },
+      {
+        "term": "venire a prendere / passare a prendere",
+        "note": "来接 / 顺路来接，两个短语微妙区别——venire a prendere = 来接走（明确动作）；passare a prendere = 顺便来拿（轻松语气）。保姆说的是前者，伊尼亚齐奥是\"专程来接\"。"
+      },
+      {
+        "term": "un messaggio sul cellulare / avvisarmi",
+        "note": "手机短信 / 通知我，这是整套阴谋的核心：赞博尼没收阿戈斯蒂娜手机的目的——用她的手机给保姆发短信，制造\"阿戈斯蒂娜本人同意\"的假象，让伊尼亚齐奥合法接走孩子。这是教科书级别的身份冒充设套 😱"
+      },
+      {
+        "term": "Che sciocca! / me n'ero dimenticata",
+        "note": "我真傻！/ 我差点忘了！，阿戈斯蒂娜在保姆面前的演技——她立刻识破了陷阱（手机被没收后赞博尼发的短信），但她在娜迪亚面前一秒入戏，表演\"我搞混了，最近太累\"。探员的职业素养，完美的即兴表演。"
+      },
+      {
+        "term": "avere la testa altrove",
+        "note": "心不在焉（习语），阿戈斯蒂娜给自己找的借口——\"最近脑子里乱得很\"——既是真实感受（全身心扑在案件上），也是掩护。"
+      },
+      {
+        "term": "🔑全剧最令人窒息的反转",
+        "note": "伊尼亚齐奥这个双重内鬼再次出手！他第一次出手是偷存储卡交给赞博尼，第二次出手是用阿戈斯蒂娜的手机骗走她儿子。赞博尼的战术：用阿戈斯蒂娜自己的身份绑走她的儿子——物理上和精神上都彻底摧毁她。这一刻阿戈斯蒂娜的内心：刚刚到手的证据，刚刚燃起的希望，在保姆的平静微笑中彻底粉碎。但她不能崩溃——娜迪亚还在眼前。😭"
+      }
+    ]
   },
   {
     "num": 86,
