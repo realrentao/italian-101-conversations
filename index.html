@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 116; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 117; // bump when data changes to invalidate old caches
 const AUDIO_CACHE_VERSION = 2; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
@@ -495,6 +495,53 @@ async function loadParaAudio(num, pIdx) {
   const data = await ensureConvAudio(num);
   if (data && data.paragraphs && data.paragraphs[pIdx]) return data.paragraphs[pIdx];
   return null;
+}
+
+// 流式加载整篇合并音频：首个段落的 b64 一旦到达即返回，随后继续读完并缓存整篇
+function streamConvAudio(num) {
+  const url = `audio_conv/conv_${num}.json?v=${AUDIO_CACHE_VERSION}`;
+  const result = { firstB64: null, fullPromise: null };
+  result.fullPromise = (async () => {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('fetch failed ' + resp.status);
+    // 不支持流式时退化为一次性读取
+    if (!resp.body || !resp.body.getReader) {
+      const data = await resp.json();
+      loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
+      const p0 = data && data.paragraphs && data.paragraphs[0] && data.paragraphs[0].b64;
+      result.firstB64 = (p0 && p0.length > 200) ? p0 : null;
+      return data;
+    }
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '', paraStart = -1, firstFired = false;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      if (!firstFired) {
+        if (paraStart < 0) {
+          const i = buf.indexOf('"paragraphs":[');
+          if (i >= 0) paraStart = i;
+        }
+        if (paraStart >= 0) {
+          const j = buf.indexOf('"b64":"', paraStart);
+          if (j >= 0) {
+            const s = j + 7;
+            const e = buf.indexOf('"', s);
+            if (e >= 0) {
+              const b = buf.substring(s, e);
+              if (b.length > 200) { firstFired = true; result.firstB64 = b; }
+            }
+          }
+        }
+      }
+    }
+    const data = JSON.parse(buf);
+    loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
+    return data;
+  })();
+  return result;
 }
 
 // ===== 译文加载（仍从 conversations.json） =====
@@ -814,65 +861,66 @@ function setSpeed(convIdx, paraIdx, speed) {
 function playAll(convIdx) {
   if (currentAudio) stopAll();
   const conv = conversations[convIdx];
-  
   let pIdx = 0;
-  
-  async function playNext() {
+  let busy = false;       // 当前是否正在播放某段落
+  let firstFired = false; // 首段是否已开播（防止重复播放）
+  let fullData = null;    // 整篇合并音频（后台流式读完后得到）
+  const stream = streamConvAudio(conv.num);
+
+  stream.fullPromise.then(d => { fullData = d; tick(); }).catch(() => { tick(); });
+
+  function tick() {
+    if (busy) return;
     if (pIdx >= conv.paragraphs.length) {
       listenedSet.add(conv.num);
       saveProgress(); updateProgress();
       return;
     }
-    
-    const audio = getAudioEl(convIdx, pIdx);
-    // 按需加载段落音频（优先用已加载的整篇缓存）
-    const cached = loadedConvAudio[conv.num];
-    let b64 = cached && cached.paragraphs && cached.paragraphs[pIdx] && cached.paragraphs[pIdx].b64 && cached.paragraphs[pIdx].b64.length > 200 ? cached.paragraphs[pIdx].b64 : null;
+    if (pIdx === 0) {
+      // 首段优先用「已流式到达」的音频立即开播，不等整篇加载完
+      const b = (stream.firstB64 && !firstFired) ? stream.firstB64
+              : (fullData && fullData.paragraphs[0] && fullData.paragraphs[0].b64);
+      if (b && b.length > 200) { firstFired = true; playOne(0, b); return; }
+      if (fullData) { pIdx = 1; tick(); return; }   // 首段无音频，跳过
+      setTimeout(tick, 60); return;                  // 等待流式/整篇就绪
+    }
+    if (!fullData) { setTimeout(tick, 60); return; }
+    const p = fullData.paragraphs[pIdx];
+    if (p && p.b64 && p.b64.length > 200) { playOne(pIdx, p.b64); return; }
+    pIdx++; tick();
+  }
 
-    if (!b64) {
-      const data = await loadParaAudio(conv.num, pIdx);
-      b64 = data && data.b64 && data.b64.length > 200 ? data.b64 : null;
-    }
-    
-    if (b64) {
-      audio.src = 'data:audio/mp3;base64,' + b64;
-    } else {
-      // Fallback to TTS
-      if (!audio || !audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; setTimeout(playNext, 200); return; }
-    }
-    if (!audio.src || audio.src === '' || audio.src === window.location.href) { pIdx++; setTimeout(playNext, 200); return; }
-    
-    const speedKey = `speed3-${convIdx}-${pIdx}`;
+  function playOne(idx, b64) {
+    busy = true;
+    const audio = getAudioEl(convIdx, idx);
+    audio.src = 'data:audio/mp3;base64,' + b64;
+    const speedKey = `speed3-${convIdx}-${idx}`;
     audio.playbackRate = parseFloat(localStorage.getItem(speedKey) || '1');
-    
-    const playBtn = document.getElementById(`play-${convIdx}-${pIdx}`);
-    const paraEl = document.getElementById(`para-${convIdx}-${pIdx}`);
-    
-    currentAudio = { convIdx, paraIdx: pIdx, audio };
-    
+    const playBtn = document.getElementById(`play-${convIdx}-${idx}`);
+    const paraEl = document.getElementById(`para-${convIdx}-${idx}`);
+    currentAudio = { convIdx, paraIdx: idx, audio };
+
     audio.onended = () => {
+      busy = false;
       if (playBtn) { playBtn.textContent = '▶'; playBtn.classList.remove('speaking'); }
       if (paraEl) paraEl.classList.remove('playing');
-      document.getElementById(`progbar-${convIdx}-${pIdx}`).style.width = '0%';
-      pIdx++;
-      setTimeout(playNext, 500);
+      const pb = document.getElementById(`progbar-${convIdx}-${idx}`); if (pb) pb.style.width = '0%';
+      pIdx = idx + 1; tick();
     };
-    
+
     audio.ontimeupdate = () => {
-      if (audio.duration) {
-        document.getElementById(`progbar-${convIdx}-${pIdx}`).style.width = 
-          (audio.currentTime / audio.duration * 100) + '%';
-      }
+      const pb = document.getElementById(`progbar-${convIdx}-${idx}`);
+      if (audio.duration && pb) pb.style.width = (audio.currentTime / audio.duration * 100) + '%';
     };
-    
+
     audio.play().then(() => {
       if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
       if (paraEl) paraEl.classList.add('playing');
-    }).catch(() => { pIdx++; setTimeout(playNext, 200); });
+    }).catch(() => { busy = false; pIdx = idx + 1; tick(); });
   }
-  
-  // 预加载首个段落
-  playNext();
+
+  // 立即启动：首个段落音频一到达就开始播放，不必等整篇加载完
+  tick();
 }
 
 function speakWord(convNum, vocabIdx) {
