@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 111; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 112; // bump when data changes to invalidate old caches
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -474,20 +474,25 @@ function showError(msg) {
   area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--red)"><h3>⚠️</h3><p>' + msg + '</p></div>';
 }
 
-// ===== Per-paragraph audio loading (独立base64 json) =====
-let loadedParaAudio = {};  // cache: key="num-idx" → {b64, voice, speaker}
+// ===== Per-conversation audio loading (one combined json per chapter) =====
+let loadedConvAudio = {};  // cache: key=num → {paragraphs:[{b64,voice,speaker}], vocab:[{b64,word,meaning}]}
 
-async function loadParaAudio(num, pIdx) {
-  const key = `${num}-${pIdx}`;
-  if (loadedParaAudio[key]) return loadedParaAudio[key];
+async function ensureConvAudio(num) {
+  if (loadedConvAudio[num]) return loadedConvAudio[num];
   try {
-    const resp = await fetch(`audio_para/conv_${num}_${pIdx}.json?v=36`);
+    const resp = await fetch(`audio_conv/conv_${num}.json?v=1`);
     if (resp.ok) {
       const data = await resp.json();
-      loadedParaAudio[key] = data;
-      return data;
+      loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
+      return loadedConvAudio[num];
     }
   } catch(e) { /* file not found */ }
+  return null;
+}
+
+async function loadParaAudio(num, pIdx) {
+  const data = await ensureConvAudio(num);
+  if (data && data.paragraphs && data.paragraphs[pIdx]) return data.paragraphs[pIdx];
   return null;
 }
 
@@ -667,19 +672,19 @@ async function loadAndPlay(convIdx, paraIdx) {
     return;
   }
 
-  // 检查缓存
-  const key = `${conv.num}-${paraIdx}`;
-  const cached = loadedParaAudio[key];
-  if (cached && cached.b64 && cached.b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + cached.b64;
+  // 检查缓存（整篇音频已加载）
+  const cached = loadedConvAudio[conv.num];
+  if (cached && cached.paragraphs && cached.paragraphs[paraIdx] && cached.paragraphs[paraIdx].b64 && cached.paragraphs[paraIdx].b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + cached.paragraphs[paraIdx].b64;
     startPlayback(audio, convIdx, paraIdx);
     return;
   }
 
-  // 加载独立json
-  const data = await loadParaAudio(conv.num, paraIdx);
-  if (data && data.b64 && data.b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + data.b64;
+  // 加载整篇合并音频 json（首次一次性取回该篇全部段落+词汇）
+  const data = await ensureConvAudio(conv.num);
+  const p = data && data.paragraphs && data.paragraphs[paraIdx];
+  if (p && p.b64 && p.b64.length > 200) {
+    audio.src = 'data:audio/mp3;base64,' + p.b64;
     startPlayback(audio, convIdx, paraIdx);
   }
 }
@@ -714,8 +719,9 @@ function togglePlay(convIdx, paraIdx) {
 
 // 预加载首个段落（用于"播放全部"）
 async function preloadFirstPara(conv, convIdx) {
-  const data = await loadParaAudio(conv.num, 0);
-  return data && data.b64 && data.b64.length > 200 ? data.b64 : null;
+  const data = await ensureConvAudio(conv.num);
+  const p = data && data.paragraphs && data.paragraphs[0];
+  return p && p.b64 && p.b64.length > 200 ? p.b64 : null;
 }
 
 function setVoice(convIdx, voiceName) {
@@ -818,11 +824,10 @@ function playAll(convIdx) {
     }
     
     const audio = getAudioEl(convIdx, pIdx);
-    // 按需加载段落音频
-    const key = `${conv.num}-${pIdx}`;
-    const cached = loadedParaAudio[key];
-    let b64 = cached && cached.b64 && cached.b64.length > 200 ? cached.b64 : null;
-    
+    // 按需加载段落音频（优先用已加载的整篇缓存）
+    const cached = loadedConvAudio[conv.num];
+    let b64 = cached && cached.paragraphs && cached.paragraphs[pIdx] && cached.paragraphs[pIdx].b64 && cached.paragraphs[pIdx].b64.length > 200 ? cached.paragraphs[pIdx].b64 : null;
+
     if (!b64) {
       const data = await loadParaAudio(conv.num, pIdx);
       b64 = data && data.b64 && data.b64.length > 200 ? data.b64 : null;
@@ -873,17 +878,18 @@ function speakWord(convNum, vocabIdx) {
   stopAll();
   const conv = conversations.find(c => c.num === convNum);
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
-  
+
   const audio = new Audio();
-  fetch(`vocab_para/vocab_${convNum}_${vocabIdx}.json?v=66`)
-    .then(r => r.ok ? r.json() : null)
-    .then(data => {
-      if (data && data.b64 && data.b64.length > 200) {
-        audio.src = 'data:audio/mp3;base64,' + data.b64;
-        audio.play().catch(() => {});
-      }
-    })
-    .catch(() => {});
+  const playVocab = (data) => {
+    const v = data && data.vocab && data.vocab[vocabIdx];
+    if (v && v.b64 && v.b64.length > 200) {
+      audio.src = 'data:audio/mp3;base64,' + v.b64;
+      audio.play().catch(() => {});
+    }
+  };
+  const cached = loadedConvAudio[convNum];
+  if (cached) { playVocab(cached); return; }
+  ensureConvAudio(convNum).then(playVocab).catch(() => {});
 }
 
 // ===== UI Toggles =====
