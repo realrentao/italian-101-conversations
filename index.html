@@ -319,7 +319,8 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 112; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 113; // bump when data changes to invalidate old caches
+const AUDIO_CACHE_VERSION = 2; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -480,7 +481,7 @@ let loadedConvAudio = {};  // cache: key=num → {paragraphs:[{b64,voice,speaker
 async function ensureConvAudio(num) {
   if (loadedConvAudio[num]) return loadedConvAudio[num];
   try {
-    const resp = await fetch(`audio_conv/conv_${num}.json?v=1`);
+    const resp = await fetch(`audio_conv/conv_${num}.json?v=${AUDIO_CACHE_VERSION}`);
     if (resp.ok) {
       const data = await resp.json();
       loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
