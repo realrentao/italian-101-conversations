@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 114; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 115; // bump when data changes to invalidate old caches
 const AUDIO_CACHE_VERSION = 2; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
@@ -612,7 +612,7 @@ function showConversation(idx) {
     html += `
     <div class="polish-section">
       <div class="polish-header" onclick="this.nextElementSibling.classList.toggle('open')">
-        ✨ 阅读要点 · Note di revisione <span>${conv.polish.length} 条</span>
+        ✨ 阅读要点 · Note di lettura <span>${conv.polish.length} 条</span>
       </div>
       <div class="polish-body open">
         ${conv.polish.map(p => `
