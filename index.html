@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 122; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 123; // bump when data changes to invalidate old caches
 const AUDIO_CACHE_VERSION = 3; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
@@ -351,9 +351,8 @@ function showDataError(msg) {
   if (listEl) listEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text2);font-size:.85rem">⚠️ 数据未加载<br><button class="btn btn-sm btn-primary" style="margin-top:10px" onclick="retryLoad()">🔄 重试</button></div>';
 }
 
-// ===== 数据加载：首页仅拉取轻量索引（num/title/title_cn，约 7KB），点开某篇再懒加载 376KB 全文 =====
+// ===== 数据加载：首页仅拉取轻量索引（num/title/title_cn，约 7KB）；点开某篇才懒加载该篇几KB文本（conv_data） =====
 let metaList = [];          // 轻量索引，首屏即渲染侧边栏
-let fullDataPromise = null; // 全文懒加载 promise（缓存，避免重复请求）
 
 async function loadIndex() {
   const candidates = ['conversations_index.json?v=' + CACHE_VERSION, 'conversations_index.json', './conversations_index.json'];
@@ -373,54 +372,57 @@ async function loadIndex() {
   return false;
 }
 
-async function ensureFullData() {
-  if (conversations.length > 0) return true;
-  if (!fullDataPromise) {
-    fullDataPromise = (async () => {
-      // 优先复用 sessionStorage 缓存
-      try {
-        const cached = sessionStorage.getItem(CACHE_KEY);
-        const cv = parseInt(sessionStorage.getItem(CACHE_VER_KEY) || '0');
-        const cts = parseInt(sessionStorage.getItem(CACHE_TS_KEY) || '0');
-        if (cached && cv === CACHE_VERSION && Date.now() - cts < CACHE_MAX_AGE) {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed) && parsed.length > 0) { conversations = parsed; return true; }
-        }
-      } catch(e) {}
-      // 候选 URL + 自动重试
-      const candidates = ['conversations.json?v=' + CACHE_VERSION, 'conversations.json', './conversations.json'];
-      let lastErr = null;
-      for (const url of candidates) {
-        for (let attempt = 0; attempt < 3; attempt++) {
-          try {
-            const resp = await fetch(url, { cache: 'no-store' });
-            if (!resp.ok) throw new Error('HTTP ' + resp.status);
-            const data = await resp.json();
-            if (!Array.isArray(data) || data.length === 0) throw new Error('数据为空');
-            conversations = data;
-            try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(conversations)); sessionStorage.setItem(CACHE_TS_KEY, Date.now()); sessionStorage.setItem(CACHE_VER_KEY, CACHE_VERSION); } catch(e) {}
-            try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
-            return true;
-          } catch(e) { lastErr = e; await new Promise(r => setTimeout(r, 400 * (attempt + 1))); }
-        }
+// 按篇懒加载：点开哪篇才拉哪篇（conv_data/conv_{num}.json），首屏不再下载 368KB 全文
+let convDataPromise = {};  // idx -> Promise（防重复并发请求）
+async function loadConvData(i) {
+  if (i < 0 || i >= metaList.length) return null;
+  if (conversations[i]) return conversations[i];
+  if (convDataPromise[i]) return await convDataPromise[i];
+  const num = metaList[i].num;
+  const sk = 'convdata_' + num + '_' + CACHE_VERSION;
+  // sessionStorage 按篇缓存
+  try {
+    const cached = sessionStorage.getItem(sk);
+    if (cached) {
+      const d = JSON.parse(cached);
+      if (d && d.num === num) { conversations[i] = d; return d; }
+    }
+  } catch(e) {}
+  convDataPromise[i] = (async () => {
+    const candidates = [
+      'conv_data/conv_' + num + '.json?v=' + CACHE_VERSION,
+      'conv_data/conv_' + num + '.json',
+      './conv_data/conv_' + num + '.json'
+    ];
+    let lastErr = null;
+    for (const url of candidates) {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          const resp = await fetch(url, { cache: 'no-store' });
+          if (!resp.ok) throw new Error('HTTP ' + resp.status);
+          const data = await resp.json();
+          if (!data || data.num !== num) throw new Error('数据异常');
+          conversations[i] = data;
+          try { sessionStorage.setItem(sk, JSON.stringify(data)); } catch(e2) {}
+          convDataPromise[i] = null;
+          return data;
+        } catch(e) { lastErr = e; await new Promise(r => setTimeout(r, 400 * (attempt + 1))); }
       }
-      return false;
-    })();
-  }
-  return await fullDataPromise;
+    }
+    convDataPromise[i] = null;
+    return null;
+  })();
+  return await convDataPromise[i];
 }
 
-// 首屏引导：先渲染侧边栏（来自索引），再后台空闲预拉全文（不阻塞首屏交互）
+// 首屏引导：只拉 7KB 索引渲染侧边栏，绝不后台拉 368KB 全文（分篇懒加载）
 async function boot() {
   const ok = await loadIndex();
   if (!ok) { showDataError('索引加载失败'); return; }
+  conversations = new Array(metaList.length).fill(null);
   renderSidebar();
   updateProgress();
   document.getElementById('loadHint').textContent = '✅';
-  // 空闲时预加载全文，使首次点开即时（不阻塞首屏）
-  const pre = () => ensureFullData().then(ok2 => { if (ok2) updateProgress(); });
-  if (window.requestIdleCallback) window.requestIdleCallback(pre, { timeout: 3000 });
-  else setTimeout(pre, 300);
 }
 
 // 用户手动重试（重新拉索引）
@@ -432,14 +434,12 @@ function retryLoad() {
   boot();
 }
 
-// 打开某篇：确保全文就绪后再渲染
+// 打开某篇：先按篇懒加载该篇数据，再渲染（首屏只拉索引，点开才拉该篇几KB文本）
 async function openConversation(i) {
   const area = document.getElementById('contentArea');
-  if (!conversations.length) {
-    area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
-  }
-  const ok = await ensureFullData();
-  if (!ok) { showDataError('数据加载失败'); return; }
+  area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话…</p></div>';
+  const data = await loadConvData(i);
+  if (!data) { showDataError('该篇数据加载失败'); return; }
   showConversation(i);
   refreshTranslations();
 }
@@ -600,7 +600,7 @@ function streamConvAudio(num) {
   return result;
 }
 
-// ===== 译文加载（仍从 conversations.json） =====
+// ===== 译文加载（分篇后从 conv_data 懒加载） =====
 function refreshTranslations() {
   const conv = conversations[currentIdx];
   if (!conv || !conv.translations) return;
@@ -615,7 +615,7 @@ function refreshTranslations() {
 }
 
 function showConversation(idx) {
-  if (idx < 0 || idx >= conversations.length) return;
+  if (idx < 0 || idx >= metaList.length || !conversations[idx]) return;
   currentIdx = idx;
   localStorage.setItem(LS_CURRENT, idx);
   const conv = conversations[idx];
@@ -750,7 +750,7 @@ function showConversation(idx) {
   html += `
     <div class="nav-arrows">
       <button class="btn" onclick="goConv(${idx - 1})" ${idx === 0 ? 'disabled style="opacity:.4"' : ''}>← 上一篇</button>
-      <button class="btn" onclick="goConv(${idx + 1})" ${idx === conversations.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一篇 →</button>
+      <button class="btn" onclick="goConv(${idx + 1})" ${idx === metaList.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一篇 →</button>
     </div>`;
   
   area.innerHTML = html;
@@ -981,7 +981,7 @@ function playAll(convIdx) {
 
 function speakWord(convNum, vocabIdx) {
   stopAll();
-  const conv = conversations.find(c => c.num === convNum);
+  const conv = conversations[currentIdx];
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
 
   const audio = new Audio();
@@ -1032,9 +1032,11 @@ function toggleTranslation(convIdx, paraIdx) {
   }, 3000);
 }
 
-function goConv(idx) {
-  if (idx < 0 || idx >= conversations.length) return;
+async function goConv(idx) {
+  if (idx < 0 || idx >= metaList.length) return;
   stopAll();
+  const data = await loadConvData(idx);
+  if (!data) { showDataError('该篇数据加载失败'); return; }
   showConversation(idx);
 }
 
