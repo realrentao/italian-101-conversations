@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 119; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 120; // bump when data changes to invalidate old caches
 const AUDIO_CACHE_VERSION = 3; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
@@ -375,7 +375,7 @@ async function preloadData() {
 // 多候选 URL + 自动重试，避免一次性网络抖动直接判死
 async function fetchConversations() {
   const candidates = [
-    'conversations.json?_=' + Date.now(),
+    'conversations.json?v=' + CACHE_VERSION,
     'conversations.json',
     './conversations.json'
   ];
@@ -415,37 +415,77 @@ function retryLoad() {
   fetchConversations();
 }
 
+// ===== Sidebar 渐进式渲染（首屏只渲染前 LIST_PAGE 篇，避免 101 卡片一次性同步创建卡顿）=====
+const LIST_PAGE = 30;
+let gVisibleIdx = [];   // 当前过滤后的原始索引序列
+let gRendered = 0;      // 已渲染到 gVisibleIdx 的第几个
+
+function computeVisible(filterText) {
+  const q = (filterText || '').toLowerCase().trim();
+  if (!q) return conversations.map((_, i) => i);
+  const out = [];
+  conversations.forEach((c, i) => {
+    if (c.title.toLowerCase().includes(q) || (c.title_cn || '').toLowerCase().includes(q)) out.push(i);
+  });
+  return out;
+}
+
+function makeConvItem(idx) {
+  const c = conversations[idx];
+  const div = document.createElement('div');
+  div.className = 'conv-item';
+  div.dataset.idx = idx;
+  const cn = c.title_cn || '';
+  div.innerHTML = '<div class="conv-num">' + c.num + '</div><div class="conv-title">' + escHtml(c.title) + (cn ? ' <span style="color:#6c6c80;font-size:.85em">' + escHtml(cn) + '</span>' : '') + '</div>';
+  div.addEventListener('click', function() {
+    const i = parseInt(this.dataset.idx);
+    if (isNaN(i)) return;
+    document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
+    if (conversations.length > 0) {
+      showConversation(i);
+      refreshTranslations();
+    } else {
+      document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
+      ensureData().then(ok => { if (ok) { showConversation(i); } });
+    }
+    closeSidebar();
+  });
+  return div;
+}
+
 function renderSidebar(filterText) {
   const list = document.getElementById('convList');
   if (!list || conversations.length === 0) return;
-  const q = (filterText || '').toLowerCase().trim();
-  const frag = document.createDocumentFragment();
-  conversations.forEach((c, i) => {
-    const titleMatch = c.title.toLowerCase().includes(q);
-    const cnMatch = (c.title_cn || '').toLowerCase().includes(q);
-    if (q && !titleMatch && !cnMatch) return;
-    const div = document.createElement('div');
-    div.className = 'conv-item';
-    div.dataset.idx = i;
-    const cn = c.title_cn || '';
-    div.innerHTML = '<div class="conv-num">' + c.num + '</div><div class="conv-title">' + escHtml(c.title) + (cn ? ' <span style="color:#6c6c80;font-size:.85em">' + escHtml(cn) + '</span>' : '') + '</div>';
-    div.addEventListener('click', function() {
-      const idx = parseInt(this.dataset.idx);
-      if (isNaN(idx)) return;
-      document.querySelectorAll('.conv-item').forEach(el => el.classList.toggle('active', el === this));
-      if (conversations.length > 0) {
-        showConversation(idx);
-        refreshTranslations();
-      } else {
-        document.getElementById('contentArea').innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话数据…</p></div>';
-        ensureData().then(ok => { if (ok) { showConversation(idx); } });
-      }
-      closeSidebar();
-    });
-    frag.appendChild(div);
-  });
+  gVisibleIdx = computeVisible(filterText);
+  gRendered = 0;
   list.innerHTML = '';
+  if (gVisibleIdx.length === 0) {
+    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text2);font-size:.85rem">无匹配结果</div>';
+    return;
+  }
+  appendListChunk();
+}
+
+function appendListChunk() {
+  const list = document.getElementById('convList');
+  if (!list) return;
+  const oldBtn = document.getElementById('loadMoreBtn');
+  if (oldBtn) oldBtn.remove();
+  const frag = document.createDocumentFragment();
+  const end = Math.min(gRendered + LIST_PAGE, gVisibleIdx.length);
+  for (; gRendered < end; gRendered++) {
+    frag.appendChild(makeConvItem(gVisibleIdx[gRendered]));
+  }
   list.appendChild(frag);
+  if (gRendered < gVisibleIdx.length) {
+    const btn = document.createElement('button');
+    btn.id = 'loadMoreBtn';
+    btn.className = 'btn btn-sm btn-ghost';
+    btn.textContent = '显示更多 (' + (gVisibleIdx.length - gRendered) + ')';
+    btn.style.cssText = 'display:block;width:90%;margin:12px auto;';
+    btn.onclick = appendListChunk;
+    list.appendChild(btn);
+  }
 }
 
 // Search with debounce
