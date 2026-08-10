@@ -319,8 +319,8 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 123; // bump when data changes to invalidate old caches
-const AUDIO_CACHE_VERSION = 3; // bump only when audio_conv files change (regenerated audio)
+const CACHE_VERSION = 124; // bump when data changes to invalidate old caches
+const AUDIO_CACHE_VERSION = 4; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
 try { listenedSet = new Set(JSON.parse(localStorage.getItem(LS_KEY) || '[]')); } catch(e) {}
@@ -532,72 +532,9 @@ function showError(msg) {
 }
 
 // ===== Per-conversation audio loading (one combined json per chapter) =====
-let loadedConvAudio = {};  // cache: key=num → {paragraphs:[{b64,voice,speaker}], vocab:[{b64,word,meaning}]}
-
-async function ensureConvAudio(num) {
-  if (loadedConvAudio[num]) return loadedConvAudio[num];
-  try {
-    const resp = await fetch(`audio_conv/conv_${num}.json?v=${AUDIO_CACHE_VERSION}`);
-    if (resp.ok) {
-      const data = await resp.json();
-      loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
-      return loadedConvAudio[num];
-    }
-  } catch(e) { /* file not found */ }
-  return null;
-}
-
-async function loadParaAudio(num, pIdx) {
-  const data = await ensureConvAudio(num);
-  if (data && data.paragraphs && data.paragraphs[pIdx]) return data.paragraphs[pIdx];
-  return null;
-}
-
-// 流式加载整篇合并音频：首个段落的 b64 一旦到达即返回，随后继续读完并缓存整篇
-function streamConvAudio(num) {
-  const url = `audio_conv/conv_${num}.json?v=${AUDIO_CACHE_VERSION}`;
-  const result = { firstB64: null, fullPromise: null };
-  result.fullPromise = (async () => {
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error('fetch failed ' + resp.status);
-    // 不支持流式时退化为一次性读取
-    if (!resp.body || !resp.body.getReader) {
-      const data = await resp.json();
-      loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
-      const p0 = data && data.paragraphs && data.paragraphs[0] && data.paragraphs[0].b64;
-      result.firstB64 = (p0 && p0.length > 200) ? p0 : null;
-      return data;
-    }
-    const reader = resp.body.getReader();
-    const decoder = new TextDecoder();
-    let buf = '', paraStart = -1, firstFired = false;
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      buf += decoder.decode(value, { stream: true });
-      if (!firstFired) {
-        if (paraStart < 0) {
-          const i = buf.indexOf('"paragraphs":[');
-          if (i >= 0) paraStart = i;
-        }
-        if (paraStart >= 0) {
-          const j = buf.indexOf('"b64":"', paraStart);
-          if (j >= 0) {
-            const s = j + 7;
-            const e = buf.indexOf('"', s);
-            if (e >= 0) {
-              const b = buf.substring(s, e);
-              if (b.length > 200) { firstFired = true; result.firstB64 = b; }
-            }
-          }
-        }
-      }
-    }
-    const data = JSON.parse(buf);
-    loadedConvAudio[num] = data || { paragraphs: [], vocab: [] };
-    return data;
-  })();
-  return result;
+// 音频改为独立 mp3 外链：点哪段下哪段，浏览器并行加载 + HTTP 缓存，无需一次性下载整篇合并音频（原 audio_conv 合并 JSON 已废弃）
+function audioUrl(num, kind, idx) {
+  return `audio/conv_${num}/${kind}${idx}.mp3?v=${AUDIO_CACHE_VERSION}`;
 }
 
 // ===== 译文加载（分篇后从 conv_data 懒加载） =====
@@ -754,6 +691,11 @@ function showConversation(idx) {
     </div>`;
   
   area.innerHTML = html;
+  // 点开即预取前两段音频，消除首次播放延迟（几KB~几十KB，不影响首屏）
+  for (let k = 0; k < Math.min(2, conv.paragraphs.length); k++) {
+    const a = document.getElementById(`audio-${idx}-${k}`);
+    if (a) { a.preload = 'auto'; a.src = audioUrl(conv.num, 'p', k); }
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setVoiceUI(); // Sync voice select to saved preference
 }
@@ -763,34 +705,14 @@ function getAudioEl(convIdx, paraIdx) {
   return document.getElementById(`audio-${convIdx}-${paraIdx}`);
 }
 
-// 加载并播放单个段落的音频（按需加载独立json）
+// 加载并播放单个段落的音频（独立 mp3，按需加载，浏览器缓存）
 async function loadAndPlay(convIdx, paraIdx) {
   const conv = conversations[convIdx];
   if (!conv) return;
   const audio = getAudioEl(convIdx, paraIdx);
   if (!audio) return;
-
-  // 如果audio已有base64 src（暂停后恢复），直接播放
-  if (audio.src && audio.src.includes('base64') && audio.src.length > 300) {
-    startPlayback(audio, convIdx, paraIdx);
-    return;
-  }
-
-  // 检查缓存（整篇音频已加载）
-  const cached = loadedConvAudio[conv.num];
-  if (cached && cached.paragraphs && cached.paragraphs[paraIdx] && cached.paragraphs[paraIdx].b64 && cached.paragraphs[paraIdx].b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + cached.paragraphs[paraIdx].b64;
-    startPlayback(audio, convIdx, paraIdx);
-    return;
-  }
-
-  // 加载整篇合并音频 json（首次一次性取回该篇全部段落+词汇）
-  const data = await ensureConvAudio(conv.num);
-  const p = data && data.paragraphs && data.paragraphs[paraIdx];
-  if (p && p.b64 && p.b64.length > 200) {
-    audio.src = 'data:audio/mp3;base64,' + p.b64;
-    startPlayback(audio, convIdx, paraIdx);
-  }
+  audio.src = audioUrl(conv.num, 'p', paraIdx);
+  startPlayback(audio, convIdx, paraIdx);
 }
 
 function togglePlay(convIdx, paraIdx) {
@@ -819,13 +741,6 @@ function togglePlay(convIdx, paraIdx) {
   // 否则停止当前播放，开始播放新段落
   stopAll();
   loadAndPlay(convIdx, paraIdx);
-}
-
-// 预加载首个段落（用于"播放全部"）
-async function preloadFirstPara(conv, convIdx) {
-  const data = await ensureConvAudio(conv.num);
-  const p = data && data.paragraphs && data.paragraphs[0];
-  return p && p.b64 && p.b64.length > 200 ? p.b64 : null;
 }
 
 function setVoice(convIdx, voiceName) {
@@ -919,12 +834,6 @@ function playAll(convIdx) {
   const conv = conversations[convIdx];
   let pIdx = 0;
   let busy = false;       // 当前是否正在播放某段落
-  let firstFired = false; // 首段是否已开播（防止重复播放）
-  let fullData = null;    // 整篇合并音频（后台流式读完后得到）
-  const stream = streamConvAudio(conv.num);
-
-  stream.fullPromise.then(d => { fullData = d; tick(); }).catch(() => { tick(); });
-
   function tick() {
     if (busy) return;
     if (pIdx >= conv.paragraphs.length) {
@@ -932,30 +841,21 @@ function playAll(convIdx) {
       saveProgress(); updateProgress();
       return;
     }
-    if (pIdx === 0) {
-      // 首段优先用「已流式到达」的音频立即开播，不等整篇加载完
-      const b = (stream.firstB64 && !firstFired) ? stream.firstB64
-              : (fullData && fullData.paragraphs[0] && fullData.paragraphs[0].b64);
-      if (b && b.length > 200) { firstFired = true; playOne(0, b); return; }
-      if (fullData) { pIdx = 1; tick(); return; }   // 首段无音频，跳过
-      setTimeout(tick, 60); return;                  // 等待流式/整篇就绪
-    }
-    if (!fullData) { setTimeout(tick, 60); return; }
-    const p = fullData.paragraphs[pIdx];
-    if (p && p.b64 && p.b64.length > 200) { playOne(pIdx, p.b64); return; }
-    pIdx++; tick();
+    playOne(pIdx);
   }
-
-  function playOne(idx, b64) {
+  function playOne(idx) {
     busy = true;
     const audio = getAudioEl(convIdx, idx);
-    audio.src = 'data:audio/mp3;base64,' + b64;
-    const speedKey = `speed3-${convIdx}-${idx}`;
-    audio.playbackRate = parseFloat(localStorage.getItem(speedKey) || '1');
+    if (!audio) { busy = false; pIdx = idx + 1; tick(); return; }
+    audio.src = audioUrl(conv.num, 'p', idx);
+    // 预取下一段，连续播放无卡顿（浏览器并行加载 + HTTP 缓存）
+    if (idx + 1 < conv.paragraphs.length) {
+      const na = getAudioEl(convIdx, idx + 1);
+      if (na) { na.preload = 'auto'; na.src = audioUrl(conv.num, 'p', idx + 1); }
+    }
     const playBtn = document.getElementById(`play-${convIdx}-${idx}`);
     const paraEl = document.getElementById(`para-${convIdx}-${idx}`);
     currentAudio = { convIdx, paraIdx: idx, audio };
-
     audio.onended = () => {
       busy = false;
       if (playBtn) { playBtn.textContent = '▶'; playBtn.classList.remove('speaking'); }
@@ -963,19 +863,16 @@ function playAll(convIdx) {
       const pb = document.getElementById(`progbar-${convIdx}-${idx}`); if (pb) pb.style.width = '0%';
       pIdx = idx + 1; tick();
     };
-
     audio.ontimeupdate = () => {
       const pb = document.getElementById(`progbar-${convIdx}-${idx}`);
       if (audio.duration && pb) pb.style.width = (audio.currentTime / audio.duration * 100) + '%';
     };
-
     audio.play().then(() => {
       if (playBtn) { playBtn.textContent = '⏸'; playBtn.classList.add('speaking'); }
       if (paraEl) paraEl.classList.add('playing');
     }).catch(() => { busy = false; pIdx = idx + 1; tick(); });
   }
-
-  // 立即启动：首个段落音频一到达就开始播放，不必等整篇加载完
+  // 立即启动：首段 mp3 仅几KB~几十KB，秒下秒播，后续段边播边预取
   tick();
 }
 
@@ -983,18 +880,9 @@ function speakWord(convNum, vocabIdx) {
   stopAll();
   const conv = conversations[currentIdx];
   if (!conv || !conv.vocab || vocabIdx < 0 || vocabIdx >= conv.vocab.length) return;
-
   const audio = new Audio();
-  const playVocab = (data) => {
-    const v = data && data.vocab && data.vocab[vocabIdx];
-    if (v && v.b64 && v.b64.length > 200) {
-      audio.src = 'data:audio/mp3;base64,' + v.b64;
-      audio.play().catch(() => {});
-    }
-  };
-  const cached = loadedConvAudio[convNum];
-  if (cached) { playVocab(cached); return; }
-  ensureConvAudio(convNum).then(playVocab).catch(() => {});
+  audio.src = audioUrl(convNum, 'v', vocabIdx);
+  audio.play().catch(() => {});
 }
 
 // ===== UI Toggles =====
