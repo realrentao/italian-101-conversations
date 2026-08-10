@@ -319,7 +319,7 @@ const LS_CURRENT = 'italian101_current3';
 const CACHE_KEY = 'italian101_cache';
 const CACHE_TS_KEY = 'italian101_cache_ts';
 const CACHE_VER_KEY = 'italian101_cache_ver';
-const CACHE_VERSION = 125; // bump when data changes to invalidate old caches
+const CACHE_VERSION = 126; // bump when data changes to invalidate old caches
 const AUDIO_CACHE_VERSION = 4; // bump only when audio_conv files change (regenerated audio)
 const CACHE_MAX_AGE = 3600000; // 1 hour
 
@@ -436,10 +436,13 @@ function retryLoad() {
 
 // 打开某篇：先按篇懒加载该篇数据，再渲染（首屏只拉索引，点开才拉该篇几KB文本）
 async function openConversation(i) {
-  const area = document.getElementById('contentArea');
-  area.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:16px">⏳</div><p>正在加载对话…</p></div>';
-  const data = await loadConvData(i);
-  if (!data) { showDataError('该篇数据加载失败'); return; }
+  if (i < 0 || i >= metaList.length) return;
+  // 立即渲染外壳（标题来自已加载的索引），毫秒级显示，不让文本/音频阻塞首屏
+  renderConversationShell(i);
+  if (!conversations[i]) {
+    const data = await loadConvData(i);
+    if (!data) { showDataError('该篇数据加载失败'); return; }
+  }
   showConversation(i);
   refreshTranslations();
 }
@@ -549,6 +552,49 @@ function refreshTranslations() {
       }
     }
   }
+}
+
+// 先渲染外壳（标题来自已加载的索引），让页面毫秒级显示，文本/音频不阻塞首屏
+function renderConversationShell(i) {
+  if (i < 0 || i >= metaList.length) return;
+  currentIdx = i;
+  localStorage.setItem(LS_CURRENT, i);
+  const m = metaList[i];
+  const area = document.getElementById('contentArea');
+  document.getElementById('sidebarToggle').classList.add('hide');
+  document.querySelectorAll('.conv-item').forEach(item => {
+    item.classList.toggle('active', parseInt(item.dataset.idx) === i);
+  });
+  area.innerHTML = `
+    <div class="conv-header">
+      <div class="num-badge" onclick="showDirectory()" style="cursor:pointer">📖 对话 ${m.num} / ${metaList.length}</div>
+      <h2>${escHtml(m.title)}</h2>
+      ${m.title_cn ? `<p style="font-size:.95rem;color:var(--text2);margin-top:2px">${escHtml(m.title_cn)}</p>` : ''}
+      <div class="conv-actions">
+        <button class="btn btn-primary btn-sm" disabled style="opacity:.5">▶ 播放全部</button>
+        <button class="btn btn-sm" onclick="stopAll()">⏹ 停止</button>
+      </div>
+    </div>
+    <div style="text-align:center;padding:54px 20px;color:var(--text2)"><div style="font-size:2rem;margin-bottom:14px">⏳</div><p>正在加载对话内容…</p></div>
+    <div class="nav-arrows">
+      <button class="btn" onclick="goConv(${i - 1})" ${i === 0 ? 'disabled style="opacity:.4"' : ''}>← 上一篇</button>
+      <button class="btn" onclick="goConv(${i + 1})" ${i === metaList.length - 1 ? 'disabled style="opacity:.4"' : ''}>下一篇 →</button>
+    </div>`;
+  window.scrollTo({ top: 0 });
+  setVoiceUI();
+}
+
+// 音频在「绘制完成且浏览器空闲」时后台预取前两段，绝不等声音加载完再显示页面
+function prefetchFirstSegments(conv, idx) {
+  const start = () => {
+    for (let k = 0; k < Math.min(2, conv.paragraphs.length); k++) {
+      const a = document.getElementById(`audio-${idx}-${k}`);
+      if (a) { a.preload = 'auto'; a.src = audioUrl(conv.num, 'p', k); }
+    }
+  };
+  if (window.requestIdleCallback) window.requestIdleCallback(start, { timeout: 1500 });
+  else if (window.requestAnimationFrame) window.requestAnimationFrame(start);
+  else setTimeout(start, 0);
 }
 
 function showConversation(idx) {
@@ -691,11 +737,8 @@ function showConversation(idx) {
     </div>`;
   
   area.innerHTML = html;
-  // 点开即预取前两段音频，消除首次播放延迟（几KB~几十KB，不影响首屏）
-  for (let k = 0; k < Math.min(2, conv.paragraphs.length); k++) {
-    const a = document.getElementById(`audio-${idx}-${k}`);
-    if (a) { a.preload = 'auto'; a.src = audioUrl(conv.num, 'p', k); }
-  }
+  // 页面已渲染：音频延迟到「绘制完成且浏览器空闲」再后台预取，绝不等声音加载完再显示页面
+  prefetchFirstSegments(conv, idx);
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setVoiceUI(); // Sync voice select to saved preference
 }
@@ -923,8 +966,11 @@ function toggleTranslation(convIdx, paraIdx) {
 async function goConv(idx) {
   if (idx < 0 || idx >= metaList.length) return;
   stopAll();
-  const data = await loadConvData(idx);
-  if (!data) { showDataError('该篇数据加载失败'); return; }
+  if (!conversations[idx]) {
+    renderConversationShell(idx);
+    const data = await loadConvData(idx);
+    if (!data) { showDataError('该篇数据加载失败'); return; }
+  }
   showConversation(idx);
 }
 
